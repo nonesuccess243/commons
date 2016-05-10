@@ -8,7 +8,7 @@
 	
 	<groupId>com.nbm</groupId>
 	<artifactId>commons-aggr</artifactId>
-	<version>3.0.0-SNAPSHOT</version>
+	<version>3.0.0</version>
 	<packaging>pom</packaging>
 	<name>nbmcommons</name>
 	<modules>
@@ -21,8 +21,8 @@
 	</modules>
 
 	<scm>
-		<connection>scm:svn:http://139.129.24.171:5000/repos/program_repo/trunk/nbm_commons/tags/commons-aggr/commons-aggr-2.0.0</connection>
-		<developerConnection>scm:svn:http://139.129.24.171:5000/repos/program_repo/trunk/nbm_commons/tags/commons-aggr/commons-aggr-2.0.0</developerConnection>
+		<connection>scm:svn:http://139.129.24.171:5000/repos/program_repo/trunk/nbm_commons/tags/commons-aggr/commons-aggr-3.0.0</connection>
+		<developerConnection>scm:svn:http://139.129.24.171:5000/repos/program_repo/trunk/nbm_commons/tags/commons-aggr/commons-aggr-3.0.0</developerConnection>
 	</scm>
 
 	<dependencies>
