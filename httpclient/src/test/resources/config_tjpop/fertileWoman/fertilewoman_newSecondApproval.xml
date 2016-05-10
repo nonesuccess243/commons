@@ -1,0 +1,10 @@
+<client name="tjjsw" >
+	
+	<request name="fertilewoman_newSecondApproval" url="ylfnEtsp.do"
+		encoding="GBK">
+		<default-param name="method" value="add" />
+
+	</request>
+	
+</client>
+

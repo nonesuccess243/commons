@@ -1,0 +1,14 @@
+<client name="tjjsw" >
+	
+	<request name="w_moveTempWomanIn_token" url="ylfnin.do"
+		encoding="GBK">
+		<default-param name="method" value="toTempEditDrag" />
+		<pattern>	
+        <![CDATA[
+        \"org.apache.struts.taglib.html.TOKEN\"\svalue=\"${token}\"
+		]]>
+		</pattern>
+	</request>
+	
+</client>
+

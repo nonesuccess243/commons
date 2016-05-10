@@ -1,0 +1,11 @@
+<client name="tjjsw" >
+	
+	<request name="organization_getCurrentOrg" url="qhgl.do"
+		encoding="UTF-8">
+		<default-param name="method" value="searchList" />
+		<pattern>
+		
+		</pattern>
+	</request>
+	
+</client>

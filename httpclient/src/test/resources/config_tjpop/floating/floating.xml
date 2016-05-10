@@ -1,0 +1,5 @@
+<client name="tjjsw" >
+	
+<import>WEB-INF/config_tjpop/floating/get_outside_province_list.xml</import>
+</client>
+

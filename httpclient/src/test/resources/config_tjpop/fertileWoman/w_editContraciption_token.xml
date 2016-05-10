@@ -1,0 +1,14 @@
+<client name="tjjsw" >
+
+	<request name="w_editContraciption_token" url="ylfnBys.do"
+		encoding="GBK">
+		<default-param name="method" value="toEdit" />
+		<pattern>	
+        <![CDATA[
+        \"org.apache.struts.taglib.html.TOKEN\"\svalue=\"${token}\"
+		]]>
+		</pattern>
+	</request>
+	
+</client>
+

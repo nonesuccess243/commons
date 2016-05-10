@@ -1,0 +1,36 @@
+<client name="tjjsw" >
+	
+	<request name="get_birth_first" url="syyhff.do"
+		encoding="GBK">
+		<default-param name="method" value="toEdit" />
+	<pattern>	
+        <![CDATA[
+		name=\"org.apache.struts.taglib.html.TOKEN\"
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+		value=\"${token}\"
+		]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${tpId}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[name=\"jrrq\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${jrxtrq}\"]]>
+		</pattern>
+		
+		<pattern>
+			<![CDATA[name=\"djhmBefor\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${beforeNumber}\"]]>
+		</pattern>
+		
+	</request>
+	
+</client>
+

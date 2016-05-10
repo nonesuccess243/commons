@@ -1,0 +1,14 @@
+<client name="tjjsw" >
+
+	<request name="fertilewoman_count" url="ylfnJbqk.do"
+		encoding="GBK">
+		<default-param name="method" value="customSearchList" />
+
+		<pattern>
+		<![CDATA[
+		页,共${count}条记录
+		]]>
+		</pattern>
+	</request>
+</client>
+

@@ -1,0 +1,5 @@
+<client name="tjjsw" >
+
+	<import>WEB-INF/config_tjpop/registerPopulation/get_register_woman.xml</import>
+	<import>WEB-INF/config_tjpop/registerPopulation/get_register_populationList.xml</import>
+</client>

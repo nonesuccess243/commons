@@ -1,0 +1,12 @@
+<client name="tjjsw" >
+	<request name="newmarry_editTpNewMarriage" url="xhjk.do"
+		encoding="GBK">
+		<default-param name="method" value="edit" />
+		<pattern>
+	        <![CDATA[
+				#{{div}}[\s\n]{0,10000}?${message}[\s\n]{0,10000}?@{{div}}@{{form}}@{{body}}
+			]]>
+		</pattern>
+	</request>
+</client>
+

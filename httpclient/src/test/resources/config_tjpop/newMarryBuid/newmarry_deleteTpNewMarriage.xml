@@ -1,0 +1,8 @@
+<client name="tjjsw" default-encoding="GBK">
+
+	<request name="newmarry_deleteTpNewMarriage" url="xhjk.do"
+		encoding="UTF-8">
+		<default-param name="method" value="del" />		
+	</request>
+	
+</client>

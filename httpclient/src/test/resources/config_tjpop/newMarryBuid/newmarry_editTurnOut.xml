@@ -1,0 +1,12 @@
+<client name="tjjsw" default-encoding="GBK">
+	
+	<request name="newmarry_editTurnOut" url="xhjk.do" encoding="GBK">
+		<default-param name="method" value="editOutto" />
+		<pattern>
+		<![CDATA[
+		#{{div}}[\s\n]{0,10000}?${message}[\s\n]{0,10000}?@{{div}}
+		]]>
+		</pattern>
+	</request>
+
+</client>

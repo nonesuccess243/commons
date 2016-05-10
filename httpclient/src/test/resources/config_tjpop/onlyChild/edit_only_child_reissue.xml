@@ -1,0 +1,11 @@
+<client name="tjjsw" >
+	
+	<request name="edit_only_child_reissue" url="dsznZsbf.do"
+		encoding="GBK">
+		<default-param name="method" value="edit" />
+		<default-param name="tp" value="5" />
+
+	</request>
+	
+</client>
+

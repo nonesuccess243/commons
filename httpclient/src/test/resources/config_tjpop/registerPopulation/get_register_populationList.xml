@@ -1,0 +1,9 @@
+<client name="tjjsw" default-encoding="GBK">
+
+	<request name="get_register_populationList" url="hjinfo.do" endcoding="GBK">
+		<default-param name="method" value="modlist" />
+		<default-param name="par" value="hjrk" />
+
+	</request>
+	
+</client>

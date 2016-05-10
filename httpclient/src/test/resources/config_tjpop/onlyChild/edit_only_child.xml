@@ -1,0 +1,11 @@
+<client name="tjjsw" >
+	
+	<request name="edit_only_child" url="dsznZssq.do"
+		encoding="GBK">
+		<default-param name="method" value="edit" />
+		<default-param name="tp" value="0" />
+
+	</request>
+	
+</client>
+

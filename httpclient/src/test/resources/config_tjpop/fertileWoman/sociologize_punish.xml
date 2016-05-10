@@ -1,0 +1,41 @@
+<client name="tjjsw" >
+	
+	<request name="sociologize_punish" url="shfyJa.do"
+		encoding="GBK">
+		<default-param name="method" value="detail" />
+		
+		<pattern>	
+	        <![CDATA[
+				name=\"shfyInfoID\"
+			]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[
+				value=\"${id}\"
+			]]>
+		</pattern>
+		
+		<pattern>	
+	        <![CDATA[
+				妇女身份证号码
+			]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[
+				value=\"${womanIdNo}\"
+			]]>
+		</pattern>
+		
+		<pattern>	
+	        <![CDATA[
+				value=\"${manIdNo}\"
+			]]>
+		</pattern>
+		
+		
+		
+		
+	</request>
+
+</client>
+

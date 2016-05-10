@@ -1,0 +1,29 @@
+<client name="tjjsw" >
+
+	<request name="fertilewoman_searchWomanInfoByIdNoAndName" url="hjrk.do"
+		encoding="GBK">
+		<default-param name="method" value="showDialogListForRk" />
+		<pattern>
+		<![CDATA[
+		#{{table}}
+		]]>
+		</pattern>
+		<pattern>
+		<![CDATA[
+		#{{tr}}#{{td}}${registerCondition}@{{td}}
+		]]>
+		</pattern>
+		<pattern>
+		<![CDATA[
+		#{{tr}}#{{td}}${womanCondition}@{{td}}
+		]]>
+		</pattern>
+		<pattern>
+		<![CDATA[
+		#{{tr}}#{{td}}${newMarriageCardCondition}@{{td}}
+		]]>
+		</pattern>
+	</request>
+	
+</client>
+

@@ -1,0 +1,19 @@
+<client name="tjjsw" >
+
+	 <import>WEB-INF/config_tjpop/newMarryBuid/fertilewoman_checkIdNoNewMarriage.xml</import>
+	 <import>WEB-INF/config_tjpop/newMarryBuid/fertilewoman_checkIdNoWomanManage.xml</import> 
+	 <import>WEB-INF/config_tjpop/newMarryBuid/newmarry_AddNewMarryInfo.xml</import> 
+	 <import>WEB-INF/config_tjpop/newMarryBuid/newmarry_editTurnOut.xml</import> 
+	 <import>WEB-INF/config_tjpop/newMarryBuid/newmarry_newMarryInfo_token.xml</import> 
+	 <import>WEB-INF/config_tjpop/newMarryBuid/newmarry_toEditTurnOut.xml</import> 
+	 <import>WEB-INF/config_tjpop/newMarryBuid/newmarry_turnBackList.xml</import> 
+	 <import>WEB-INF/config_tjpop/newMarryBuid/newmarry_turnOnLineList.xml</import> 
+	 <import>WEB-INF/config_tjpop/newMarryBuid/newmarry_getTpNewMarryList.xml</import>
+	 <import>WEB-INF/config_tjpop/newMarryBuid/newmarry_getTpNewMarry.xml</import>
+	 <import>WEB-INF/config_tjpop/newMarryBuid/newmarry_getTpNewMarriageTurn.xml</import>
+	 <import>WEB-INF/config_tjpop/newMarryBuid/newmarry_deleteTpNewMarriage.xml</import>
+	 <import>WEB-INF/config_tjpop/newMarryBuid/newmarry_editTpNewMarriage.xml</import>
+	 <import>WEB-INF/config_tjpop/newMarryBuid/newmarry_getTpNewMarriage.xml</import>
+	
+</client>
+

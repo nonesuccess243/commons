@@ -1,0 +1,10 @@
+<client name="tjjsw" >
+
+	<request name="sociologize_punish_list" url="shfyJa.do"
+		encoding="GBK">
+		<default-param name="method" value="listForAllState" />
+
+	</request>
+
+</client>
+

@@ -1,0 +1,14 @@
+<client name="tjjsw" >
+
+	<request name="w_moveWomanIn_token" url="ylfnin.do"
+		encoding="GBK">
+		<default-param name="method" value="toEditDrag" />
+		<pattern>	
+	        <![CDATA[
+	        	\"org.apache.struts.taglib.html.TOKEN\"\svalue=\"${token}\"
+			]]>
+		</pattern>
+	</request>
+	
+</client>
+

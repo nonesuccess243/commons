@@ -1,0 +1,10 @@
+<client name="tjjsw" >
+	
+	<request name="get_only_child_apply_list" url="dsznZssq.do"
+		encoding="GBK">
+		<default-param name="method" value="list" />
+
+	</request>
+	
+</client>
+

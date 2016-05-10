@@ -1,0 +1,10 @@
+<client name="tjjsw" >
+	
+	<request name="get_only_child_list" url="dsznZssq.do"
+		encoding="GBK">
+		<default-param name="method" value="querylist" />
+
+	</request>
+	
+</client>
+

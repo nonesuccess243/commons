@@ -1,0 +1,3 @@
+<client name="tjjsw" >
+	<import>WEB-INF/config_tjpop/tpindex/get_telephone.xml</import>
+</client>

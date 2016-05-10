@@ -1,0 +1,10 @@
+<client name="tjjsw" >
+	
+	<request name="get_outside_province_list" url="lrbdcc.do"
+		encoding="GBK">
+		<default-param name="method" value="list" />
+		<default-param name="filter_EQS_sfzjHm" value="" />
+	</request>
+	
+</client>
+

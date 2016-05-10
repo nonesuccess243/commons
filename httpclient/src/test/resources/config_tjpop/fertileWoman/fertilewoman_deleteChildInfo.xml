@@ -1,0 +1,8 @@
+<client name="tjjsw" >
+	<request name="fertilewoman_deleteChildInfo" url="ylfnJtzn.do"
+		encoding="GBK">
+		<default-param name="method" value="del" />
+
+	</request>	
+</client>
+

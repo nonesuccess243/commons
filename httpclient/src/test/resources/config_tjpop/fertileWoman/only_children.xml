@@ -1,0 +1,37 @@
+<client name="tjjsw" >
+	
+	<request name="only_children" url="dsznZsff.do"
+		encoding="GBK">
+		<default-param name="method" value="toEdit" />
+		
+		<pattern>	
+	        <![CDATA[
+				name=\"id\"
+			]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[
+				value=\"${id}\"
+			]]>
+		</pattern>
+		
+		
+		<pattern>	
+	        <![CDATA[
+				value=\"${womanIdNo}\"
+			]]>
+		</pattern>
+		
+		<pattern>	
+	        <![CDATA[
+				value=\"${manIdNo}\"
+			]]>
+		</pattern>
+		
+		
+		
+		
+	</request>
+
+</client>
+

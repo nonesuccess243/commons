@@ -1,0 +1,14 @@
+<client name="tjjsw" >
+
+	<request name="w_back_receive_send_token" url="ylfnin.do"
+		encoding="GBK">
+		<default-param name="method" value="toEdit" />
+		<pattern>	
+	        <![CDATA[
+	        	\"org.apache.struts.taglib.html.TOKEN\"\svalue=\"${token}\"
+			]]>
+		</pattern>
+	</request>
+	
+</client>
+

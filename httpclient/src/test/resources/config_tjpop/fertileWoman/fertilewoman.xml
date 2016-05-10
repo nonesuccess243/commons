@@ -1,0 +1,106 @@
+<client name="tjjsw" >
+
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_childApproval.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_count.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_csv.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_deleteChildInfo.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_deleteContraciptionInfo.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_deleteMarriageConditionInfo.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_deletePracticeCheckInfo.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_deletePregnancyInfo.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_editChildInfo.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_editConfirmation.xml</import>
+	
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_editContraciptionInfo.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_editInfomationChangeReport.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_editMarriageConditionInfo.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_editNewMarraigeConfirm.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_editPracticeCheckInfo.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_editPregnancyInfo.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_editWoman_token.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_getMoveTpTempWomanIn.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_getMoveTpwomanIn.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_getMoveTpwomanOut.xml</import>
+	
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_getTpOutList.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_moveTpTempWomanIn.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_moveTpWomanIn.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_moveTpWomanOut.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_newChildInfo.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_newContraciptionInfo.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_newMarriageConditionInfo.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_newPracticeCheckInfo.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_newPregnancyInfo.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_newWomanInfo.xml</import>
+	
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_outOfChildbearingAge.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_punish.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_receiveAcceptEdit.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_receiveSearchList.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_receiveSendBackEdit.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_searchConfirmationSendList.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_searchContraciptionInfo.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_searchContraciptionInfoList.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_searchInfomationChangeReport.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_searchMarriageConditionInfo.xml</import>
+	
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_searchMarriageConditionInfoList.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_searchNewMarriage.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_searchNewMarriageList.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_searchPracticeCheckInfo.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_searchPracticeCheckInfoList.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_searchPregnancyInfo.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_searchPregnancyInfoList.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_searchReceiveSend.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_searchReceiveSendList.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_searchTpWoman.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_searchTpWomanForIdNo.xml</import>
+	
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_searchTpWomanUnitForIdNoNumber.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_searchTpWomanUnitNumber.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_searchWomanInfo.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_searchWomanInfoByIdNoAndName.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_searchWomanInfoByIdNoInAll.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_searchWomanInfoDetailByIdNoAndName.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_waitingMigrationInList.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/organization_getAll.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/w_editChild_token.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/w_editContraciption_token.xml</import>
+	
+	<import>WEB-INF/config_tjpop/fertileWoman/w_editInfomationChangeReport_token.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/w_editNewMarriageConfirm_token.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/w_editWoman.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/w_moveTempWomanIn_token.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/w_moveWomanIn_token.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/w_back_receive_send_token.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/woman_infoedit_searchchilddetail.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/woman_infoedit_searchchildlist.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/woman_approvesecond_list.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/woman_approvesecond.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/again_approveagain_list.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/again_approveagain.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/only_children_list.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/only_children.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/sociologize_punish_list.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/sociologize_punish.xml</import>
+
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_searchCompensation.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_searchCompensationFeeInfoList.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_tpWomanOnlyChild.xml</import>
+
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_newCompensationFee.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_newSecondApproval.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_newOnlyChild.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_editApproveSecond.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_editCompensationFee.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_deleteSecondApproval.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_deleteCompensationFee.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_getWomanNumberListByUpdateTime.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_getNowDateUpdateWomanCount.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/check_womanidno_detail.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_idNoSearchDetailTpNewMarriage.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_searchTpWomanListByWomanNumber.xml</import>
+	<import>WEB-INF/config_tjpop/fertileWoman/fertilewoman_getWomanNumberListByConditions.xml</import>
+	
+</client>
+

@@ -1,0 +1,46 @@
+<client name="tjjsw" >
+	
+	<request name="get_birth_second" url="syehff.do"
+		encoding="GBK">
+		<default-param name="method" value="toEdit" />
+	<pattern>	
+        <![CDATA[
+		name=\"org.apache.struts.taglib.html.TOKEN\"
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+		value=\"${token}\"
+		]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${tpId}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[name=\"jrrq\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${jrxtrq}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[name=\"nfxmpy\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${womanNamePin}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[name=\"zfxmpy\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${manNamePin}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[name=\"djhmBefor\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${beforeNumber}\"]]>
+		</pattern>
+	</request>
+	
+</client>
+

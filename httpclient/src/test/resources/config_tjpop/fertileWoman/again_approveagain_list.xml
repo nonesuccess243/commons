@@ -1,0 +1,13 @@
+<client name="tjjsw" >
+
+	<request name="again_approveagain_list" url="sqxx.do"
+		encoding="GBK">
+		<default-param name="method" value="synchrotronHistoryList" />
+		<pattern>
+
+		</pattern>
+
+	</request>
+	
+</client>
+

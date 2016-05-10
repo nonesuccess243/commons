@@ -1,0 +1,10 @@
+<client name="tjjsw" >
+	
+	<request name="get_only_child_auditing_list" url="dsznZssh.do"
+		encoding="GBK">
+		<default-param name="method" value="list" />
+
+	</request>
+	
+</client>
+

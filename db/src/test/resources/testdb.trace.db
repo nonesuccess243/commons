@@ -1,0 +1,98 @@
+2016-04-16 11:11:38 jdbc[12]: exception
+org.h2.jdbc.JdbcSQLException: Table "ORACLE_TEST_MODEL" not found; SQL statement:
+insert into ORACLE_TEST_MODEL (
+		ID,
+		NAME,
+		REMARK,
+		MODEL_LAST_UPDATE_TIME,
+		MODEL_CREATE_TIME,
+		MODEL_IS_DELETED,
+		MODEL_DELETE_TIME
+		)
+		values (
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?
+		) [42102-191]
+2016-04-16 11:12:15 jdbc[12]: exception
+org.h2.jdbc.JdbcSQLException: Table "ORACLE_TEST_MODEL" not found; SQL statement:
+insert into ORACLE_TEST_MODEL (
+		ID,
+		NAME,
+		REMARK,
+		MODEL_LAST_UPDATE_TIME,
+		MODEL_CREATE_TIME,
+		MODEL_IS_DELETED,
+		MODEL_DELETE_TIME
+		)
+		values (
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?
+		) [42102-191]
+2016-04-16 11:20:16 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLException: Sequence "ORCALE_TEST_MODEL" not found; SQL statement:
+drop sequence orcale_test_model [90036-191]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.command.ddl.DropSequence.update(DropSequence.java:45)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:98)
+	at org.h2.command.Command.executeUpdate(Command.java:258)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:184)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:158)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1388)
+	at org.h2.server.web.WebApp.query(WebApp.java:1061)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1023)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1010)
+	at org.h2.server.web.WebThread.process(WebThread.java:164)
+	at org.h2.server.web.WebThread.run(WebThread.java:89)
+	at java.lang.Thread.run(Unknown Source)
+2016-04-16 11:20:25 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLException: Sequence "ORCALE_TEST_MODEL_SEQ" not found; SQL statement:
+drop sequence orcale_test_model_seq [90036-191]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.command.ddl.DropSequence.update(DropSequence.java:45)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:98)
+	at org.h2.command.Command.executeUpdate(Command.java:258)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:184)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:158)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1388)
+	at org.h2.server.web.WebApp.query(WebApp.java:1061)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1023)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1010)
+	at org.h2.server.web.WebThread.process(WebThread.java:164)
+	at org.h2.server.web.WebThread.run(WebThread.java:89)
+	at java.lang.Thread.run(Unknown Source)
+2016-04-18 18:03:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE [*]"; expected "identifier"; SQL statement:
+create table [42001-191]
+2016-04-18 18:05:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "S_CODETYPE" already exists; SQL statement:
+CREATE TABLE S_CODETYPE (
+  ID         NUMBER(11,0) ,
+  CODE	     VARCHAR2(50) ,
+  NAME	     VARCHAR2(100) ,
+  REMARK 	 VARCHAR2(100)
+) [42101-191]
+2016-04-18 18:06:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE SEQUENCE S_CODETYPE_SEQ
+    MINVALUE 100001 
+    MAXVALUE 99999999999
+    INCREMENT BY 1
+    START WITH 100001 NOCACHE NOORDER[*] NOCYCLE"; SQL statement:
+CREATE SEQUENCE S_CODETYPE_SEQ
+    MINVALUE 100001 
+    MAXVALUE 99999999999
+    INCREMENT BY 1
+    START WITH 100001 NOCACHE NOORDER NOCYCLE [42000-191]

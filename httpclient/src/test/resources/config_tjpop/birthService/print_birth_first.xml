@@ -1,0 +1,10 @@
+<client name="tjjsw" default-encoding="GBK">
+
+	<!-- 	一孩生育服务证打印 -->
+	<request name="print_birth_first" url="syyhff.do"
+		encoding="GBK">
+		<default-param name="method" value="editPrint" />
+		
+	</request>
+	
+</client>

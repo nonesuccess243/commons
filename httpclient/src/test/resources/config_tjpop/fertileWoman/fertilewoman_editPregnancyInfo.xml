@@ -1,0 +1,16 @@
+<client name="tjjsw" >
+
+	<request name="fertilewoman_editPregnancyInfo" url="ylfnRss.do"
+		encoding="GBK">
+		<default-param name="method" value="edit" />
+		<pattern>
+			<pattern>	
+        <![CDATA[
+		#{{div}}[\s\n]{0,10000}?${message}[\s\n]{0,10000}?@{{div}}
+		]]>
+			</pattern>
+		</pattern>
+	</request>
+
+</client>
+

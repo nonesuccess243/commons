@@ -1,0 +1,10 @@
+<client name="tjjsw" >
+	
+	<request name="get_again_birth_list" url="sqxx.do"
+		encoding="GBK">
+		<default-param name="method" value="listForExport" />
+
+	</request>
+	
+</client>
+

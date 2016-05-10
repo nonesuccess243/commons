@@ -1,0 +1,10 @@
+<client name="tjjsw" >
+	
+	<request name="fertilewoman_newChildInfo" url="ylfnJtzn.do"
+		encoding="GBK">
+		<default-param name="method" value="add" />
+
+	</request>
+	
+</client>
+

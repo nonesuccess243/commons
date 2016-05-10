@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nbm.commons.db.AppTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-02-01T11:16:06" hostname="ni-surface" time="0.003">
+  <properties/>
+  <testcase name="testApp" classname="com.nbm.commons.db.AppTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

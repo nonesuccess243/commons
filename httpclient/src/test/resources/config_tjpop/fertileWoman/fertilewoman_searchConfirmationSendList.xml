@@ -1,0 +1,10 @@
+<client name="tjjsw" >
+	
+	<request name="fertilewoman_searchConfirmationSendList" url="confirmout.do"
+		encoding="GBK">
+		<default-param name="method" value="list" />
+
+	</request>
+	
+</client>
+

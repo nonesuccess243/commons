@@ -1,0 +1,16 @@
+<client name="tjjsw" >
+
+	<!-- 编辑 -->
+	<request name="fertilewoman_editNewMarraigeConfirm" url="xhjk.do"
+		encoding="GBK">
+		<default-param name="method" value="editInto" />
+		<pattern>
+			  <![CDATA[
+		#{{div}}[\s\n]{0,10000}?${message}[\s\n]{0,10000}?@{{div}}
+		]]>
+		</pattern>
+	</request>
+	
+	
+</client>
+

@@ -1,0 +1,155 @@
+<client name="tjjsw" >
+	
+	<request name="service_birth_one" url="syyhff.do"
+		encoding="GBK">
+		<default-param name="method" value="toDetail" />
+		
+		<pattern>	
+	        <![CDATA[
+				name=\"yhffid\"
+			]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[
+				value=\"${tpId}\"
+			]]>
+		</pattern>
+		
+		<pattern>	
+	        <![CDATA[
+				value=\"${useYear}\"
+			]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[
+				value=\"${serviceNumber}\"
+			]]>
+		</pattern>
+		<pattern>
+			<![CDATA[name=\"dwmc\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${useOrgName}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[name=\"dwdm\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${useOrgId}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${lrrq}\"]]>
+		</pattern>
+		
+		<pattern>
+			<![CDATA[是否流动人口]]> 
+		</pattern>
+		
+		<pattern>
+			<![CDATA[
+				#{{select}}${isFlowingPeople}@{{select}}
+			]]>
+		</pattern>
+		
+		
+		<!-- 
+		<pattern>
+			<![CDATA[value=\"${jrxtrq}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${tbzt}\"]]>
+		</pattern>
+		 -->
+		
+<!-- 		正式系统有，测试系统无  待添加 -->
+		
+		<pattern>
+			<![CDATA[name=\"zfxm\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${manName}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${manNamePin}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${manBirthday}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${manWorkPlace}\"]]>
+		</pattern>
+<!-- 		女方信息 -->
+		<pattern>
+			<![CDATA[name=\"nfxm\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${womanName}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${womanNamePin}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${womanBirthday}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${womanWorkPlace}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${womanIdNo}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${womanPhone}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${womanRegisterUnit}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${womanRegisterUnitId}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${womanLivingUnit}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${womanLivingUnitId}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${originalAddress}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${moveAddress}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${womanFirstMarriageDate}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${pregnancyDate}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${ycq}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${sjcsrq}\"]]>
+		</pattern>
+<!-- 		女方联系电话字段与上面的重复了 -->
+		<pattern>
+			<![CDATA[name=\"tzrq\"]]>
+		</pattern>		
+		<pattern>
+			<![CDATA[value=\"${tzrq}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[
+				#{{select}}${tzyy}@{{select}}
+			]]>
+		</pattern>
+		<pattern>
+			<![CDATA[name=\"memo\"]]>
+		</pattern>		
+		<pattern>
+			<![CDATA[value=\"${remark}\"]]>
+		</pattern>
+		
+	</request>
+
+</client>
+

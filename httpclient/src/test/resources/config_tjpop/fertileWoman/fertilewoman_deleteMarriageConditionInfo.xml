@@ -1,0 +1,12 @@
+<client name="tjjsw" >
+	
+	<request name="fertilewoman_deleteMarriageConditionInfo"
+		url="ylfnHyzk.do" encoding="GBK">
+		<default-param name="method" value="del" />
+		<pattern>	
+       
+		</pattern>
+	</request>
+	
+</client>
+

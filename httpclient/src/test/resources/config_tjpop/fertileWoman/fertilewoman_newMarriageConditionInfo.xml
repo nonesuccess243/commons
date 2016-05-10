@@ -1,0 +1,12 @@
+<client name="tjjsw" >
+	
+	<request name="fertilewoman_newMarriageConditionInfo"
+		url="ylfnHyzk.do" encoding="GBK">
+		<default-param name="method" value="add" />
+		<pattern>	
+       
+		</pattern>
+	</request>
+	
+</client>
+

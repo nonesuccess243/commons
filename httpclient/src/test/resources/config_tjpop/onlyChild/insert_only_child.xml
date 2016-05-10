@@ -1,0 +1,10 @@
+<client name="tjjsw" >
+	
+	<request name="insert_only_child" url="dsznZssq.do"
+		encoding="GBK">
+		<default-param name="method" value="add" />
+
+	</request>
+	
+</client>
+

@@ -1,0 +1,9 @@
+<client name="tjjsw" default-encoding="GBK">
+
+	<request name="fertilewoman_getWomanNumberListByUpdateTime" url="ylfnJbqk.do"
+		encoding="UTF-8">
+		<default-param name="method" value="listAjaxSearch" />
+		
+	</request>
+
+</client>

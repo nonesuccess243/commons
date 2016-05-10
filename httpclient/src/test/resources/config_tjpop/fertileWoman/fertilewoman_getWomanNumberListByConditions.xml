@@ -1,0 +1,9 @@
+<client name="tjjsw" default-encoding="GBK">
+
+	<request name="fertilewoman_getWomanNumberListByConditions" url="ylfnJbqk.do"
+		encoding="GBK">
+		<default-param name="method" value="customSearchList" />
+		
+	</request>
+
+</client>

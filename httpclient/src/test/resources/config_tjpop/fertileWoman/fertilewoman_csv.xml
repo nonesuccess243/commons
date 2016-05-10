@@ -1,0 +1,13 @@
+<client name="tjjsw" >
+
+	<request name="fertilewoman_csv" url="ylfnJbqk.do"
+		encoding="GBK">
+		<default-param name="method" value="searchListExport" />
+
+		<pattern>
+
+		</pattern>
+	</request>
+
+</client>
+

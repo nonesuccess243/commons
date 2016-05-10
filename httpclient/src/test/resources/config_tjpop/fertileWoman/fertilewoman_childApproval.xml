@@ -1,0 +1,9 @@
+<client name="tjjsw" >
+
+	<request name="fertilewoman_editApproveSecondChildInfo" url="ylfnEtsp.do"
+		encoding="GBK">
+		<default-param name="method" value="edit" />
+		
+	</request>
+</client>
+

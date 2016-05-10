@@ -1,0 +1,173 @@
+<client name="tjjsw" >
+	
+	<request name="service_birth_second" url="syehff.do"
+		encoding="GBK">
+		<default-param name="method" value="toDetail" />
+		<pattern>
+			<![CDATA[name=\"yhffid\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[value=\"${tpId}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[name=\"ffyear\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[value=\"${useYear}\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[value=\"${serviceNumber}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[name=\"dwdm\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[value=\"${useOrgId}\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[value=\"${useOrgName}\"]]>
+		</pattern>
+		
+<!-- 		<pattern>	 -->
+<!-- 	        <![CDATA[value=\"${lrrq}\"]]> -->
+<!-- 		</pattern> -->
+		
+		<pattern>
+			<![CDATA[是否流动人口]]>
+		</pattern>
+		
+		<pattern>
+			<![CDATA[
+				#{{select}}${isFlowingPeople}@{{select}}
+			]]>
+		</pattern>
+		
+		<pattern>	
+	        <![CDATA[男方信息]]>
+		</pattern>
+		<pattern>
+			<![CDATA[name=\"zfxm\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[value=\"${manName}\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[value=\"${manBirthday}\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[value=\"${manWorkPlace}\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[女方信息]]>
+		</pattern>
+		<pattern>
+			<![CDATA[name=\"nfxm\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[value=\"${womanName}\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[value=\"${womanIdNo}\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[value=\"${womanBirthday}\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[value=\"${womanWorkPlace}\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[value=\"${womanRegisterUnitId}\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[value=\"${womanRegisterUnit}\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[value=\"${womanLivingUnitId}\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[value=\"${womanLivingUnit}\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[value=\"${womanFirstMarriageDate}\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[value=\"${pregnancyDate}\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[value=\"${sjcsrq}\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[value=\"${originalAddress}\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[value=\"${moveAddress}\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[value=\"${womanPhone}\"]]>
+		</pattern>
+		
+		<pattern>
+			<![CDATA[name=\"yhxm\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[value=\"${yhxm}\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[一孩性别]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[#{{select}}${yhxb}@{{select}}]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[一孩出生日期]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[name=\"yhcsrq\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[value=\"${yhcsrq}\"]]>
+		</pattern>
+		
+		<pattern>	
+	        <![CDATA[name=\"sphm\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[value=\"${sphm}\"]]>
+		</pattern>
+		
+		<pattern>	
+	        <![CDATA[name=\"tzrq\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[value=\"${tzrq}\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[退证原因]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[name=\"tzyy\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[#{{select}}${tzyy}@{{select}}]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[name=\"spsj\"]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[value=\"${spsj}\"]]>
+		</pattern>
+		<pattern>
+			 <![CDATA[审批理由]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[#{{select}}${sply}@{{select}}]]>
+		</pattern>
+		<pattern>	
+	        <![CDATA[备注]]>
+		</pattern>
+		<pattern>
+	         <![CDATA[value=\"${remark}\"]]>
+		</pattern>
+	</request>
+</client>
+

@@ -1,0 +1,8 @@
+<client name="tjjsw" default-encoding="GBK">
+	
+	<request name="newmarry_getTpNewMarriageTurn" url="xhjk.do" encoding="GBK">
+		<default-param name="method" value="listLog" />
+		
+	</request>
+
+</client>

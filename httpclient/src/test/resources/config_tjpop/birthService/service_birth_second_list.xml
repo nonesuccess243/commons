@@ -1,0 +1,10 @@
+<client name="tjjsw" >
+
+	<request name="service_birth_second_list" url="syehff.do"
+		encoding="GBK">
+		<default-param name="method" value="list" />
+
+	</request>
+
+</client>
+

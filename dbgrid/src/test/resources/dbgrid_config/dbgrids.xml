@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE DBGrids SYSTEM "dbgrid.dtd" >
+
+<DBGrids>
+	<imports>
+		<!-- 育子系统 -->
+		<import>dbgrid_config/woman_manage/dbgrid_batch_handle.xml</import>
+	</imports>
+	
+	<!-- YWAF相关 -->
+	<DBType>
+		<param>ORACLE</param>
+	</DBType>
+	<!-- </>sender_id,send_date,is_system, ,content,remark,state -->
+	<!-- 查询消息 -->
+       <DBGrid>
+       	<grid-name>/public/message/displaymessageuser</grid-name>
+			<grid-table>
+			    <!-- message meg,message_ower megor,s_code sde,s_user us -->
+			    message_ower megor LEFT JOIN
+				message meg ON (megor.message_id = meg.id) LEFT JOIN
+				s_code sde ON (sde.code = megor.receive_state)
+			</grid-table>
+			<grid-cols>
+				megor.message_id,meg.title,meg.send_date,sde.name
+			</grid-cols>
+			<grid-label>
+			    megor.message_id$h,标题,时间$d1,状态
+			</grid-label>
+			<grid-fields>
+			    id,title,receive_date,name
+			</grid-fields>
+			<grid-relation>
+			    megor.receiver_id = #employee.id
+			</grid-relation>
+			<grid-orderBy>
+			    CASE megor.receive_state WHEN 'UNREAD' THEN 'READ' END,meg.send_date desc
+			</grid-orderBy>
+			<grid-rowsPerPage>20</grid-rowsPerPage>
+       </DBGrid>
+       <!-- 行政区划查询 -->
+       <DBGrid>
+		<grid-title>行政区划查询</grid-title>
+		<grid-name>/public/orgNameQuery/orgNameQuery</grid-name>
+		<grid-table>
+		   	ORG o1 LEFT JOIN
+    		ORG o2 ON (o2.INNER_CODE = o1.PARENT_CODE)
+		</grid-table>
+		<grid-cols>
+		    o1.ID oId,
+		    o1.NAME oname,
+		    o2.NAME sname
+		</grid-cols>
+		<grid-label>ID$h,单位名称,上级管理单位
+		</grid-label>
+		<grid-fields>oId,oname,sname
+		</grid-fields>
+		<grid-relation>
+			o1.INNER_CODE LIKE '12%' 
+			and (o1.name like '%' || @param || '%' or o1.spell_first like '%' || @param || '%' or o1.spell_all like '%' || @param || '%')
+		</grid-relation>
+		<grid-rowsPerPage>15</grid-rowsPerPage>
+	</DBGrid>
+</DBGrids> 

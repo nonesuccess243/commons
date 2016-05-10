@@ -1,0 +1,10 @@
+<client name="tjjsw" default-encoding="GBK">
+
+	<request name="newmarry_getTpNewMarryList" url="xhjk.do" encoding="GBK">
+		<default-param name="method" value="listSearch" />
+		<pattern>	
+      
+		</pattern>
+	</request>
+	
+</client>

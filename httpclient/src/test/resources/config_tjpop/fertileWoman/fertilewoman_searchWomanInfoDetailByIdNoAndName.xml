@@ -1,0 +1,59 @@
+<client name="tjjsw" >
+
+	<request name="fertilewoman_searchWomanInfoDetailByIdNoAndName" url="ylfnCommon.do"
+		encoding="GBK">
+		<default-param name="method" value="detailBySfz" />
+		<pattern>	
+        <![CDATA[
+      	原管理单位
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+      	#{{td}}[\s\n]{0,10000}?${ygldwdm}[\s\n]{0,10000}?<br/>
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+      	现管理单位
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+      	#{{td}}[\s\n]{0,10000}?${xgldwdm}[\s\n]{0,10000}?<br/>
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+      	卡片状态
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+      	#{{td}}[\s\n]{0,10000}?${kpzt}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+      	所属管理单位
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+      	#{{td}}[\s\n]{0,10000}?${ssgldwdm}[\s\n]{0,10000}?<br/>
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+      	妇女编码
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+      	#{{td}}[\s\n]{0,10000}?${fnbm}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+	</request>
+
+</client>
+

@@ -1,0 +1,13 @@
+<client name="tjjsw" >
+
+	<request name="woman_approvesecond_list" url="ylfnEtsp.do"
+		encoding="GBK">
+		<default-param name="method" value="list" />
+		<pattern>
+
+		</pattern>
+
+	</request>
+	
+</client>
+

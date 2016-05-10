@@ -1,0 +1,10 @@
+<client name="tjjsw" >
+	
+	<request name="edit_birth_second" url="syehff.do"
+		encoding="GBK">
+		<default-param name="method" value="edit" />
+
+	</request>
+	
+</client>
+

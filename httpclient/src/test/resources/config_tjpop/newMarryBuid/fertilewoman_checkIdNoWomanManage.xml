@@ -1,0 +1,8 @@
+<client name="tjjsw" default-encoding="GBK">
+
+	<request name="fertilewoman_checkIdNoWomanManage" url="ylfnCommon.do"
+		encoding="UTF-8">
+		<default-param name="method" value="checkId" />		
+	</request>
+	
+</client>

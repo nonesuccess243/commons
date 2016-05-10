@@ -1,0 +1,11 @@
+<client name="tjjsw" >
+
+	<request name="fertilewoman_moveTpWomanIn" url="ylfnin.do"
+		encoding="GBK">
+		<default-param name="method" value="acceptDragEdit" />
+		
+		
+	</request>
+
+</client>
+

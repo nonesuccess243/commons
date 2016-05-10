@@ -1,0 +1,10 @@
+<client name="tjjsw" >
+
+	<request name="service_birth_one_list" url="syyhff.do"
+		encoding="GBK">
+		<default-param name="method" value="listForSearch" />
+
+	</request>
+
+</client>
+

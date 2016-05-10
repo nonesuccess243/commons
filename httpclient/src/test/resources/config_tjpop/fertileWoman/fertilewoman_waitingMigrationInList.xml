@@ -1,0 +1,10 @@
+<client name="tjjsw" >
+
+	<request name="fertilewoman_waitingMigrationInList" url="ylfnin.do"
+		encoding="GBK">
+		<default-param name="method" value="waitingMigrationInList"/>
+		
+	</request>
+
+</client>
+

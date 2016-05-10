@@ -1,0 +1,19 @@
+<client name="tjjsw" default-encoding="GBK">
+
+	<request name="newmarry_turnBackList" url="xhjk.do" endcoding="GBK">
+		<default-param name="method" value="backlist" />
+
+		<pattern>
+		<![CDATA[
+		name=\"pageCount\"
+		]]>
+		</pattern>
+		
+		<pattern>
+		<![CDATA[
+		共${recordCount}条记录
+		]]>
+		</pattern>
+	</request>
+	
+</client>

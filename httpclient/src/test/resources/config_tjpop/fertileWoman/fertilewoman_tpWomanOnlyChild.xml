@@ -1,0 +1,55 @@
+<client name="tjjsw">
+
+	<request name="fertilewoman_tpWomanOnlyChild" url="ylfnJbqkSimple.do"
+		encoding="GBK">
+		<default-param name="method" value="toEdit" />
+		<pattern>	
+        <![CDATA[
+		#{{form}}
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+        value=\"${token}\"
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+      	妇女编码
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+      	value=\"${womanNumber}\" 
+		]]>
+		</pattern>
+		
+		<pattern>	
+        <![CDATA[政策内二孩家庭
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+        name=\"lzrq\" 
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+        value=\"${issueDate}\"
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+        name=\"tzrq\"
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+         value=\"${backDate}\"
+		]]>
+		</pattern> 
+	</request>
+	
+
+</client>
+

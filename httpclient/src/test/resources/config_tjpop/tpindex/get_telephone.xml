@@ -1,0 +1,5 @@
+<client name="tjjsw" default-encoding="GBK">
+	<request name="get_telephone" url="sysUserAction.do" endcoding="GBK">
+		<default-param name="method" value="listForTree" />
+	</request>
+</client>

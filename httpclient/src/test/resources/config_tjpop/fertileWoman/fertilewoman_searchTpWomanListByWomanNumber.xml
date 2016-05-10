@@ -1,0 +1,13 @@
+<client name="tjjsw" >
+
+	<request name="fertilewoman_searchTpWomanListByWomanNumber" url="ylfnJbqk.do"
+		encoding="GBK">
+		<default-param name="method" value="list" />
+		<pattern>
+
+		</pattern>
+
+	</request>
+	
+</client>
+

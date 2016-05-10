@@ -1,0 +1,10 @@
+<client name="tjjsw" >
+
+	<request name="service_birth_one_detail_list" url="syyhff.do"
+		encoding="GBK">
+		<default-param name="method" value="toDetail" />
+		<pattern>初始状态，尚未同步${request}男方信息</pattern>
+	</request>
+
+</client>
+

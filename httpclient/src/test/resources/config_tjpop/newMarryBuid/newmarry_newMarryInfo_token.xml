@@ -1,0 +1,12 @@
+<client name="tjjsw" default-encoding="GBK">
+
+	<request name="newmarry_newMarryInfo_token" url="xhjk.do" encoding="GBK">
+		<default-param name="method" value="toAdd" />
+		<pattern>	
+        <![CDATA[
+        \"org.apache.struts.taglib.html.TOKEN\"\svalue=\"${token}\"
+		]]>
+		</pattern>
+	</request>
+	
+</client>

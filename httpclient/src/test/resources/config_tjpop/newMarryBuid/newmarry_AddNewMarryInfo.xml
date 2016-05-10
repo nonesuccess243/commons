@@ -1,0 +1,19 @@
+<client name="tjjsw" default-encoding="GBK">
+
+	<request name="newmarry_AddNewMarryInfo" url="xhjk.do"
+		encoding="GBK">
+		<default-param name="method" value="add" />
+		<pattern>	
+         <![CDATA[
+		确定[\s\n]{0,10000}?@{{a}}
+		]]>
+		</pattern>
+
+		<pattern>	
+     	 <![CDATA[
+     	 #{{div}}[\s\n]{0,10000}?${message}[\s\n]{0,10000}?@{{div}}
+		]]>
+		</pattern>
+	</request>
+
+</client>

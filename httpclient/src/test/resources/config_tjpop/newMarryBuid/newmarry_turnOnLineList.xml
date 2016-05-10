@@ -1,0 +1,18 @@
+<client name="tjjsw" default-encoding="GBK">
+
+	<request name="newmarry_turnOnLineList" url="xhjk.do" encoding="GBK">
+		<default-param name="method" value="outtoList" />
+		<pattern>
+		<![CDATA[
+		name=\"pageCount\"
+		]]>
+		</pattern>
+		
+		<pattern>
+		<![CDATA[
+		共${recordCount}条记录
+		]]>
+		</pattern>
+	</request>
+
+</client>

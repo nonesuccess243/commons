@@ -1,0 +1,15 @@
+<client name="tjjsw" >
+
+<!-- token -->	
+	<request name="w_editNewMarriageConfirm_token" url="xhjk.do"
+		encoding="GBK">
+		<default-param name="method" value="toEditInto" />
+		<pattern>	
+        <![CDATA[
+        \"org.apache.struts.taglib.html.TOKEN\"\svalue=\"${token}\"
+		]]>
+		</pattern>
+	</request>
+
+</client>
+

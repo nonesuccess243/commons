@@ -1,0 +1,40 @@
+<client name="tjjsw" host="60.30.19.131:10040/tjjsw"
+	default-encoding="GBK" open="true">
+	 <import>WEB-INF/config_tjpop/fertileWoman/fertilewoman.xml
+	</import>		
+	 <import>WEB-INF/config_tjpop/newMarryBuid/newmarry.xml
+	</import> 
+	 <import>WEB-INF/config_tjpop/birthService/birth_service.xml
+	</import> 
+	  <import>WEB-INF/config_tjpop/onlyChild/only_child.xml
+	</import> 
+	<import>WEB-INF/config_tjpop/registerPopulation/register_population.xml
+	</import> 
+	<import>WEB-INF/config_tjpop/tpindex/tp_index.xml
+	</import> 
+	<properties name="id_name" value="id" />
+	<properties name="path_prefix" value=""/>
+	
+	<request name="login" url="loginAction.do" encoding="GBK">
+		<default-param name="method" value="login" />
+		<default-param name="loginType" value="ylfn" />
+		<encoding>GBK</encoding>
+		<pattern>
+		<![CDATA[
+			<iframe\ssrc="${src}"
+		]]><!--TODO login成功后返回的是重定向请求，不成功时返回的是flash文件，此处无论是否成功，都会匹配成功 ，需要修改 -->
+		</pattern>
+	</request>
+	
+
+</client>
+
+<!-- 匹配语法： #{td}替换为<td[^>]{0,10000}?>[\s\S]{0,10000}? @{td}替换为</td[^>]{0,10000}?>[\s\S]{0,10000}? 
+	!{td}替换为<td[^>]{0,10000}?>${unitName}\s{0,10000}?</td>[\s\S]{0,10000}? 这一条先不实现 -->
+
+<!-- 说明： 根元素client对应全部配置，属性host表示主机地址，运行时将会与request的url属性拼接成完整的url，不能加协议名称http。 
+	具体形式是""+"loginAciton.do"还是"localhost:8080"+"tjjsw/loginAction.do"，在程序角度没有差别，只是做简单的字符串拼接，将共通的部分放到host中即可。 
+	host的default-encoding和request的encoding用于指定html编码，request的encoding如果不为空，将会覆盖host的default-encoding 
+	每个request配置了一次解析的请求，name用于在调用请求函数时指定是哪个request，url是具体的地址。 default-param用于配置每次请求都固定的http请求，在程序实际调用时还可以传入其他动态的参数，最终都以post方式提交（暂时不支持get方式） 
+	pattern属性用于配置正则表达式模式，形如${var}配置了变量名，判断是否匹配的时候，将会被替换为任意长度非空字符，匹配成功后，可以将对应位置的变量值解析出来。支持html内容中统一模式的多次匹配。 
+	pattern中可以任意添加空格、回车、制表符，在读取配置文件后，会统一删除空白符 由于获取变量的操作使用了零宽断言，在java中，逆向零宽断言不能包含*、+等字符，所以在此配置文件中的正则表达式都应替换为{0,10000} -->

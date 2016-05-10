@@ -1,0 +1,5 @@
+<client name="tjjsw" default-encoding="GBK">
+	<request name="get_dataList" url="ylfnreview.do" endcoding="GBK">
+		<default-param name="method" value="list" />
+	</request>
+</client>

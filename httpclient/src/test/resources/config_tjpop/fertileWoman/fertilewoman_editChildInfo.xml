@@ -1,0 +1,8 @@
+<client name="tjjsw" >
+	<request name="fertilewoman_editChildInfo" url="ylfnJtzn.do"
+		encoding="GBK">
+		<default-param name="method" value="edit" />
+
+	</request>
+</client>
+

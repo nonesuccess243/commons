@@ -1,0 +1,18 @@
+<client name="tjjsw" >
+
+	<import>WEB-INF/config_tjpop/birthService/insert_birth_first.xml</import>
+	<import>WEB-INF/config_tjpop/birthService/edit_birth_first.xml</import>
+	<import>WEB-INF/config_tjpop/birthService/get_birth_first.xml</import>
+	<import>WEB-INF/config_tjpop/birthService/print_birth_first.xml</import>
+	<import>WEB-INF/config_tjpop/birthService/get_birth_first_list.xml</import>
+	<import>WEB-INF/config_tjpop/birthService/service_birth_one_detail_list.xml</import>
+	<import>WEB-INF/config_tjpop/birthService/service_birth_one_list.xml</import>
+	<import>WEB-INF/config_tjpop/birthService/service_birth_one.xml</import>	
+	<import>WEB-INF/config_tjpop/birthService/insert_birth_second.xml</import>			
+	<import>WEB-INF/config_tjpop/birthService/edit_birth_second.xml</import>			
+	<import>WEB-INF/config_tjpop/birthService/get_birth_second.xml</import>
+	<import>WEB-INF/config_tjpop/birthService/get_birth_second_list.xml</import>
+	<import>WEB-INF/config_tjpop/birthService/service_birth_second_list.xml</import>
+	<import>WEB-INF/config_tjpop/birthService/service_birth_second.xml</import>
+	<import>WEB-INF/config_tjpop/birthService/print_birth_second.xml</import>		
+</client>

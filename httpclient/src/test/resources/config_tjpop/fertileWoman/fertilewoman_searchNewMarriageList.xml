@@ -1,0 +1,20 @@
+<client name="tjjsw" >
+<!-- 查询list -->
+	<request name="fertilewoman_searchNewMarriageList" url="xhjk.do"
+		encoding="GBK">
+		<default-param name="method" value="intoList" />
+		<pattern>
+		<![CDATA[
+		name=\"pageCount\"
+		]]>
+		</pattern>
+		
+		<pattern>
+		<![CDATA[
+		共${recordCount}条记录
+		]]>
+		</pattern>
+	</request>
+
+</client>
+

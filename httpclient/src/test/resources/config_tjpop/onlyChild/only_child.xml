@@ -1,0 +1,16 @@
+<client name="tjjsw" >
+	
+<import>WEB-INF/config_tjpop/onlyChild/get_only_child_list.xml</import>
+<import>WEB-INF/config_tjpop/onlyChild/get_only_child.xml</import>
+<import>WEB-INF/config_tjpop/onlyChild/insert_only_child.xml</import>
+<import>WEB-INF/config_tjpop/onlyChild/get_only_child_apply_list.xml</import>
+<import>WEB-INF/config_tjpop/onlyChild/get_only_child_apply.xml</import>
+<import>WEB-INF/config_tjpop/onlyChild/edit_only_child.xml</import>
+<import>WEB-INF/config_tjpop/onlyChild/edit_only_child_examine.xml</import>
+<import>WEB-INF/config_tjpop/onlyChild/get_only_child_back_list.xml</import>
+<import>WEB-INF/config_tjpop/onlyChild/edit_only_child_back.xml</import>
+<import>WEB-INF/config_tjpop/onlyChild/edit_only_child_reissue.xml</import>
+<import>WEB-INF/config_tjpop/onlyChild/get_only_child_provide_list.xml</import>
+<import>WEB-INF/config_tjpop/onlyChild/get_only_child_auditing_list.xml</import>
+</client>
+

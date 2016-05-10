@@ -1,0 +1,71 @@
+<client name="tjjsw" >
+
+	<request name="fertilewoman_idNoSearchDetailTpNewMarriage" url="xhjk.do"
+		encoding="GBK">
+		<default-param name="method" value="detailBySfhm" />
+		<pattern>
+        <![CDATA[
+      	建卡原因:
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+      	#{{div}}[\s\n]{0,10000}?当前卡片状态: ${state}[\s\n]{0,10000}?@{{div}}
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+      	建卡单位代码
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+      	name=\"dwdm\"
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+      	value=\"${createManageUnitCode}\"
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+      	建卡单位
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+      	value=\"${createManageUnitName}\"
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+      	登记日期
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+      	女方
+		]]>
+		</pattern>
+		
+		<pattern>	
+        <![CDATA[
+      	value=\"${womanName}\"
+		]]>
+		</pattern>
+		
+		<pattern>	
+        <![CDATA[
+      	name=\"fnchrq\"
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+      	value=\"${createCardTime}\"
+		]]>
+		</pattern>
+	</request>
+	
+</client>
+

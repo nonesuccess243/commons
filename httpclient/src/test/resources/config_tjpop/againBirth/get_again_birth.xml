@@ -1,0 +1,48 @@
+<client name="tjjsw" >
+	
+	<request name="get_again_birth" url="sqxx.do"
+		encoding="GBK">
+		<default-param name="method" value="toDetail" />
+
+		<pattern>	
+        <![CDATA[
+		身份证号
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+		name=\"fnsfhm\"
+		]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${womanIdNo}\"]]>
+		</pattern>
+		
+		<pattern>	
+        <![CDATA[
+		男方、女方孩子信息
+		]]>
+		</pattern>
+		
+		<pattern>	
+        <![CDATA[
+		name=\"hzxm\"
+		]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${childNameDetail}\"]]>
+		</pattern>
+		
+		<pattern>	
+        <![CDATA[
+		name=\"hzcsrq\"
+		]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${childBirth}\"]]>
+		</pattern>
+		
+	</request>
+	
+</client>
+

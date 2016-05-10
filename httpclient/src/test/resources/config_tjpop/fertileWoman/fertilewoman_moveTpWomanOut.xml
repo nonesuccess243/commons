@@ -1,0 +1,17 @@
+<client name="tjjsw" >
+
+	<request name="fertilewoman_moveTpWomanOut" url="ylfnout.do"
+		encoding="GBK">
+		<default-param name="method" value="edit" />
+		
+		<pattern>
+	        <![CDATA[
+				#{{div}}[\s\n]{0,10000}?${message}[\s\n]{0,10000}?@{{div}}@{{form}}@{{body}}
+			]]>
+		</pattern>
+		
+		
+	</request>
+	
+</client>
+

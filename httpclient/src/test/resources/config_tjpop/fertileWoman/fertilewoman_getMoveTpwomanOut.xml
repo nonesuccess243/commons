@@ -1,0 +1,458 @@
+<client name="tjjsw" >
+
+	<request name="fertilewoman_getMoveTpwomanOut" url="ylfnout.do"
+		encoding="GBK">
+		<default-param name="method" value="toEdit" />
+
+		<pattern>	
+		<![CDATA[
+			name=\"org.apache.struts.taglib.html.TOKEN\"
+		]]>
+		</pattern>
+		<pattern>	
+		<![CDATA[
+			value=\"${token}\"
+		]]>
+		</pattern>
+		<pattern>	
+		<![CDATA[
+			value=\'${id}\'
+		]]>
+		</pattern>
+		<pattern>	
+		<![CDATA[
+			value=\"${fnbm}\"
+		]]>
+		</pattern>
+		<pattern>     
+		<![CDATA[
+			value=\"${fnxm}\"
+		]]>
+		</pattern>
+		<pattern>     
+		<![CDATA[
+			value=\"${fnsfhm}\"
+		]]>
+		</pattern>
+
+		<pattern>     
+		<![CDATA[
+			value=\"${fnpyxm}\"
+		]]>
+		</pattern>
+		<pattern>     
+		<![CDATA[
+			value=\"${deleteTag}\"
+		]]>
+		</pattern>
+
+		<pattern>     
+		<![CDATA[
+			value=\"${createTime}\"
+		]]>
+		</pattern>
+		<pattern>     
+		<![CDATA[
+			   value=\"${updateTime}\"
+		]]>
+		</pattern>
+
+		<pattern>
+		<![CDATA[
+		#{{td}}[\s\n]{0,10000}?进入系统日期[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		<pattern>     
+		<![CDATA[
+			   value=\"${jrrq}\"
+		]]>
+		</pattern>
+		<pattern>
+		<![CDATA[
+		#{{select}}${jryy}@{{select}}
+		]]>
+		</pattern>
+
+
+
+
+
+
+
+
+		<pattern>    
+               <![CDATA[
+                           value=\"${tcrq}\"
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                           #{{select}}${tcyy}@{{select}}
+                    ]]>
+		</pattern>
+
+
+		<pattern>    
+               <![CDATA[
+                           value=\"${dwmc}\"
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                           value=\"${dwdm}\"
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                           value=\"${fnglbdrq}\"
+                    ]]>
+		</pattern>
+
+
+		<pattern>    
+               <![CDATA[
+                           value=\"${fnxjd}\"
+                    ]]>
+		</pattern>
+
+
+		<pattern>    
+               <![CDATA[
+                           value=\"${fnxjddm}\"
+                    ]]>
+		</pattern>
+		<pattern>    
+               <![CDATA[
+                           value=\"${fnhjd}\"
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                           value=\"${fnhjddm}\"
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                           #{{select}}${fnzzmm}@{{select}}
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                           value=\"${fngzdw}\"
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                           value=\"${fncsrq}\"
+                    ]]>
+		</pattern>
+		<pattern>    
+               <![CDATA[
+                           #{{select}}${fnmz}@{{select}}
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                           #{{select}}${fnwh}@{{select}}
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                           #{{select}}${fnhk}@{{select}}
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                           #{{select}}${fngllb}@{{select}}
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                           #{{select}}${fnhyzk}@{{select}}
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                           #{{select}}${fnzy}@{{select}}
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                    #{{select}}${fnsfds}@{{select}}
+                    ]]>
+		</pattern>
+		<pattern>    
+               <![CDATA[
+                           value=\"${fnchrq}\"
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                           value=\"${fnhbrq}\"
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                           #{{select}}${fnjkzk}@{{select}}
+                    ]]>
+		</pattern>
+
+
+		<pattern>    
+               <![CDATA[
+                           value=\"${zfxm}\"
+                    ]]>
+		</pattern>
+
+
+		<pattern>    
+               <![CDATA[
+                           value=\"${zfpyxm}\"
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                           value=\"${zfxjd}\"
+                    ]]>
+		</pattern>
+
+
+		<pattern>    
+               <![CDATA[
+                           value=\"${zfxjddm}\"
+                    ]]>
+		</pattern>
+		<pattern>    
+               <![CDATA[
+                           value=\"${zfhjd}\"
+                    ]]>
+		</pattern>
+
+
+		<pattern>    
+               <![CDATA[
+                           value=\"${zfhjddm}\"
+                    ]]>
+		</pattern>
+
+
+		<pattern>    
+               <![CDATA[
+                           #{{select}}${zfzzmm}@{{select}}
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                           value=\"${zfgzdw}\"
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                           value=\"${zfcsrq}\"
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                    #{{select}}${zfmz}@{{select}}
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                    #{{select}}${zfwh}@{{select}}
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                    #{{select}}${zfhk}@{{select}}
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                    #{{select}}${zfgllb}@{{select}}
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                    #{{select}}${zfhyzk}@{{select}}
+                    ]]>
+		</pattern>
+
+
+		<pattern>    
+               <![CDATA[
+                    #{{select}}${zfzy}@{{select}}
+                    ]]>
+		</pattern>
+
+
+		<pattern>    
+               <![CDATA[
+                    #{{select}}${zfsfds}@{{select}}
+                    ]]>
+		</pattern>
+
+
+
+
+		<pattern>    
+               <![CDATA[
+                    value=\"${zfchrq}\"
+                    ]]>
+		</pattern>
+
+
+		<pattern>    
+               <![CDATA[
+                    value=\"${zfhbrq}\"
+                    ]]>
+		</pattern>
+		<pattern>    
+               <![CDATA[
+                    #{{select}}${zfjkzk}@{{select}}
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                    #{{select}}${byzk}@{{select}}
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                    value=\"${byksrq}\"
+                    ]]>
+		</pattern>
+
+
+		<pattern>    
+               <![CDATA[
+                    value=\"${xynh}\"
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                    value=\"${xynvh}\"
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                    value=\"${csnh}\"
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                    value=\"${csnvh}\"
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                    value=\"${lzrq}\"
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                    value=\"${tzrq}\"
+                    ]]>
+		</pattern>
+		<pattern>    
+               <![CDATA[
+                    value=\"${fnmqxm}\"
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                    value=\"${fnmqsfhm}\"
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                    value=\"${fnfqxm}\"
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                    value=\"${fnfqsfhm}\"
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                    value=\"${zfmqxm}\"
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                    value=\"${zfmqsfhm}\"
+                    ]]>
+		</pattern>
+
+
+
+		<pattern>    
+               <![CDATA[
+                    value=\"${zffqxm}\"
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                    value=\"${zffqsfhm}\"
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                    value=\"${jtdhhm}\"
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                    value=\"${fndhhm}\"
+                    ]]>
+		</pattern>
+
+		<pattern>    
+               <![CDATA[
+                    value=\"${zfdhhm}\"
+                    ]]>
+		</pattern>
+
+
+	</request>
+	
+</client>
+

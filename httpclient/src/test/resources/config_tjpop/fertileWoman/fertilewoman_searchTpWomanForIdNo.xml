@@ -1,0 +1,37 @@
+<client name="tjjsw" default-encoding="GBK">
+
+	<!-- 	根据育龄妇女身份证号查重 -->
+	<request name="fertilewoman_searchTpWomanForIdNo" url="hjrk.do"
+		encoding="GBK">
+		<default-param name="method" value="showDialogListForRk" />
+		<pattern>
+		<![CDATA[
+		户籍人口中${hjrk}存在
+		]]>
+		</pattern>
+		
+		<pattern>
+		<![CDATA[
+		育龄妇女中${ylfn}存在
+		]]>
+		</pattern>
+		
+		<pattern>
+		<![CDATA[
+		新婚建卡中${xhjk}存在
+		]]>
+		</pattern>
+		<pattern>
+		<![CDATA[
+		育龄妇女待处理库中${ylfnlsk}存在
+		]]>
+		</pattern>
+		
+		<pattern>
+		<![CDATA[
+		注意：育龄妇女中存在${number}个相同身份证信息
+		]]>
+		</pattern>
+	</request>
+	
+</client>

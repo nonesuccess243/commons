@@ -1,0 +1,217 @@
+<client name="tjjsw" >
+	
+	<request name="get_only_child" url="dsznZssq.do"
+		encoding="GBK">
+		<default-param name="method" value="detail" />
+	<pattern>	
+        <![CDATA[
+		与育龄妇女同步记录
+		]]>
+		</pattern>
+		
+		<pattern>	
+        <![CDATA[
+		name=\"updateTime\"
+		]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${updateTime}\"]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+		name=\"id\"
+		]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${tpId}\"]]>
+		</pattern>
+		
+		<pattern>	
+        <![CDATA[
+		name=\"fnsfhm\"
+		]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${womanIdNo}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[name=\"zfsfhm\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${manIdNo}\"]]>
+		</pattern>
+		
+		<pattern>
+			<![CDATA[name=\"fnxm\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${womanName}\"]]>
+		</pattern>
+		
+		<pattern>	
+        <![CDATA[
+		name=\"zfxm\"
+		]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${manName}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[name=\"fngzdw\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${womanWorkPlace}\"]]>
+		</pattern>
+		
+		<pattern>
+			<![CDATA[name=\"zfgzdw\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${manWorkPlace}\"]]>
+		</pattern>
+		
+		<pattern>	
+        <![CDATA[
+		name=\"znxm\"
+		]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${yhxm}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[独生子女性别]]>
+		</pattern>
+
+		<pattern>
+			<![CDATA[
+			#{{select}}${yhxb}@{{select}}
+			]]>
+		</pattern>
+		
+		<pattern>
+			<![CDATA[name=\"zncsrq\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${yhcsrq}\"]]>
+		</pattern>
+		
+		<pattern>	
+        <![CDATA[
+		name=\"sigID\"
+		]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${serviceNumber}\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[name=\"dwdm\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${useOrgId}\"]]>
+		</pattern>
+		
+		<pattern>
+			<![CDATA[name=\"dwmc\"]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${useOrgName}\"]]>
+		</pattern>
+		
+		<pattern>	
+        <![CDATA[
+		母亲发费类型
+		]]>
+		</pattern>
+		<pattern>
+			<![CDATA[
+			#{{select}}${womanFeeType}@{{select}}
+			]]>
+		</pattern>
+		<pattern>
+			父亲发费类型
+		</pattern>
+		<pattern>
+			<![CDATA[
+			#{{select}}${manFeeType}@{{select}}
+			]]>
+		</pattern>
+		
+		<pattern>
+			领证类型
+		</pattern>
+		<pattern>
+			<![CDATA[
+			#{{select}}${recordType}@{{select}}
+			]]>
+		</pattern>
+<!-- 改用jsoup解析		<pattern> -->
+<!-- 			是否亲生 -->
+<!-- 		</pattern> -->
+ 		<!-- 匹配可能存在问题	单选按钮 --> 
+<!-- 		<pattern> -->
+<!-- 			<![CDATA[ -->
+<!-- 			value=\"${ifBiological}\"\s*checked=\"checked\" -->
+<!-- 			]]>  -->
+<!-- 		</pattern> -->
+		
+		<pattern>	
+        <![CDATA[
+		name=\"fzrq\"
+		]]>
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${lrrq}\"]]>
+		</pattern>
+		<pattern>
+			name=\"memo\"
+		</pattern>
+		<pattern>
+			<![CDATA[value=\"${remark}\"]]>
+		</pattern>
+		
+		<pattern>
+			生成机关
+		</pattern>
+		<pattern>
+			<![CDATA[#{{td}}[\s\n]{0,10000}?${organ}[\s\n]{0,10000}?@{{td}}]]>
+		</pattern>
+		<pattern>
+			证书状态
+		</pattern>
+		<pattern>
+			<![CDATA[#{{td}}[\s\n]{0,10000}?#{{b}}[\s\n]{0,10000}?${tbzt}[\s\n]{0,10000}?@{{b}}[\s\n]{0,10000}?@{{td}}]]>
+		</pattern>
+		<pattern>
+			操作员ID
+		</pattern>
+		<pattern>
+			<![CDATA[#{{td}}[\s\n]{0,10000}?${operator}[\s\n]{0,10000}?@{{td}}]]>
+		</pattern>
+		<pattern>
+			退证原因
+		</pattern>
+		<pattern>
+			<![CDATA[#{{td}}[\s\n]{0,10000}?${tzyy}[\s\n]{0,10000}?@{{td}}]]>
+		</pattern>
+		<pattern>
+			退证日期
+		</pattern>
+		<pattern>
+			<![CDATA[#{{td}}[\s\n]{0,10000}?${tzrq}[\s\n]{0,10000}?@{{td}}]]>
+		</pattern>
+		<pattern>
+			补证原因
+		</pattern>
+		<pattern>
+			<![CDATA[#{{td}}[\s\n]{0,10000}?${reissueReason}[\s\n]{0,10000}?@{{td}}]]>
+		</pattern>
+		<pattern>
+			补证日期
+		</pattern>
+		<pattern>
+			<![CDATA[#{{td}}[\s\n]{0,10000}?${reissueDate}[\s\n]{0,10000}?@{{td}}]]>
+		</pattern>
+	</request>
+	
+</client>
+

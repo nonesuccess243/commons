@@ -1,0 +1,213 @@
+<client name="tjjsw" >
+	
+	<request name="again_approveagain"
+		url="ylfnJbqkSimple.do" encoding="GBK">
+		<default-param name="method" value="toEditSyn" />
+<!-- 		有些字段没有写完，以后如果用上再补 -->
+		
+		<pattern>	
+        <![CDATA[
+		妇女编码:
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+		#{{td}}[\s\n]{0,10000}?${womanNumber}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+		初婚年月
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+		女方
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+		#{{td}}[\s\n]{0,10000}?${womanName}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+		#{{td}}[\s\n]{0,10000}?${womanBirthday}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+		#{{td}}[\s\n]{0,10000}?${womanIdNo}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		<pattern>
+		 <![CDATA[
+		#{{td}}[\s\n]{0,10000}?${womanNation}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		
+		<pattern>
+        <![CDATA[
+       #{{td}}[\s\n]{0,10000}?${womanEdu}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+        #{{td}}[\s\n]{0,10000}?${womanHealth}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+		 #{{td}}[\s\n]{0,10000}?${womanPolitical}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+		 #{{td}}[\s\n]{0,10000}?${womanWork}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+		#{{td}}[\s\n]{0,10000}?${womanMarriage}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+		男方
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+		#{{td}}[\s\n]{0,10000}?${manName}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+		#{{td}}[\s\n]{0,10000}?${manBirthday}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+		#{{td}}[\s\n]{0,10000}?${manIdNo}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		<pattern>
+		 <![CDATA[
+		#{{td}}[\s\n]{0,10000}?${manNation}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		
+		<pattern>
+        <![CDATA[
+       #{{td}}[\s\n]{0,10000}?${manEdu}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+        #{{td}}[\s\n]{0,10000}?${manHealth}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+		 #{{td}}[\s\n]{0,10000}?${manPolitical}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+		 #{{td}}[\s\n]{0,10000}?${manWork}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+		#{{td}}[\s\n]{0,10000}?${manMarriage}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		
+		
+		<pattern>	
+        <![CDATA[
+		 户籍类别
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+		 女方
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+		#{{td}}[\s\n]{0,10000}?${womanWorkPlace}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+		#{{td}}[\s\n]{0,10000}?${womanRegistNumber}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+  		#{{td}}[\s\n]{0,10000}?${womanRegistName}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+		#{{td}}[\s\n]{0,10000}?${womanNowLivingNumber}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+		#{{td}}[\s\n]{0,10000}?${womanNowLivingName}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+		#{{td}}[\s\n]{0,10000}?${womanCategory}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		
+		<pattern>	
+        <![CDATA[
+		男方
+		]]>
+		</pattern>
+		
+			<pattern>	
+        <![CDATA[
+		#{{td}}[\s\n]{0,10000}?${manWorkPlace}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+		#{{td}}[\s\n]{0,10000}?${manRegistNumber}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+  		#{{td}}[\s\n]{0,10000}?${manRegistName}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+		#{{td}}[\s\n]{0,10000}?${manNowLivingNumber}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+		#{{td}}[\s\n]{0,10000}?${manNowLivingName}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		<pattern>	
+        <![CDATA[
+		#{{td}}[\s\n]{0,10000}?${manCategory}[\s\n]{0,10000}?@{{td}}
+		]]>
+		</pattern>
+		
+		
+		
+<!-- 		缺少字段  以后用再补-->
+		
+		
+	</request>
+	
+</client>
+

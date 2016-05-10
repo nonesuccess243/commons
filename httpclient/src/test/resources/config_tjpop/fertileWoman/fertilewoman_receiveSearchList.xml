@@ -1,0 +1,10 @@
+<client name="tjjsw" >
+
+	<request name="fertilewoman_receiveSearchList" url="ylfnin.do"
+		encoding="GBK">
+		<default-param name="method" value="dragList"/>
+		
+	</request>
+
+</client>
+
