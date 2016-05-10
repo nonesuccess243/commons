@@ -8,7 +8,7 @@
 	
 	<groupId>com.nbm</groupId>
 	<artifactId>commons-aggr</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>nbmcommons</name>
 	<modules>
@@ -99,7 +99,10 @@
 				<artifactId>maven-release-plugin</artifactId>
 				<version>2.5.3</version>
 				<configuration>
-					<tagBase>http://139.129.24.171:5000/repos/program_repo/trunk/nbm_commons/tags/commons-aggr</tagBase>
+					<tagBase>scm:svn:http://139.129.24.171:5000/repos/program_repo/trunk/nbm_commons/trunk/commons-aggr/tags</tagBase>
+					<encoding>UTF-8</encoding>
+        			<charset>UTF-8</charset>
+        			<additionalparam>-Xdoclint:none</additionalparam>
 				</configuration>
 			</plugin>
 
