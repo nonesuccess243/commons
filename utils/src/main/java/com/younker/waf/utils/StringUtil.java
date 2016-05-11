@@ -17,6 +17,8 @@ public class StringUtil
          *                要转化的对象
          * @param separator
          *                每次迭代的分隔符
+         *                
+         * @return 生成的字符串
          */
         public static <T> String toString(Iterable<T> iterable, String separator)
         {
