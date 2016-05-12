@@ -56,5 +56,14 @@ public class DBGridGeneratorTest
                 }
 		
 	}
+	
+	@Test
+	public void testDbgrid()
+	{
+		DBGrids dbgrids = DBGridGenerator.getInstance().getDBGrids("dbgrid_config/dbgrids.xml");
+		DBGrid dbgrid = dbgrids.getDBGrid("/public/message/displaymessageuser");
+		System.out.println(dbgrid.generateCountSql());
+		
+	}
 
 }

@@ -21,7 +21,7 @@ public class Oracle implements DBGridDialect
                 StringBuffer tsb = new StringBuffer();
                 tsb.append("select \n").append(dbGrid.getGridCols()).append(",rownum rn").append("\n from \n")
                                 .append(dbGrid.getGridTable()).append("\n").append(whereSQL).append("\n rowNum <= ").append((dbGrid.getGridRowsPerPage() * dbGrid.getCurrentPage()))
-                                .append("\n").append(dbGrid.getGridGroupBy()).append("\n")
+                                .append("\n").append(dbGrid.getGridGroupByWithGroupBy()).append("\n")
                                 .append(dbGrid.getGridOrderByWithOrderBy()).toString();
                 
                 log.debug("gridRowsPerPage={}, currentPage={}", dbGrid.getGridRowsPerPage(), dbGrid.getCurrentPage());

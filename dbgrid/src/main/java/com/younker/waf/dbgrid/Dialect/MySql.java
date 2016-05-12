@@ -19,7 +19,7 @@ public class MySql implements DBGridDialect
                 StringBuffer tsb = new StringBuffer();
                 tsb.append("select \n").append(dbGrid.getGridCols()).append("\n from \n")
                                 .append(dbGrid.getGridTable()).append("\n").append(dbGrid.getWhereSQL())
-                                .append("\n").append(dbGrid.getGridGroupBy()).append("\n")
+                                .append("\n").append(dbGrid.getGridGroupByWithGroupBy()).append("\n")
                                 .append(dbGrid.getGridOrderByWithOrderBy()).toString();
                 
                 return tsb.toString() + " limit " + ((dbGrid.getGridRowsPerPage() * (dbGrid.getCurrentPage() - 1)) + "," + (dbGrid.getGridRowsPerPage() * dbGrid.getCurrentPage()));

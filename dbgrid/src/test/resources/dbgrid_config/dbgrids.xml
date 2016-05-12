@@ -10,7 +10,7 @@
 	
 	<!-- YWAF相关 -->
 	<DBType>
-		<param>ORACLE</param>
+		<param>MYSQL</param>
 	</DBType>
 	<!-- </>sender_id,send_date,is_system, ,content,remark,state -->
 	<!-- 查询消息 -->
@@ -37,29 +37,7 @@
 			<grid-orderBy>
 			    CASE megor.receive_state WHEN 'UNREAD' THEN 'READ' END,meg.send_date desc
 			</grid-orderBy>
+			<grid-groupBy>GROUP_BY_COL1, GROUP_BY_COL2</grid-groupBy>
 			<grid-rowsPerPage>20</grid-rowsPerPage>
        </DBGrid>
-       <!-- 行政区划查询 -->
-       <DBGrid>
-		<grid-title>行政区划查询</grid-title>
-		<grid-name>/public/orgNameQuery/orgNameQuery</grid-name>
-		<grid-table>
-		   	ORG o1 LEFT JOIN
-    		ORG o2 ON (o2.INNER_CODE = o1.PARENT_CODE)
-		</grid-table>
-		<grid-cols>
-		    o1.ID oId,
-		    o1.NAME oname,
-		    o2.NAME sname
-		</grid-cols>
-		<grid-label>ID$h,单位名称,上级管理单位
-		</grid-label>
-		<grid-fields>oId,oname,sname
-		</grid-fields>
-		<grid-relation>
-			o1.INNER_CODE LIKE '12%' 
-			and (o1.name like '%' || @param || '%' or o1.spell_first like '%' || @param || '%' or o1.spell_all like '%' || @param || '%')
-		</grid-relation>
-		<grid-rowsPerPage>15</grid-rowsPerPage>
-	</DBGrid>
 </DBGrids> 

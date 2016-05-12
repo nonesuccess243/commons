@@ -160,7 +160,7 @@ public class DBGrid implements Serializable
                 StringBuffer tsb = new StringBuffer();
                 tsb.append("select \n").append(getGridCols()).append("\n from \n")
                                 .append(getGridTable()).append("\n").append(getWhereSQL())
-                                .append("\n").append(getGridGroupBy()).append("\n")
+                                .append("\n").append(getGridGroupByWithGroupBy()).append("\n")
                                 .append(getGridOrderByWithOrderBy()).toString();
 
                 return tsb.toString();
@@ -175,7 +175,7 @@ public class DBGrid implements Serializable
         {
                 StringBuffer tsb = new StringBuffer();
                 tsb.append("select count(*) from ").append(getGridTable()).append("\n")
-                                .append(getWhereSQL()).append("\n").append(getGridGroupBy())
+                                .append(getWhereSQL()).append("\n").append(getGridGroupByWithGroupBy())
                                 .append("\n").append(getGridOrderByWithOrderBy());
                 log.debug("count data:" + tsb.toString());
                 return tsb.toString();
@@ -206,11 +206,10 @@ public class DBGrid implements Serializable
                 return WebUtil.nvl(gridCondCols);
         }
 
-        public String getGridGroupBy()
+        public String getGridGroupByWithGroupBy()
         {
-
                 if (gridGroupBy != null && gridGroupBy.trim().length() != 0)
-                        return gridGroupBy;
+                        return GROUPBY + gridGroupBy;
                 else
                         return STR_BLANK;
         }
@@ -355,7 +354,7 @@ public class DBGrid implements Serializable
                 }
                 if (gridGroupBy == null)
                 {
-                        gridGroupBy = dbGrid.getGridGroupBy();
+                        gridGroupBy = dbGrid.gridGroupBy;
                 }
                 if (gridOrderBy == null)
                 {
@@ -535,6 +534,11 @@ public class DBGrid implements Serializable
         public void setGridGroupBy(String s)
         {
                 gridGroupBy = s;
+        }
+        
+        public String getGridGroupBy()
+        {
+                return gridGroupBy;
         }
 
         public void setGridHandler(String s)
