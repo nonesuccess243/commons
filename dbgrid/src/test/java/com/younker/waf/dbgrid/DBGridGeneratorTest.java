@@ -39,7 +39,7 @@ public class DBGridGeneratorTest
 		DBGrids dbgrids = DBGridGenerator.getInstance().getDBGrids("dbgrid_config/dbgrids.xml");
 		
 		assertNotNull(dbgrids);
-		assertNotNull(dbgrids.getDBGrid("/public/orgNameQuery/orgNameQuery"));
+//		assertNotNull(dbgrids.getDBGrid("/public/orgNameQuery/orgNameQuery"));
 		
 		assertNotNull(dbgrids.getDBGrid("/woman_manage/batch_handle/approval_move/moveApprovalSearch"));
 		
