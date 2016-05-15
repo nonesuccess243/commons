@@ -1,0 +1,8 @@
+# 5.0.0
+* 项目发布流程迁移到maven release plugin上
+
+# 5.0.1
+* 解决dbgrid的group by 语句生成两次的问题
+
+# 5.0.2
+* 添加enum生成code sql的相关代码，并调整功能
