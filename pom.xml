@@ -18,6 +18,7 @@
 		<module>dbgrid</module>
 		<module>httpclient</module>
 		<module>report</module>
+		<module>webjar.commons</module>
 	</modules>
 
 	<scm>

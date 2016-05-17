@@ -6,3 +6,6 @@
 
 # 5.0.2
 * 添加enum生成code sql的相关代码，并调整功能
+
+#5.0.3
+* fix bug：修改mysql分页部分，limit第二个参数计算错误

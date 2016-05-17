@@ -40,6 +40,11 @@
 			<version>2.2.1-b03</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.nbm</groupId>
+			<artifactId>webjar.commons</artifactId>
+			<version>5.0.3-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>waf-glue</finalName>
