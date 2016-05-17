@@ -22,6 +22,7 @@ public class MySql implements DBGridDialect
                                 .append("\n").append(dbGrid.getGridGroupByWithGroupBy()).append("\n")
                                 .append(dbGrid.getGridOrderByWithOrderBy()).toString();
                 
-                return tsb.toString() + " limit " + ((dbGrid.getGridRowsPerPage() * (dbGrid.getCurrentPage() - 1)) + "," + (dbGrid.getGridRowsPerPage() * dbGrid.getCurrentPage()));
+                return tsb.toString() + " limit " + ((dbGrid.getGridRowsPerPage() * (dbGrid.getCurrentPage() - 1)) + "," 
+                		+ dbGrid.getGridRowsPerPage() );
         }
 }
