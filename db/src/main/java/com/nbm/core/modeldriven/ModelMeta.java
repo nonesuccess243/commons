@@ -33,18 +33,22 @@ public class ModelMeta
                 return result;
         }
         
-        public ModelMeta(Class<? extends Model> modelClass)
+        private ModelMeta(Class<? extends Model> modelClass)
         {
                 super();
                 this.modelClass = modelClass;
                 
                 fields = ModelUtils.INSTANCE.getFields(modelClass);
                 
-                fieldMap = new HashMap<>();
+                fieldMap = new HashMap<>(fields.size());
+                
+                fieldMapByDbName = new HashMap<>(fields.size());
                 
                 for( Field f: fields )
                 {
                         fieldMap.put(f.getName(), f);
+                        
+                        fieldMapByDbName.put(f.getDbName(), f);
                 }
                 
                 
@@ -71,6 +75,11 @@ public class ModelMeta
          * 需要根据字段名称获取字段对象的方法，没时间与上面的fields字段合并了，因此新建一个字段。
          */
         private Map<String, Field> fieldMap;
+        
+        /**
+         * 根据数据库命名查找Field对象的Map
+         */
+        private Map<String, Field> fieldMapByDbName;
         
         
         /**
@@ -161,5 +170,11 @@ public class ModelMeta
         {
                 return fieldMap.get(fieldName);
                 
+        }
+        
+        public Field getFieldByDbName( String dbFieldName)
+        {
+                return fieldMapByDbName.get(dbFieldName);
+                                
         }
 }
