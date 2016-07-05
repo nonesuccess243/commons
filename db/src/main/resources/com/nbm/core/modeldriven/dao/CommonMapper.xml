@@ -78,7 +78,7 @@
 	</sql>
 	<sql id="Base_Column_List">
 		<foreach collection="meta.dbFields" item="field" separator=",">
-			${field.dbName} AS ${field.name}
+			${field.dbName} 
 		</foreach>
 	</sql>
 	<select id="selectByExample" parameterType="com.nbm.core.modeldriven.test.model.dao.ModelDrivenTestModelExample"

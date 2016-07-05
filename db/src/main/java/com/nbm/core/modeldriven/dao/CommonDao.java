@@ -6,9 +6,12 @@ import java.util.Map;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.nbm.core.modeldriven.Model;
 import com.nbm.core.modeldriven.ModelMeta;
+import com.nbm.core.modeldriven.ModelUtils;
 import com.nbm.waf.core.modeldriven.Example;
 import com.younker.waf.db.mybatis.SqlSessionProvider;
 
@@ -16,6 +19,8 @@ public enum CommonDao
 {
 
         INSTANCE;
+        
+        private final static Logger log = LoggerFactory.getLogger(CommonDao.class);
 
         private SqlSession sqlSession()
         {
@@ -26,9 +31,18 @@ public enum CommonDao
         {
                 Map<String, Object> param = new HashMap<>();
                 param.put("meta", ModelMeta.getModelMeta(modelClass));
-                param.put("id", 1l);
+                param.put("id", id);
                 Map<String, Object> result = sqlSession().selectOne("com.nbm.core.modeldriven.dao.CommonMapper.selectByPrimaryKey", param);
                 
+                if( result == null )
+                {
+                        log.debug("result is null ");
+                        return null;
+                }
+                
+                log.debug("after select ,the map is {}", result.toString());
+                
+                result = wrapperResultMap(modelClass, result);
                 
                 try
                 {
@@ -40,6 +54,28 @@ public enum CommonDao
                         throw new RuntimeException(e); 
                 } 
                 
+        }
+
+        
+        /**
+         * //mybatis会自动把结果集的列名转换为大写，因此即便在sql中用了as也无法准确指定列名
+                //所以，在mybatis的结果集中，保留数据库的下划线命名法，在此处转换一遍
+         * @param modelClass
+         * @param result
+         * @return 转换后的结果
+         */
+        private <T extends Model> Map<String, Object> wrapperResultMap(Class<T> modelClass, Map<String, Object> result)
+        {
+                
+                Map<String, Object> newResult = new HashMap<>(result.size());
+                
+                ModelMeta meta = ModelMeta.getModelMeta(modelClass);
+                for( Map.Entry<String, Object> entry : result.entrySet() )
+                {
+                        newResult.put(meta.getFieldByDbName(entry.getKey()).getName(), entry.getValue());
+                }
+                
+                return newResult;
         }
 
 
