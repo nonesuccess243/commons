@@ -104,6 +104,11 @@ public enum MybatisDao
 
 	}
 
+	
+	/**
+	 * 自动搜索所有的配置文件并初始化
+	 * @param packageName
+	 */
 	public void initAuto(String packageName)
 	{
 		TransactionFactory transactionFactory = new JdbcTransactionFactory();
