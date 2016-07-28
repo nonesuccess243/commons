@@ -132,6 +132,37 @@ enum GeneratorFileUtils
                 
                 return resourceDir;
         }
+        /**
+         * 根据给出的class对象，算出资源文件相关dao文件夹所对应的File对象
+         * @param modelClass
+         * @return
+         */
+        File generateSqlPackage(Class<? extends Model> modelClass)
+        {
+                String modelPath = GeneratorFileUtils.INSTANCE.findSrcDir(modelClass);
+                
+                if( modelPath.contains("src\\main\\java"))
+                {
+                        modelPath = "src\\main\\resources";
+                }else if( modelPath.contains("src\\test\\java"))
+                {
+                        modelPath = "src\\test\\resources";
+                }else
+                {
+                        modelPath = ".";
+                }
+                
+                File resourceDir = new File( modelPath
+                                + "/create_table"
+                               );
+                
+                if (!resourceDir.exists() || !resourceDir.isDirectory())
+                {
+                        resourceDir.mkdirs();
+                }
+                
+                return resourceDir;
+        }
         
         
         

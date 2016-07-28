@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -17,6 +18,8 @@ import com.nbm.core.modeldriven.generator.CrudGenerator;
 import com.nbm.core.modeldriven.h2.test.TestModelOracle;
 import com.nbm.core.modeldriven.h2.test.dao.TestModelOracleMapper;
 import com.nbm.core.modeldriven.test.model.ModelDrivenTestModel;
+import com.nbm.core.modeldriven.test.model.dao.ModelDrivenTestModelExample;
+import com.nbm.core.modeldriven.test.model.dao.ModelDrivenTestModelMapper;
 import com.younker.waf.db.DataSourceProvider;
 import com.younker.waf.db.mybatis.MybatisDao;
 import com.younker.waf.db.mybatis.SqlSessionProvider;
@@ -89,6 +92,12 @@ public class H2Test
 		assertNotEquals(new Long(0l), result);
 		
 		SqlSessionProvider.getSqlSession().commit();
+		
+		ModelDrivenTestModelExample example = new ModelDrivenTestModelExample();
+		
+		example.createCriteria().andIdIsNull().andNameBetween("abc", "bbc");
+		
+//		List<ModelDrivenTestModel> result = SqlSessionProvider.getSqlSession().getMapper(ModelDrivenTestModelMapper.class).selectByExample(example);
 		
 		
 		//恢复现场

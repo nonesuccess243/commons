@@ -46,6 +46,11 @@ public class CrudGenerator
          * 
          */
         private File resourceDir;
+        
+        /**
+         * 保存sql语句的路径
+         */
+        private File sqlDir;
 
         private String packageName;
 
@@ -85,7 +90,7 @@ public class CrudGenerator
 
         private void generateCreateSql() throws Exception
         {
-                this.createSqlContent = generateResourceFile("create.sql.ftl", meta.getDbTypeName() + ".sql");
+                this.createSqlContent = generateSqlFile("create.sql.ftl", meta.getDbTypeName() + ".sql");
         }
 
         private void generateExtra() throws Exception
@@ -150,7 +155,7 @@ public class CrudGenerator
                 Template temp = getFreemarkerTemplate(templatename);
 
                 Writer out = new OutputStreamWriter(
-                                new FileOutputStream(resourceDir.getAbsoluteFile().toString() + "/" + fileName));
+                                new FileOutputStream(sqlDir.getAbsoluteFile().toString() + "/" + fileName));
 
                 temp.process(root, out);
                 out.flush();
@@ -205,6 +210,7 @@ public class CrudGenerator
                 // 初始化dao类要放在的package下，保证有此文件夹
                 daoDir = GeneratorFileUtils.INSTANCE.generateDaoPackage(meta.getModelClass());
                 resourceDir = GeneratorFileUtils.INSTANCE.generateResourcePackage(meta.getModelClass());
+                sqlDir = GeneratorFileUtils.INSTANCE.generateSqlPackage(meta.getModelClass());
 
                 root = generateMapperRoot(meta.getModelClass());
 
