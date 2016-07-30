@@ -12,3 +12,6 @@
 
 # 5.1.0
 * mybatis generator输出sql语句的路径修改为resource下的create_sql文件夹
+
+# 5.2.0
+* 添加dbgrid静态文件
