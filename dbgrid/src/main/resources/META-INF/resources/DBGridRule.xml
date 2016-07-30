@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<digester-rules>
+	<object-create-rule pattern="DBGrids"
+		classname="com.younker.waf.dbgrid.DBGrids" />
+	<pattern value="DBGrids/imports">
+		<call-method-rule pattern="import" methodname="handleImport"
+			paramcount="0" />
+	</pattern>
+	<pattern value="DBGrids/DBGrid">
+		<object-create-rule classname="com.younker.waf.dbgrid.DBGrid" />
+		<call-method-rule pattern="grid-name" methodname="setGridName"
+			paramcount="0" />
+		<call-method-rule pattern="grid-title" methodname="setGridTitle"
+			paramcount="0" />
+		<call-method-rule pattern="grid-table" methodname="setGridTable"
+			paramcount="0" />
+		<call-method-rule pattern="grid-cols" methodname="setGridCols"
+			paramcount="0" />
+		<call-method-rule pattern="grid-label" methodname="setGridLabel"
+			paramcount="0" />
+		<call-method-rule pattern="grid-fields" methodname="setGridFields"
+			paramcount="0" />
+		<call-method-rule pattern="grid-relation" methodname="setGridRelation"
+			paramcount="0" />
+		<call-method-rule pattern="grid-parent" methodname="setGridParent"
+			paramcount="0" />
+		<call-method-rule pattern="grid-where" methodname="setGridWhere"
+			paramcount="0" />
+		<call-method-rule pattern="grid-condCols" methodname="setGridCondCols"
+			paramcount="0" />
+		<call-method-rule pattern="grid-param" methodname="setGridParam"
+			paramcount="0" />
+		<call-method-rule pattern="grid-operation"
+			methodname="setGridOperation" paramcount="0" />
+		<call-method-rule pattern="grid-queryType"
+			methodname="setGridQueryType" paramcount="0" />
+		<call-method-rule pattern="grid-test" methodname="setGridTest"
+			paramcount="0" />
+		<call-method-rule pattern="grid-color" methodname="setGridColor"
+			paramcount="0" />
+		<call-method-rule pattern="grid-orderBy" methodname="setGridOrderBy"
+			paramcount="0" />
+		<call-method-rule pattern="grid-groupBy" methodname="setGridGroupBy"
+			paramcount="0" />
+		<call-method-rule pattern="grid-rowsPerPage"
+			methodname="setGridRowsPerPage" paramcount="0" />
+		<call-method-rule pattern="grid-handler" methodname="setGridHandler"
+			paramcount="0" />
+		<call-method-rule pattern="grid-type" methodname="setGridType"
+			paramcount="0" />
+		<call-method-rule pattern="grid-forwardURL"
+			methodname="setForwardURL" paramcount="0" />
+		<set-next-rule methodname="addDBGrid" />
+	</pattern>
+	
+	<pattern value="DBGrids/DBType">
+		<call-method-rule pattern="param" methodname="setAllDBType"
+			paramcount="0" />
+	</pattern>
+</digester-rules>
