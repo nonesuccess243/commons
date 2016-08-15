@@ -1,7 +1,6 @@
 package com.younker.waf.db.mybatis;
 
 import java.io.IOException;
-import java.lang.reflect.Modifier;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,10 +21,6 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.reflect.ClassPath;
 import com.google.common.reflect.ClassPath.ClassInfo;
-import com.nbm.commons.PackageUtils;
-import com.nbm.core.modeldriven.Model;
-import com.nbm.core.modeldriven.dao.CommonMapper;
-import com.nbm.exception.NbmBaseException;
 import com.nbm.exception.NbmBaseRuntimeException;
 import com.nbm.waf.core.modeldriven.Mapper;
 import com.younker.waf.db.DataSourceProvider;
