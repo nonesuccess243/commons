@@ -20,9 +20,9 @@ public class ModelMeta
         private final static Logger log = LoggerFactory.getLogger(ModelMeta.class);
         
         
-        private final static Map<Class<? extends Model>, ModelMeta> CACHE = new HashMap<>();
+        private final static Map<Class<? extends PureModel>, ModelMeta> CACHE = new HashMap<>();
         
-        public static ModelMeta getModelMeta(Class<? extends Model> modelClass)
+        public static ModelMeta getModelMeta(Class<? extends PureModel> modelClass)
         {
                 ModelMeta result = CACHE.get(modelClass);
                 if( result == null )
@@ -33,7 +33,7 @@ public class ModelMeta
                 return result;
         }
         
-        private ModelMeta(Class<? extends Model> modelClass)
+        private ModelMeta(Class<? extends PureModel> modelClass)
         {
                 super();
                 this.modelClass = modelClass;
@@ -67,7 +67,7 @@ public class ModelMeta
                 }
         }
         
-        private Class<? extends Model> modelClass;
+        private Class<? extends PureModel> modelClass;
 
         private List<Field> fields;
         
@@ -87,7 +87,7 @@ public class ModelMeta
          */
         private Set<Class<?>> needImport; 
         
-        public Class<? extends Model> getModelClass()
+        public Class<? extends PureModel> getModelClass()
         {
                 return modelClass;
         }

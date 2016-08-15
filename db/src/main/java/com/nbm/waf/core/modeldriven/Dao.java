@@ -6,7 +6,7 @@ import java.util.concurrent.ExecutionException;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
-import com.nbm.core.modeldriven.Model;
+import com.nbm.core.modeldriven.PureModel;
 import com.younker.waf.db.mybatis.SqlSessionProvider;
 
 public enum Dao
@@ -14,12 +14,12 @@ public enum Dao
 
         INSTANCE;
 
-        private static LoadingCache<Class<? extends Model>, Class<? extends Mapper>> mapperClassCache = CacheBuilder
-                        .newBuilder().build(new CacheLoader<Class<? extends Model>, Class<? extends Mapper>>()
+        private static LoadingCache<Class<? extends PureModel>, Class<? extends Mapper>> mapperClassCache = CacheBuilder
+                        .newBuilder().build(new CacheLoader<Class<? extends PureModel>, Class<? extends Mapper>>()
                         {
 
                                 @Override
-                                public Class<? extends Mapper> load(Class<? extends Model> key)
+                                public Class<? extends Mapper> load(Class<? extends PureModel> key)
                                 {
                                         System.out.println("get get");
                                         String mapperClassName = key.getPackage().getName() + ".dao." + key.getSimpleName() + "Mapper";
@@ -36,7 +36,7 @@ public enum Dao
 
                         });
 
-        public <T extends Model> void delete(T toDelete)
+        public <T extends PureModel> void delete(T toDelete)
         {
                 SqlSessionProvider.getSqlSession().getMapper(getMapperByModelClass(toDelete.getClass()))
                                 .deleteByPrimaryKey(toDelete.getId());
@@ -95,7 +95,7 @@ public enum Dao
                 return 0;
         }
 
-        public static Class<? extends Mapper> getMapperByModelClass(Class<? extends Model> claz)
+        public static Class<? extends Mapper> getMapperByModelClass(Class<? extends PureModel> claz)
         {
                         try
                         {

@@ -6,7 +6,7 @@ import java.util.Date;
 import com.nbm.core.modeldriven.anno.NotNull;
 import com.nbm.core.modeldriven.enums.YesOrNo;
 
-public abstract class Model implements Serializable ,Cloneable
+public abstract class PureModel implements Serializable ,Cloneable
 {
 	private static final long serialVersionUID = 1L;
 

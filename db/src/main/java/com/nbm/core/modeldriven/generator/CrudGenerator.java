@@ -14,7 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.nbm.core.modeldriven.Db;
-import com.nbm.core.modeldriven.Model;
+import com.nbm.core.modeldriven.PureModel;
 import com.nbm.core.modeldriven.ModelMeta;
 
 import freemarker.template.DefaultObjectWrapper;
@@ -67,7 +67,7 @@ public class CrudGenerator
 
 	private String extraContent;
 
-        public CrudGenerator(Class<? extends Model> modelClass)
+        public CrudGenerator(Class<? extends PureModel> modelClass)
         {
                 super();
                 this.meta = ModelMeta.getModelMeta(modelClass);
@@ -221,7 +221,7 @@ public class CrudGenerator
                 return mapperCfg.getTemplate(db.getFtlFileName(templateName));
         }
 
-        private Map<String, Object> generateMapperRoot(Class<? extends Model> modelClass)
+        private Map<String, Object> generateMapperRoot(Class<? extends PureModel> modelClass)
         {
                 Map<String, Object> root = new HashMap<String, Object>();
 
@@ -242,7 +242,7 @@ public class CrudGenerator
                 return root;
         }
 
-        private static String generatePackageName(Class<? extends Model> modelClass)
+        private static String generatePackageName(Class<? extends PureModel> modelClass)
         {
                 String packageName = modelClass.getName().replace(modelClass.getSimpleName(), "dao");
                 return packageName;

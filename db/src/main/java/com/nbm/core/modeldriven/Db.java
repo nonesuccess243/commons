@@ -107,7 +107,7 @@ public enum Db
                 }
         }
 
-        public CrudGenerator generate(Class<? extends Model> modelClass)
+        public CrudGenerator generate(Class<? extends PureModel> modelClass)
         {
                 try
                 {
@@ -135,12 +135,12 @@ public enum Db
                 for (Class<?> modelClass : PackageUtils.getClasses(packageName))
                 {
                         // log.info("start class[{}]", className.getName());
-                        if (Model.class.isAssignableFrom(modelClass) && !modelClass.isAnonymousClass())
+                        if (PureModel.class.isAssignableFrom(modelClass) && !modelClass.isAnonymousClass())
                         {
                                 log.info("find model class[{}]", modelClass.getName());
                                 try
                                 {
-                                        new CrudGenerator(modelClass.asSubclass(Model.class)).generate();
+                                        new CrudGenerator(modelClass.asSubclass(PureModel.class)).generate();
 
                                         log.info("finish model class[{}]", modelClass.getName());
                                         mybatisConfig.append("<mapper resource=\"" + modelClass.getName().replace(

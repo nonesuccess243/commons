@@ -9,7 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.nbm.core.modeldriven.Model;
+import com.nbm.core.modeldriven.PureModel;
 import com.nbm.core.modeldriven.ModelMeta;
 import com.nbm.core.modeldriven.ModelUtils;
 import com.nbm.waf.core.modeldriven.Example;
@@ -27,7 +27,7 @@ public enum CommonDao
                 return SqlSessionProvider.getSqlSession();
         }
 
-        public <T extends Model> T selectById( Class<T> modelClass, Object id )
+        public <T extends PureModel> T selectById( Class<T> modelClass, Object id )
         {
                 Map<String, Object> param = new HashMap<>();
                 param.put("meta", ModelMeta.getModelMeta(modelClass));
@@ -64,7 +64,7 @@ public enum CommonDao
          * @param result
          * @return 转换后的结果
          */
-        private <T extends Model> Map<String, Object> wrapperResultMap(Class<T> modelClass, Map<String, Object> result)
+        private <T extends PureModel> Map<String, Object> wrapperResultMap(Class<T> modelClass, Map<String, Object> result)
         {
                 
                 Map<String, Object> newResult = new HashMap<>(result.size());

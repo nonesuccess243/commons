@@ -16,21 +16,21 @@ public enum ModelUtils
 
         private final static Logger log = LoggerFactory.getLogger(ModelUtils.class);
 
-        public List<Field> getFields(Class<? extends Model> modelClass)
+        public List<Field> getFields(Class<? extends PureModel> modelClass)
         {
                 List<Field> result = new ArrayList<>();
 
-                Class<? extends Model> claz = modelClass;
+                Class<? extends PureModel> claz = modelClass;
                 while (true)
                 {
                         result.addAll(handleAClass(claz));
 
-                        if (claz.equals(Model.class))
+                        if (claz.equals(PureModel.class))
                         {
                                 break;
                         }
 
-                        claz = (Class<? extends Model>) claz.getSuperclass();
+                        claz = (Class<? extends PureModel>) claz.getSuperclass();
                 }
 
                 Collections.sort(result, new Comparator<Field>()
@@ -53,7 +53,7 @@ public enum ModelUtils
 
         }
 
-        private List<Field> handleAClass(Class<? extends Model> modelClass)
+        private List<Field> handleAClass(Class<? extends PureModel> modelClass)
         {
                 List<Field> result = new ArrayList<>();
 
@@ -64,7 +64,7 @@ public enum ModelUtils
                 {
 
                         // 如果该property不属于Model接口的子类，则不处理
-                        if (!Model.class.isAssignableFrom(f.getDeclaringClass()))
+                        if (!PureModel.class.isAssignableFrom(f.getDeclaringClass()))
                         {
                                 continue;
                         }

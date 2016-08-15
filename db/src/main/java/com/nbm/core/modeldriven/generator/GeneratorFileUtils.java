@@ -13,7 +13,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.nbm.core.modeldriven.Model;
+import com.nbm.core.modeldriven.PureModel;
 
 enum GeneratorFileUtils
 {
@@ -86,7 +86,7 @@ enum GeneratorFileUtils
          * @param modelClass
          * @return
          */
-        File generateDaoPackage(Class<? extends Model> modelClass)
+        File generateDaoPackage(Class<? extends PureModel> modelClass)
         {
                 String modelPath = GeneratorFileUtils.INSTANCE.findSrcDir(modelClass);
                 
@@ -108,7 +108,7 @@ enum GeneratorFileUtils
          * @param modelClass
          * @return
          */
-        File generateResourcePackage(Class<? extends Model> modelClass)
+        File generateResourcePackage(Class<? extends PureModel> modelClass)
         {
                 String modelPath = GeneratorFileUtils.INSTANCE.findSrcDir(modelClass);
                 
@@ -137,7 +137,7 @@ enum GeneratorFileUtils
          * @param modelClass
          * @return
          */
-        File generateSqlPackage(Class<? extends Model> modelClass)
+        File generateSqlPackage(Class<? extends PureModel> modelClass)
         {
                 String modelPath = GeneratorFileUtils.INSTANCE.findSrcDir(modelClass);
                 
