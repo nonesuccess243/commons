@@ -7,11 +7,9 @@
  *****************************************************************************/
 package com.younker.waf.db;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -107,7 +105,7 @@ public class DataSourceProvider
 		p.setJmxEnabled(true);
 		p.setTestWhileIdle(false);
 		p.setTestOnBorrow(true);
-		p.setValidationQuery("SELECT 1");
+		p.setValidationQuery("SELECT 1 FROM DUAL");
 		p.setTestOnReturn(false);
 		p.setValidationInterval(30000);
 		p.setTimeBetweenEvictionRunsMillis(30000);
@@ -125,6 +123,14 @@ public class DataSourceProvider
 		datasource.setPoolProperties(p);
 		
 		ds = datasource;
+        	
+        }
+        public static void initSimple( PoolProperties p )
+        {
+        	org.apache.tomcat.jdbc.pool.DataSource datasource = new org.apache.tomcat.jdbc.pool.DataSource();
+        	datasource.setPoolProperties(p);
+        	
+        	ds = datasource;
         	
         }
 
