@@ -1,22 +1,29 @@
 package com.nbm.core.modeldriven;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import com.nbm.core.modeldriven.anno.NotNull;
-import com.nbm.core.modeldriven.enums.YesOrNo;
 
+/**
+ * @see Model
+ * 
+ * 之前只有一个Model，但考虑不周，那个Model中增加的几个字段为数据库结构的变更增添了好多困难，所以就增加了这个类。
+ * 
+ * 需要假删除字段的，就用Model作为父类，不需要的，就用现在这个类。
+ * @author niyuzhe
+ *
+ */
 public abstract class PureModel implements Serializable ,Cloneable
 {
-	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	@NotNull
 	private Long id;
-	private Date modelLastUpdateTime;
-	private Date modelCreateTime;
-	private YesOrNo modelIsDeleted;
-	private Date modelDeleteTime;
-
+	
 	public final Long getId()
 	{
 		return id;
@@ -27,43 +34,5 @@ public abstract class PureModel implements Serializable ,Cloneable
 		this.id = id;
 	}
 
-	public final Date getModelLastUpdateTime()
-	{
-		return modelLastUpdateTime;
-	}
 
-	public final void setModelLastUpdateTime(Date modelLastUpdateTime)
-	{
-		this.modelLastUpdateTime = modelLastUpdateTime;
-	}
-
-	public final Date getModelCreateTime()
-	{
-		return modelCreateTime;
-	}
-
-	public final void setModelCreateTime(Date modelCreateTime)
-	{
-		this.modelCreateTime = modelCreateTime;
-	}
-
-	public final YesOrNo getModelIsDeleted()
-	{
-		return modelIsDeleted;
-	}
-
-	public final void setModelIsDeleted(YesOrNo modelIsDeleted)
-	{
-		this.modelIsDeleted = modelIsDeleted;
-	}
-
-	public final Date getModelDeleteTime()
-	{
-		return modelDeleteTime;
-	}
-
-	public final void setModelDeleteTime(Date modelDeleteTime)
-	{
-		this.modelDeleteTime = modelDeleteTime;
-	}
 }
