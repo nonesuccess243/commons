@@ -3,6 +3,7 @@ package ${package};
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
+import java.util.Date;
 
 <#list model.needImport as import>
 import ${import.name};
