@@ -112,18 +112,23 @@ enum GeneratorFileUtils
         {
                 String modelPath = GeneratorFileUtils.INSTANCE.findSrcDir(modelClass);
                 
+                StringBuilder result = new StringBuilder();
+                
                 if( modelPath.contains("src\\main\\java"))
                 {
-                        modelPath = modelPath.replace("src\\main\\java", "src\\main\\resources");
+//                        modelPath = modelPath.replace("src\\main\\java", "src\\main\\resources");
+                        result.append( "src\\main\\resources");
                 }else if( modelPath.contains("src\\test\\java"))
                 {
                         modelPath = modelPath.replace("src\\test\\java", "src\\test\\resources");
+                        result.append( "src\\test\\resources");
                 }
                 
-                File resourceDir = new File( modelPath
-                                + "/"
+                result.append("/"
                                 + modelClass.getPackage().getName()
-                                                .replaceAll("\\.", "/") + "/dao");
+                                .replaceAll("\\.", "/") + "/dao");
+                
+                File resourceDir = new File( result.toString());
                 
                 if (!resourceDir.exists() || !resourceDir.isDirectory())
                 {
