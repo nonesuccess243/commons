@@ -198,8 +198,8 @@
 		update ${model.dbTypeName}
 		<set>
 			<#list fields as field>
-			<if test="record.${field.name} != null">
-				${field.dbName} = ${'#'}{record.${field.name},jdbcType=${field.mybatisJdbcType}}<#if
+			<if test="${field.name} != null">
+				${field.dbName} = ${'#'}{${field.name},jdbcType=${field.mybatisJdbcType}}<#if
 				field_has_next>,</#if>
 			</if>
 			</#list>
