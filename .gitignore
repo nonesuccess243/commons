@@ -1,0 +1,13 @@
+*/target/*
+target/*
+.settings/*
+*/.settings/*
+.project
+*/.project
+*/.svn/*
+.svn/*
+
+
+.classpath
+*/.classpath
+
