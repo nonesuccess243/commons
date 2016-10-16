@@ -1,10 +1,13 @@
 package com.nbm.waf.boot;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +16,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 import com.nbm.commons.db.meta.UnderlineCamelConverter;
+import com.younker.waf.utils.StringUtil;
 
 /**
  * 根据一个简单的定义文件，创建项目子系统、一级目录、二级目录所有元素相关结构的工具类
@@ -32,11 +36,12 @@ public enum ArchitectBooter
 		Map<String, ?> resultMap = readAndGetMap();
 		
 		generateJavaPackage(resultMap);
+		generateInitSqlFile(resultMap);
 		
 		
 	}
 
-	private void generateJavaPackage(Map<String, ?> resultMap)
+	private void generateJavaPackage(Map<String, ?> resultMap) throws IOException
 	{
 		String packagePrefix = 
 				UnderlineCamelConverter.INSTANCE.javaName2PackageName(resultMap.get("group").toString())
@@ -62,7 +67,14 @@ public enum ArchitectBooter
 					log.debug(packagePath.toFile().getAbsolutePath());
 					packagePath.toFile().mkdirs();
 					
+					String path = "./src/main/webapp/" 
+							+ UnderlineCamelConverter.INSTANCE.javaName2WebPath(subsysCode) + "/"
+							+ UnderlineCamelConverter.INSTANCE.javaName2WebPath(moduleCode) + "/"
+							+ UnderlineCamelConverter.INSTANCE.javaName2WebPath(moduleItemCode) ;
+					
 					//generate web folder and web file
+					
+					
 					Path webPath = Paths.get("./src/main/webapp/" 
 							+ UnderlineCamelConverter.INSTANCE.javaName2WebPath(subsysCode) + "/"
 							+ UnderlineCamelConverter.INSTANCE.javaName2WebPath(moduleCode) + "/"
@@ -70,6 +82,51 @@ public enum ArchitectBooter
 					
 					log.debug("webpath={}", webPath.toFile().getAbsolutePath());
 					webPath.toFile().mkdirs();
+					
+					
+				}
+			}
+		}
+	}
+	private void generateInitSqlFile(Map<String, ?> resultMap) throws IOException
+	{
+		String packagePrefix = 
+				UnderlineCamelConverter.INSTANCE.javaName2PackageName(resultMap.get("group").toString())
+				+ "." + UnderlineCamelConverter.INSTANCE.javaName2PackageName(resultMap.get("name").toString());
+		
+		System.out.println(resultMap.get("subsys").getClass());
+		
+		for( Map subsys : (List<Map>)resultMap.get("subsys"))
+		{
+			String subsysCode = subsys.get("code").toString();
+			Paths.get("./sql").toFile().mkdirs();
+			
+			Path sqlFile = Paths.get("./sql/init_module.sql");
+			
+			try(BufferedWriter writer = Files.newBufferedWriter(sqlFile, StandardCharsets.UTF_8, StandardOpenOption.CREATE))
+			{
+				writer.write(StringUtil.getString(
+						"INSERT INTO S_SUBSYS(ID,CODE,NAME,ABBR,WELCOME_PAGE,ORDERBY) VALUES ({}, {}, {}, {}, {},{}) "
+						, 1212
+						,subsysCode,
+						subsys.get("name"),
+						subsys.get("name").toString().substring(0,1),
+						"",
+						""
+						));
+			}
+			
+			
+			for( Map module : (List<Map>)subsys.get("module"))
+			{
+				String moduleCode = module.get("code").toString();
+				for( Map moduleItem : (List<Map>)module.get("moduleItem"))
+				{
+					String moduleItemCode = moduleItem.get("code").toString();
+					
+					
+					
+					
 				}
 			}
 		}
