@@ -37,6 +37,10 @@ public class UnderlineCamelConverterTest
 		assertEquals("somejavaname", UnderlineCamelConverter.INSTANCE.javaName2PackageName("someJavaName"));
 		assertEquals("somejavaname", UnderlineCamelConverter.INSTANCE.javaName2PackageName("some_Java_Name"));
 		assertEquals("somejavaname2", UnderlineCamelConverter.INSTANCE.javaName2PackageName("someJavaName2"));
+		assertEquals("com.com2.com3.javaname.somename", UnderlineCamelConverter.INSTANCE.javaName2PackageName("com.com2.com3.javaName.someName"));
+		
+		
+		
 		assertEquals("some_java_name", UnderlineCamelConverter.INSTANCE.javaName2WebPath("someJavaName"));
 		assertEquals("_some_java_name", UnderlineCamelConverter.INSTANCE.javaName2WebPath("_someJavaName"));
 	}
