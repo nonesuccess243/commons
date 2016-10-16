@@ -16,5 +16,20 @@
 				"name":"示例2"
 			}]
 		}]
+	},{
+		"code":"subsys",
+		"name":"子系统",
+		"module":[{
+			"code":"someCode",
+			"name":"示例",
+			"moduleItem":[{
+				"code":"someModuleItem",
+				"name":"示例"
+				
+			},{
+				"code":"someModuleItem2",
+				"name":"示例2"
+			}]
+		}]
 	}]
 }
