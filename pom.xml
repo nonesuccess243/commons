@@ -21,8 +21,9 @@
 	</modules>
 
 	<scm>
-		<connection>scm:svn:http://139.129.24.171:5000/repos/program_repo/trunk/nbm_commons/trunk/commons-aggr/trunk</connection>
-		<developerConnection>scm:svn:http://139.129.24.171:5000/repos/program_repo/trunk/nbm_commons/trunk/commons-aggr/trunk</developerConnection>
+  		<connection>scm:git:http://60.30.19.131:20020/git/commons/commons.git/</connection>
+  		<url>scm:git:http://60.30.19.131:20020/git/commons/commons.git/</url>
+  		<developerConnection>scm:git:http://60.30.19.131:20020/git/commons/commons.git/</developerConnection>
 	</scm>
 
 	<dependencies>
@@ -99,7 +100,6 @@
 				<artifactId>maven-release-plugin</artifactId>
 				<version>2.5.3</version>
 				<configuration>
-					<tagBase>http://139.129.24.171:5000/repos/program_repo/trunk/nbm_commons/trunk/commons-aggr/tags</tagBase>
 					<encoding>UTF-8</encoding>
 					<charset>UTF-8</charset>
 					<additionalparam>-Xdoclint:none</additionalparam>
