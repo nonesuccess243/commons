@@ -60,6 +60,41 @@ public enum UnderlineCamelConverter implements DbNamingConverter
 
 		return sb.toString();
 	}
+	
+	/**
+	 * 转换成包名规范
+	 * 
+	 * 去掉所有下划线并将所有字母改成小写。
+	 * @param javaName
+	 * @return
+	 */
+	public String javaName2PackageName( String javaName)
+	{
+		return javaName.replaceAll("_", "").toLowerCase();
+	}
+	
+	/**
+	 * 所有字母转换为小写，并用下划线分割
+	 * @param javaName
+	 * @return
+	 */
+	public String javaName2WebPath( String javaName )
+	{
+		char[] chars = javaName.toCharArray();
+
+		StringBuilder sb = new StringBuilder();
+		sb.append(Character.toLowerCase(chars[0]));
+		for (int i = 1; i < chars.length; i++)
+		{
+			if (Character.isUpperCase(chars[i]))
+			{
+				sb.append("_");
+			}
+			sb.append(Character.toLowerCase(chars[i]));
+		}
+
+		return sb.toString();
+	}
 
 	/**
 	 * 下划线分割的命名转换为首字母大写的驼峰命名法。 如SOME_TABLE转换为SomeTable
