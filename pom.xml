@@ -18,12 +18,21 @@
 		<module>dbgrid</module>
 		<module>httpclient</module>
 		<module>report</module>
+<<<<<<< bbc102b39bcec9174674517c45a32a1d6f686845
 	</modules>
 
 	<scm>
   		<connection>scm:git:http://60.30.19.131:20020/git/commons/commons.git/</connection>
   		<url>scm:git:http://60.30.19.131:20020/git/commons/commons.git/</url>
   		<developerConnection>scm:git:http://60.30.19.131:20020/git/commons/commons.git/</developerConnection>
+=======
+		<module>reportgrid</module>
+	</modules>
+
+	<scm>
+		<connection>scm:svn:http://139.129.24.171:5000/repos/program_repo/trunk/nbm_commons/trunk/commons-aggr/trunk</connection>
+		<developerConnection>scm:svn:http://139.129.24.171:5000/repos/program_repo/trunk/nbm_commons/trunk/commons-aggr/trunk</developerConnection>
+>>>>>>> 完成初始内容的导入，解决一部分编译错误。
 	</scm>
 
 	<dependencies>
@@ -100,6 +109,10 @@
 				<artifactId>maven-release-plugin</artifactId>
 				<version>2.5.3</version>
 				<configuration>
+<<<<<<< bbc102b39bcec9174674517c45a32a1d6f686845
+=======
+					<tagBase>http://139.129.24.171:5000/repos/program_repo/trunk/nbm_commons/trunk/commons-aggr/tags</tagBase>
+>>>>>>> 完成初始内容的导入，解决一部分编译错误。
 					<encoding>UTF-8</encoding>
 					<charset>UTF-8</charset>
 					<additionalparam>-Xdoclint:none</additionalparam>
