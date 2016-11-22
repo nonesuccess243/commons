@@ -70,7 +70,7 @@ public class H2Test
 	@Test
 	public void testMybatis() throws SQLException, IOException
 	{
-		DataSourceProvider.initSimple("org.h2.Driver", "jdbc:h2:./src/test/resources/testdb;AUTO_SERVER=TRUE", "sa", "");
+		DataSourceProvider.initSimple("org.h2.Driver", "jdbc:h2:~/.h2/testdb;AUTO_SERVER=TRUE", "sa", "");
 		
 		
 		

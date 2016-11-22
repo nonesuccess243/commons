@@ -28,7 +28,7 @@ public class DataSourceTest
 	public void test() throws InstantiationException,
 	                IllegalAccessException, InvocationTargetException, SQLException
 	{
-		DataSourceProvider.initSimple("org.h2.Driver", "jdbc:h2:./testdb", "sa", "");
+		DataSourceProvider.initSimple("org.h2.Driver", "jdbc:h2:~/.h2/testdb", "sa", "");
 		
 		
 		DataSourceProvider.instance().runBatch("select 1");
