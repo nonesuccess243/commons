@@ -9,11 +9,8 @@ import java.util.Map.Entry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.nbm.bhjs.core.org.Org;
-import com.nbm.bhjs.core.org.OrgPool;
 import com.nbm.commons.db.meta.DbNamingConverter;
 import com.nbm.exception.NbmBaseRuntimeException;
-import com.nbm.waf.core.sec.RuntimeUserUtils;
 import com.opensymphony.xwork2.ActionContext;
 import com.younker.waf.db.mybatis.SqlSessionProvider;
 
@@ -174,14 +171,14 @@ public abstract class GridDataProvider
                         	//如果想解决这部分依赖错误，要么就引入org依赖，要么就等开发完成commons到，这样每个类只要传入了id就可以获取该对象了。
                         	
                         	
-                                Org org = OrgPool.INSTANCE.getOrgById(Long.parseLong(paramsMap.get("orgId").toString()));
+//                                Org org = OrgPool.INSTANCE.getOrgById(Long.parseLong(paramsMap.get("orgId").toString()));
+//                                
+//                                if(!RuntimeUserUtils.INSTANCE.getCurrentEmployee().getOrg().getProxy().isAncestorOfOrSelf(org))
+//                                {
+//                                        throw new NbmBaseRuntimeException("传入");
+//                                }
                                 
-                                if(!RuntimeUserUtils.INSTANCE.getCurrentEmployee().getOrg().getProxy().isAncestorOfOrSelf(org))
-                                {
-                                        throw new NbmBaseRuntimeException("传入");
-                                }
-                                
-                                arguments.put("org", org);
+//                                arguments.put("org", org);
                         }
                 }
                 return paramsMap;
