@@ -8,10 +8,13 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.younker.waf.utils.StringUtil;
 
 /**
  * Servlet Filter implementation class SqlSessionFilter
@@ -19,7 +22,8 @@ import org.slf4j.LoggerFactory;
 public class SqlSessionFilter implements Filter
 {
 
-        private final static Logger log = LoggerFactory.getLogger(SqlSessionFilter.class);
+        private final static Logger log = LoggerFactory
+                        .getLogger(SqlSessionFilter.class);
 
         /**
          * Default constructor.
@@ -41,7 +45,11 @@ public class SqlSessionFilter implements Filter
         public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
                         throws IOException, ServletException
         {
-                SqlSession sqlSession = SqlSessionProvider.openSession();
+                
+                SqlSession sqlSession = SqlSessionProvider.openSession(
+                                ((HttpServletRequest)request).getRequestURI()
+                               )
+                                ;
                 try
                 {
                         chain.doFilter(request, response);

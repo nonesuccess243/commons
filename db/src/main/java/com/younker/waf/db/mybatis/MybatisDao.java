@@ -50,8 +50,10 @@ public enum MybatisDao
 
         // public static final MybatisDao INSTANCE = new MybatisDao();
 
-        private Map<Thread, SqlSession> sqlSessionByThread = new HashMap<>();
-
+//        private Map<Thread, SqlSession> sqlSessionByThread = new HashMap<>();
+        
+//        private ThreadLocal<SqlSessionInfo> sqlSessionInfoByThread = new ThreadLocal<>();
+        
 //        private Map<HttpServletRequest, SqlSession> sqlSessionByRequest = new HashMap<>();
 
         private SqlSessionFactory sessionFactory;
@@ -153,7 +155,7 @@ public enum MybatisDao
         /**
          * 获取SessionFactory。可考虑在以后的重构中，将此函数改为private，并在Dao类中提供session的相关方法
          */
-        private synchronized SqlSession getSession()
+        synchronized SqlSession getSession()
         {
 
                 if (sessionFactory == null)
@@ -165,19 +167,19 @@ public enum MybatisDao
                 SqlSession sqlsession = sessionFactory.openSession();
                 sessionCount.getAndIncrement();
                 log.debug("新打开一个sqlsession，当前数量为：" + sessionCount.get());
-                debugSessionInfo("");
                 return sqlsession;
         }
 
-        synchronized SqlSession getSession(Thread thread)
-        {
-
-                SqlSession session = getSession();
-                sqlSessionByThread.put(thread, session);
-
-                return session;
-
-        }
+//        synchronized SqlSession getSession(Thread thread)
+//        {
+//
+//                
+//                SqlSession session = getSession();
+////                sqlSessionByThread.put(thread, session);
+//
+//                return session;
+//
+//        }
 
 //        synchronized SqlSession getSession(HttpServletRequest request)
 //        {
@@ -189,60 +191,6 @@ public enum MybatisDao
 //
 //        }
 
-        private void debugSessionInfo(String info)
-        {
-                if( log.isDebugEnabled())
-                {
-                try
-                {
-                        StringBuilder sb = new StringBuilder(
-                                        "sqlsession信息\n" + info + "\n");
-                        sb.append(StringUtil.getString(
-                                        "thread sqlsession池中共有session{}个",
-                                        sqlSessionByThread.size()))
-                                        .append("\n");
-                        for (Entry<Thread, SqlSession> entry : Collections
-                                        .unmodifiableMap(sqlSessionByThread)
-                                        .entrySet())
-                        {
-                                sb.append(StringUtil.getString(
-                                                "线程id[{}]， 线程状态[{}]",
-                                                entry.getKey().toString(),
-                                                entry.getKey().getState()))
-                                                .append("\n");
-                                if (entry.getKey()
-                                                .getState() == Thread.State.TERMINATED)
-                                {
-                                        sb.append("sqlsession泄露\n");
-                                }
-                        }
-
-//                        sb.append(StringUtil.getString(
-//                                        "request sqlsession池中共有session{}个",
-//                                        sqlSessionByRequest.size()))
-//                                        .append("\n");
-//                        for (Entry<HttpServletRequest, SqlSession> entry : Collections
-//                                        .unmodifiableMap(sqlSessionByRequest)
-//                                        .entrySet())
-//                        {
-////                                User user = RuntimeUserUtils.INSTANCE
-////                                                .getUserByRequest(
-////                                                                entry.getKey());
-////                                String loginname = user == null ? ""
-////                                                : user.getLoginname();
-//                                sb.append(StringUtil.getString(
-//                                                "request[{}]，user[{}]",
-//                                                entry.getKey().getRequestURI(),
-//                                                "")).append("\n");
-//                        }
-
-                        log.debug(sb.toString());
-                } catch (Exception e)
-                {
-                        log.error("打印异常调试信息时出现异常", e);
-                }
-                }
-        }
 
         // public SqlSession getBatchSession()
         // {
@@ -255,7 +203,7 @@ public enum MybatisDao
         // return sessionFactory.openSession(ExecutorType.BATCH);
         // }
 
-        private void closeSession(SqlSession session)
+        void closeSession(SqlSession session)
         {
                 try
                 {
@@ -268,15 +216,14 @@ public enum MybatisDao
                         session.close();
                         sessionCount.getAndDecrement();
                         log.debug("关闭一个sqlsession，当前数量为：" + sessionCount.get());
-                        debugSessionInfo("");
                 }
         }
 
-        void closeSession(SqlSession session, Thread thread)
-        {
-                closeSession(session);
-                sqlSessionByThread.remove(thread);
-        }
+//        void closeSession(SqlSession session, Thread thread)
+//        {
+//                closeSession(session);
+////                sqlSessionByThread.remove(thread);
+//        }
 
         void closeSession(SqlSession session, HttpServletRequest request)
         {

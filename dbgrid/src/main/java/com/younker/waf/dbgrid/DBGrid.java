@@ -151,7 +151,7 @@ public class DBGrid implements Serializable
                 String result = (strSQL = dbDialect.getPaging(tsb.toString(), gridRowsPerPage,
                                 currentPage));*/
                 String result = (strSQL = dbDialect.getPaging(this));
-                log.debug("generateSql: " + result);
+//                log.debug("generateSql: " + result);
                 return result;
         }
 
@@ -785,6 +785,8 @@ public class DBGrid implements Serializable
 
         public List<DBGridRow> getData()
         {
+                long startTime = System.currentTimeMillis();
+                
                 ResultSetHandler h = new DBGridResultSetHandler(this);
                 ResultSetHandler ph = new DBGridResultPage();
                 QueryRunner run = new ScrollQueryRunner(DataSourceProvider.instance()
@@ -795,12 +797,19 @@ public class DBGrid implements Serializable
                 {
                         int count = Integer.parseInt(run.query(this.generateCountSql(), ph)
                                         .toString());
+                        
+                        long countTime = System.currentTimeMillis()-startTime;
                         this.setRecordNum(count);
                         log.debug("数据行数:" + count);
                         // -------------------添加对应数据库语句匹配
                         // 2013-4-15---------------------
                         result = run.query(this.getSQL(), h);
                         // ---------------------------------------------------------------------
+                        
+                        long queryTime = System.currentTimeMillis()-startTime-countTime;
+                        
+                        log.debug("dbgrid[countTime={}, queryTime={}]", countTime, queryTime);
+                        
                 } catch (SQLException e)
                 {
                         // --------------------------2013-4-15----------------------
