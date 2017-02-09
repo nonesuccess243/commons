@@ -67,7 +67,6 @@ function handleDbGridA( selector, rowIndex, func ){
 						_content += '<a href="###" onclick="handleDbGridA(\'' + obj.selector + '\', @rowIndex, ' + a.handle + ')">'+a.text+'</a> ';
 					});
 					return _content.replace(/@rowIndex/g, rowIndex);
-					return "";
 				};
 				if( i == -1 ) {
 					options.columns[0][options.columns[0].length] = {
