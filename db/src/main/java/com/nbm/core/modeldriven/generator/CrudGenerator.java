@@ -87,12 +87,6 @@ public class CrudGenerator
                 generateMapperJava();
                 generateCreateSql();
                 generateExtra();
-                
-                if( CREATE_TABLE )
-                {
-                        DbHelper.CREATE_TABLE(meta.getDbTypeName(), getCreateSqlContent());
-                }
-                
         }
 
         public String getMapperXmlContent()

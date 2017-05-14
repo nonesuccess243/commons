@@ -19,8 +19,6 @@ public class DbHelper
                         throws SQLException
         {
                 Connection connection = null;
-                try
-                {
                         connection = DataSourceProvider.instance()
                                         .getDataSource().getConnection();
 
@@ -58,17 +56,6 @@ public class DbHelper
                         }
                         
                         resultSet.close();
-                } catch (SQLException e)
-                {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                } finally
-                {
-                        if (connection != null)
-                        {
-                                connection.close();
-                        }
-                }
 
         }
 

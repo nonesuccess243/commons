@@ -1,18 +1,26 @@
 package com.nbm.core.modeldriven;
 
 import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.nbm.commons.PackageUtils;
 import com.nbm.core.modeldriven.generator.CrudGenerator;
+import com.younker.waf.db.DataSourceProvider;
 
 /**
  * 提供常见数据库的差异化方言细节
  * 
  * 并提供generateAll函数
+ * 
  * @author niyuzhe
  *
  */
@@ -24,16 +32,21 @@ public enum Db
                 public DbType getDbTypeByJavaType(Field field)
                 {
                         Class<?> type = field.getType();
-                        if (type == Long.class || type == Integer.class || type == int.class || type == long.class)
+                        if (type == Long.class || type == Integer.class
+                                        || type == int.class
+                                        || type == long.class)
                         {
                                 return DbType.DECIMAL;
-                        } else if (type == String.class || type == StringBuilder.class || type == StringBuffer.class)
+                        } else if (type == String.class
+                                        || type == StringBuilder.class
+                                        || type == StringBuffer.class)
                         {
                                 return DbType.VARCHAR2;
                         } else if (type == Date.class)
                         {
                                 return DbType.TIMESTAMP;
-                        } else if (type == boolean.class || type == Boolean.class)
+                        } else if (type == boolean.class
+                                        || type == Boolean.class)
                         {
                                 return DbType.VARCHAR2;
                         } else if (type.isEnum())
@@ -41,7 +54,9 @@ public enum Db
                                 return DbType.VARCHAR2;
                         } else
                         {
-                                throw new RuntimeException("无法获取有效的DbType[propertyDescripter=" + type + "].");
+                                throw new RuntimeException(
+                                                "无法获取有效的DbType[propertyDescripter="
+                                                                + type + "].");
                         }
                 }
 
@@ -63,17 +78,21 @@ public enum Db
                         if (type == Integer.class || type == int.class)
                         {
                                 return DbType.BIGINT;
-                        } else if (type == String.class || type == StringBuilder.class || type == StringBuffer.class)
+                        } else if (type == String.class
+                                        || type == StringBuilder.class
+                                        || type == StringBuffer.class)
                         {
                                 return DbType.VARCHAR;
                         } else if (type == Date.class)
                         {
                                 if (field.getDateType() != null)
                                 {
-                                        return field.getDateType().getDateTypeName();
+                                        return field.getDateType()
+                                                        .getDateTypeName();
                                 }
                                 return DbType.DATE;
-                        } else if (type == boolean.class || type == Boolean.class)
+                        } else if (type == boolean.class
+                                        || type == Boolean.class)
                         {
                                 return DbType.VARCHAR;
                         } else if (type == float.class || type == Float.class)
@@ -85,12 +104,14 @@ public enum Db
                         } else if (type == BigDecimal.class)
                         {
                                 return DbType.DECIMAL;
-                        }else if (type.isEnum())
+                        } else if (type.isEnum())
                         {
                                 return DbType.VARCHAR;
                         } else
                         {
-                                throw new RuntimeException("无法获取有效的DbType[propertyDescripter=" + type + "].");
+                                throw new RuntimeException(
+                                                "无法获取有效的DbType[propertyDescripter="
+                                                                + type + "].");
                         }
                 }
 
@@ -100,10 +121,9 @@ public enum Db
 
         public abstract DbType getDbTypeByJavaType(Field field);
 
-//        public abstract String getDbTypeByExtraInfoIsEmpty(YesOrNo modelInfoIsEmpty);
+        // public abstract String getDbTypeByExtraInfoIsEmpty(YesOrNo
+        // modelInfoIsEmpty);
 
-        
-        
         /**
          * 如果文件名中不含有ignore_db串，则直接返回
          * 
@@ -135,7 +155,7 @@ public enum Db
                         CrudGenerator generator = new CrudGenerator(modelClass);
                         generator.generate();
                         CrudGenerator.db = temp;
-                        
+
                         return generator;
                 } catch (Exception e)
                 {
@@ -143,9 +163,9 @@ public enum Db
                 }
         }
 
-        
         /**
          * 生成所有packageName包下的可生成的model类
+         * 
          * @param packageName
          */
         public void generateAll(String packageName)
@@ -156,22 +176,40 @@ public enum Db
 
                 StringBuilder mybatisConfig = new StringBuilder("\n");
 
+                List<CrudGenerator> generators = new ArrayList<>();
+
                 for (Class<?> modelClass : PackageUtils.getClasses(packageName))
                 {
                         // log.info("start class[{}]", className.getName());
-                        if (PureModel.class.isAssignableFrom(modelClass) && !modelClass.isAnonymousClass())
+                        if (PureModel.class.isAssignableFrom(modelClass)
+                                        && !modelClass.isAnonymousClass())
                         {
-                                log.info("find model class[{}]", modelClass.getName());
+                                log.info("find model class[{}]",
+                                                modelClass.getName());
                                 try
                                 {
-                                        
-                                        CrudGenerator generator = new CrudGenerator(modelClass.asSubclass(PureModel.class));
+
+                                        CrudGenerator generator = new CrudGenerator(
+                                                        modelClass.asSubclass(
+                                                                        PureModel.class));
                                         generator.generate();
 
-                                        log.info("finish model class[{}]", modelClass.getName());
-                                        mybatisConfig.append("<mapper resource=\"" + modelClass.getName().replace(
-                                                        modelClass.getSimpleName(), "dao").replaceAll("\\.", "/")
-                                                        + "/" + modelClass.getSimpleName() + "Mapper.xml\"" + "/>\n");
+                                        log.info("finish model class[{}]",
+                                                        modelClass.getName());
+                                        mybatisConfig.append(
+                                                        "<mapper resource=\""
+                                                                        + modelClass.getName()
+                                                                                        .replace(modelClass
+                                                                                                        .getSimpleName(),
+                                                                                                        "dao")
+                                                                                        .replaceAll("\\.",
+                                                                                                        "/")
+                                                                        + "/"
+                                                                        + modelClass.getSimpleName()
+                                                                        + "Mapper.xml\""
+                                                                        + "/>\n");
+
+                                        generators.add(generator);
 
                                 } catch (Exception e)
                                 {
@@ -185,9 +223,83 @@ public enum Db
                         }
 
                 }
-                
+
+                if (CrudGenerator.CREATE_TABLE)
+                {
+                        Connection connection = null;
+                        try
+                        {
+                               
+                                connection = DataSourceProvider.instance()
+                                                .getDataSource()
+                                                .getConnection();
+                                for (CrudGenerator generator : generators)
+                                {
+                                        DatabaseMetaData meta = connection
+                                                        .getMetaData();
+                                        ResultSet resultSet = meta.getTables(
+                                                        null, null,
+                                                        generator.getMeta()
+                                                                        .getDbTypeName(),
+                                                        null);
+
+                                        if (resultSet.next())
+                                        {
+                                                log.error("表{}已经存在"
+                                                                + resultSet.getString(
+                                                                                "TABLE_CAT")
+                                                                + "\t"
+                                                                + resultSet.getString(
+                                                                                "TABLE_SCHEM")
+                                                                + "\t"
+                                                                + resultSet.getString(
+                                                                                "TABLE_NAME")
+                                                                + "\t"
+                                                                + resultSet.getString(
+                                                                                "TABLE_TYPE"),
+                                                                generator.getMeta()
+                                                                                .getDbTypeName());
+                                        } else
+                                        {
+                                                log.debug("使用以下sql建表：\n{}",
+                                                                generator.getCreateSqlContent());
+                                                int result = connection
+                                                                .createStatement()
+                                                                .executeUpdate(generator
+                                                                                .getCreateSqlContent());
+                                                if (result == 0)
+                                                {
+                                                        log.info("创建{}表成功",
+                                                                        generator.getMeta()
+                                                                                        .getDbTypeName());
+                                                } else
+                                                {
+                                                        log.error("创建{}表失败",
+                                                                        generator.getMeta()
+                                                                                        .getDbTypeName());
+                                                }
+                                        }
+
+                                        resultSet.close();
+                                }
+                        } catch (Exception e)
+                        {
+                                log.error("", e);
+                        }finally
+                        {
+                                try
+                                {
+                                        connection.close();
+                                } catch (SQLException e)
+                                {
+                                        // TODO Auto-generated catch block
+                                        e.printStackTrace();
+                                }
+                        }
+                }
+
                 log.debug(mybatisConfig.toString());
-                
+
                 CrudGenerator.db = temp;
         }
 
