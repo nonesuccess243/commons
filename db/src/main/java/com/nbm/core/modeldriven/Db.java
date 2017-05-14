@@ -7,9 +7,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.nbm.commons.PackageUtils;
-import com.nbm.core.modeldriven.enums.YesOrNo;
 import com.nbm.core.modeldriven.generator.CrudGenerator;
 
+/**
+ * 提供常见数据库的差异化方言细节
+ * 
+ * 并提供generateAll函数
+ * @author niyuzhe
+ *
+ */
 public enum Db
 {
         ORACLE
@@ -124,6 +130,11 @@ public enum Db
                 }
         }
 
+        
+        /**
+         * 生成所有packageName包下的可生成的model类
+         * @param packageName
+         */
         public void generateAll(String packageName)
         {
 
