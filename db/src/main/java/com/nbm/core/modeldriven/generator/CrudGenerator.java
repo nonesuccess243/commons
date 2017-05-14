@@ -7,7 +7,6 @@ import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.net.URISyntaxException;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -15,7 +14,6 @@ import org.slf4j.LoggerFactory;
 
 import com.nbm.core.modeldriven.Db;
 import com.nbm.core.modeldriven.PureModel;
-import com.younker.waf.db.DataSourceProvider;
 import com.nbm.core.modeldriven.ModelMeta;
 
 import freemarker.template.DefaultObjectWrapper;
