@@ -56,6 +56,8 @@ public class DbHelper
                                         log.error("创建{}表失败", tableName);
                                 }
                         }
+                        
+                        resultSet.close();
                 } catch (SQLException e)
                 {
                         // TODO Auto-generated catch block
