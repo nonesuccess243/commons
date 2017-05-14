@@ -64,7 +64,6 @@ public class DbHelper
                 {
                         if (connection != null)
                         {
-                                connection.commit();
                                 connection.close();
                         }
                 }
