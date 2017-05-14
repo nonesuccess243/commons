@@ -51,8 +51,8 @@ public class GeneratorTest
 //		                generator.getCreateSqlContent());
 		
 
-		DataSourceProvider.instance().runBatch(
-		                "DROP TABLE TEST_MODEL");
+//		DataSourceProvider.instance().runBatch(
+//		                "DROP TABLE TEST_MODEL");
 
 		generator = Db.ORACLE.generate(ModelDrivenTestModel.class);
 
