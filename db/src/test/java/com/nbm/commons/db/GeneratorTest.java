@@ -47,8 +47,8 @@ public class GeneratorTest
 		CrudGenerator generator = Db.MYSQL
 		                .generate(ModelDrivenTestModel.class);
 
-		DataSourceProvider.instance().runBatch(
-		                generator.getCreateSqlContent());
+//		DataSourceProvider.instance().runBatch(
+//		                generator.getCreateSqlContent());
 		
 
 		DataSourceProvider.instance().runBatch(
@@ -56,12 +56,12 @@ public class GeneratorTest
 
 		generator = Db.ORACLE.generate(ModelDrivenTestModel.class);
 
-		DataSourceProvider.instance().runBatch(
-		                generator.getCreateSqlContent());
-		
-		DataSourceProvider.instance().runBatch(
-		                "DROP TABLE TEST_MODEL");
-		DataSourceProvider.instance().runBatch("DROP SEQUENCE TEST_MODEL_SEQ");
+//		DataSourceProvider.instance().runBatch(
+//		                generator.getCreateSqlContent());
+//		
+//		DataSourceProvider.instance().runBatch(
+//		                "DROP TABLE TEST_MODEL");
+//		DataSourceProvider.instance().runBatch("DROP SEQUENCE TEST_MODEL_SEQ");
 
 		// Db.MYSQL.generate(ModelDrivenTestModel.class);
 		//
