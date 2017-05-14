@@ -24,6 +24,10 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 在web项目中统一提供数据源，为数据库操作的核心类。
+ * 
+ * 默认情况下会读取jndi数据源，即context.xml中定义的名为jdbc/ds数据源
+ * 
+ * 提供initSimple函数，创建简单的数据源，依赖于tomcat的连接池实现
  */
 public class DataSourceProvider
 { 
