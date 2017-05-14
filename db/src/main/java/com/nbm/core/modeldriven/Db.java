@@ -102,6 +102,19 @@ public enum Db
 
 //        public abstract String getDbTypeByExtraInfoIsEmpty(YesOrNo modelInfoIsEmpty);
 
+        
+        
+        /**
+         * 如果文件名中不含有ignore_db串，则直接返回
+         * 
+         * 如果包含，则返回db_加fileName
+         * 
+         * 什么用意？忘了
+         * 
+         * 
+         * @param fileName
+         * @return
+         */
         public String getFtlFileName(String fileName)
         {
                 if (fileName.indexOf("ignore_db") != -1)

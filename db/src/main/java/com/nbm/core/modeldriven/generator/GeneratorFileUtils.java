@@ -2,6 +2,7 @@ package com.nbm.core.modeldriven.generator;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -9,11 +10,17 @@ import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.nbm.core.modeldriven.ModelMeta;
 import com.nbm.core.modeldriven.PureModel;
+
+import freemarker.template.Template;
 
 enum GeneratorFileUtils
 {
@@ -167,6 +174,57 @@ enum GeneratorFileUtils
                 }
                 
                 return resourceDir;
+        }
+        
+        String getMapperXmlFileName(ModelMeta meta)
+        {
+                return meta.getModelClass().getSimpleName() + "Mapper.xml";
+        }
+
+        String getExampleJavaFileName(ModelMeta meta)
+        {
+                return getExampleJavaName(meta) + ".java";
+        }
+
+        String getExampleJavaName(ModelMeta meta)
+        {
+                return meta.getModelClass().getSimpleName() + "Example";
+        }
+
+        String getMapperJavaFileName(ModelMeta meta)
+        {
+                return meta.getModelClass().getSimpleName() + "Mapper.java";
+        }
+
+        Map<String, Object> generateMapperRoot(ModelMeta meta)
+        {
+                Class<? extends PureModel> modelClass = meta.getModelClass();
+                
+                String packageName = generatePackageName(modelClass);
+                
+                Map<String, Object> root = new HashMap<String, Object>();
+
+                root.put("package", packageName);
+
+                root.put("namespace", packageName + "." + modelClass.getSimpleName() + "Mapper");
+                root.put("typeName", modelClass.getName());
+                root.put("typeSimpleName", modelClass.getSimpleName());
+
+                root.put("mapperPath",
+                                packageName.replaceAll("\\.", "/") + "/" + modelClass.getSimpleName() + "Mapper.xml");
+
+                root.put("model", meta);
+                root.put("fields", meta.getDbFields());
+                root.put("tableName", meta.getDbTypeName());
+
+                root.put("exampleJavaName", packageName + "." + modelClass.getSimpleName() + "Example");
+                return root;
+        }
+
+        String generatePackageName(Class<? extends PureModel> modelClass)
+        {
+                String packageName = modelClass.getName().replace(modelClass.getSimpleName(), "dao");
+                return packageName;
         }
         
         

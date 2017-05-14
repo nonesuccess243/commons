@@ -52,12 +52,8 @@ public class CrudGenerator
          */
         private File sqlDir;
 
-        private String packageName;
-
-        
         //以下几个content结尾的变量，在生成文件内容的同时，将字符串内容在此类中缓存起来，便于生成的时候用程序处理
 	private String mapperXmlContent;
-
 	
 	private String mapperJavaContent;
 
@@ -73,19 +69,74 @@ public class CrudGenerator
                 this.meta = ModelMeta.getModelMeta(modelClass);
         }
 
+        public void generate() throws Exception
+        {
+                init();
+                generateMapperXml();
+                generateExampleJava();
+                generateMapperJava();
+                generateCreateSql();
+                generateExtra();
+        }
+
+        public String getMapperXmlContent()
+        {
+        	return mapperXmlContent;
+        }
+
+        public String getMapperJavaContent()
+        {
+        	return mapperJavaContent;
+        }
+
+        public String getExampleJavaContent()
+        {
+        	return exampleJavaContent;
+        }
+
+        public String getCreateSqlContent()
+        {
+        	return createSqlContent;
+        }
+
+        public String getExtraContent()
+        {
+        	return extraContent;
+        }
+
+        public ModelMeta getMeta()
+        {
+        	return meta;
+        }
+
+        private void init() throws IOException, URISyntaxException
+        {
+                mapperCfg = new freemarker.template.Configuration();
+                mapperCfg.setClassForTemplateLoading(CrudGenerator.class, "");
+                mapperCfg.setObjectWrapper(new DefaultObjectWrapper());
+        
+                // 初始化dao类要放在的package下，保证有此文件夹
+                daoDir = GeneratorFileUtils.INSTANCE.generateDaoPackage(meta.getModelClass());
+                resourceDir = GeneratorFileUtils.INSTANCE.generateResourcePackage(meta.getModelClass());
+                sqlDir = GeneratorFileUtils.INSTANCE.generateSqlPackage(meta.getModelClass());
+        
+                root = GeneratorFileUtils.INSTANCE.generateMapperRoot(meta);
+        
+        }
+
         private void generateMapperXml() throws Exception
         {
-                this.mapperXmlContent = generateResourceFile("Mapper.xml.ftl", getMapperXmlFileName());
+                this.mapperXmlContent = generateResourceFile("Mapper.xml.ftl",  GeneratorFileUtils.INSTANCE.getMapperXmlFileName(meta));
         }
 
         private void generateMapperJava() throws Exception
         {
-                this.mapperJavaContent = generateAFile("Mapper.java.ftl", getMapperJavaFileName());
+                this.mapperJavaContent = generateAFile("Mapper.java.ftl",  GeneratorFileUtils.INSTANCE.getMapperJavaFileName(meta));
         }
 
         private void generateExampleJava() throws Exception
         {
-                this.exampleJavaContent = generateAFile("Example.java.ftl", getExampleJavaFileName());
+                this.exampleJavaContent = generateAFile("Example.java.ftl",  GeneratorFileUtils.INSTANCE.getExampleJavaFileName(meta));
         }
 
         private void generateCreateSql() throws Exception
@@ -106,15 +157,26 @@ public class CrudGenerator
          * @return 生成文件的内容
          * @throws Exception
          */
-        private String generateAFile(String templatename, String fileName) throws Exception
+        private String generateFile(String templateName, String fileName, File dir) throws Exception
         {
-                Template temp = getFreemarkerTemplate(templatename);
+                
+                Template temp = mapperCfg.getTemplate(db.getFtlFileName(templateName));
 
                 Writer out = new OutputStreamWriter(
-                                new FileOutputStream(daoDir.getAbsoluteFile().toString() + "/" + fileName));
+                                new FileOutputStream(dir.getAbsoluteFile().toString() + "/" + fileName));
 
-                temp.process(root, out);
+                String result = generateContent(templateName, fileName);
+                out.append(result);
                 out.flush();
+                
+                return result;
+                
+        }
+        
+        private String generateContent(String templateName, String fileName) throws Exception
+        {
+                
+                Template temp = mapperCfg.getTemplate(db.getFtlFileName(templateName));
                 
                 StringWriter writer = new StringWriter();
                 temp.process(root, writer);
@@ -122,9 +184,20 @@ public class CrudGenerator
                 
                 return writer.toString();
                 
+        }
+        
+        /**
+         * 
+         * @param templatename
+         * @param fileName
+         * @return 生成文件的内容
+         * @throws Exception
+         */
+        private String generateAFile(String templatename, String fileName) throws Exception
+        {
+                return generateFile(templatename, fileName, daoDir);
                 
         }
-
         
         /**
          * 
@@ -135,146 +208,13 @@ public class CrudGenerator
          */
         private String generateResourceFile(String templatename, String fileName) throws Exception
         {
-                Template temp = getFreemarkerTemplate(templatename);
-
-                Writer out = new OutputStreamWriter(
-                                new FileOutputStream(resourceDir.getAbsoluteFile().toString() + "/" + fileName));
-
-                temp.process(root, out);
-                out.flush();
-                
-                StringWriter writer = new StringWriter();
-                temp.process(root, writer);
-                writer.flush();
-                
-                return writer.toString();
+                return generateFile(templatename, fileName, resourceDir);
         }
         
         private String generateSqlFile(String templatename, String fileName) throws Exception
         {
-                Template temp = getFreemarkerTemplate(templatename);
-
-                Writer out = new OutputStreamWriter(
-                                new FileOutputStream(sqlDir.getAbsoluteFile().toString() + "/" + fileName));
-
-                temp.process(root, out);
-                out.flush();
-                
-                StringWriter writer = new StringWriter();
-                temp.process(root, writer);
-                writer.flush();
-                
-                return writer.toString();
+                return generateFile(templatename, fileName, sqlDir);
         }
 
-        private String getMapperXmlFileName()
-        {
-                return meta.getModelClass().getSimpleName() + "Mapper.xml";
-        }
-
-        private String getExampleJavaFileName()
-        {
-                return getExampleJavaName() + ".java";
-        }
-
-        private String getExampleJavaName()
-        {
-                return meta.getModelClass().getSimpleName() + "Example";
-        }
-
-        private String getMapperJavaFileName()
-        {
-                return meta.getModelClass().getSimpleName() + "Mapper.java";
-        }
-
-        public void generate() throws Exception
-        {
-                init();
-                generateMapperXml();
-                generateExampleJava();
-                generateMapperJava();
-                generateCreateSql();
-                generateExtra();
-        }
-
-        private void init() throws IOException, URISyntaxException
-        {
-                mapperCfg = new freemarker.template.Configuration();
-
-                mapperCfg.setClassForTemplateLoading(CrudGenerator.class, "");
-
-                mapperCfg.setObjectWrapper(new DefaultObjectWrapper());
-
-                packageName = generatePackageName(meta.getModelClass());
-
-                // 初始化dao类要放在的package下，保证有此文件夹
-                daoDir = GeneratorFileUtils.INSTANCE.generateDaoPackage(meta.getModelClass());
-                resourceDir = GeneratorFileUtils.INSTANCE.generateResourcePackage(meta.getModelClass());
-                sqlDir = GeneratorFileUtils.INSTANCE.generateSqlPackage(meta.getModelClass());
-
-                root = generateMapperRoot(meta.getModelClass());
-
-        }
-
-        private Template getFreemarkerTemplate(String templateName) throws IOException, URISyntaxException
-        {
-                return mapperCfg.getTemplate(db.getFtlFileName(templateName));
-        }
-
-        private Map<String, Object> generateMapperRoot(Class<? extends PureModel> modelClass)
-        {
-                Map<String, Object> root = new HashMap<String, Object>();
-
-                root.put("package", packageName);
-
-                root.put("namespace", packageName + "." + modelClass.getSimpleName() + "Mapper");
-                root.put("typeName", modelClass.getName());
-                root.put("typeSimpleName", modelClass.getSimpleName());
-
-                root.put("mapperPath",
-                                packageName.replaceAll("\\.", "/") + "/" + modelClass.getSimpleName() + "Mapper.xml");
-
-                root.put("model", meta);
-                root.put("fields", meta.getDbFields());
-                root.put("tableName", meta.getDbTypeName());
-
-                root.put("exampleJavaName", packageName + "." + modelClass.getSimpleName() + "Example");
-                return root;
-        }
-
-        private static String generatePackageName(Class<? extends PureModel> modelClass)
-        {
-                String packageName = modelClass.getName().replace(modelClass.getSimpleName(), "dao");
-                return packageName;
-        }
         
-        public String getMapperXmlContent()
-	{
-		return mapperXmlContent;
-	}
-
-	public String getMapperJavaContent()
-	{
-		return mapperJavaContent;
-	}
-
-	public String getExampleJavaContent()
-	{
-		return exampleJavaContent;
-	}
-
-	public String getCreateSqlContent()
-	{
-		return createSqlContent;
-	}
-
-	public String getExtraContent()
-	{
-		return extraContent;
-	}
-
-	public ModelMeta getMeta()
-	{
-		return meta;
-	}
 }
