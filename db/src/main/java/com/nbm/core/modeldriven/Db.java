@@ -164,7 +164,9 @@ public enum Db
                                 log.info("find model class[{}]", modelClass.getName());
                                 try
                                 {
-                                        new CrudGenerator(modelClass.asSubclass(PureModel.class)).generate();
+                                        
+                                        CrudGenerator generator = new CrudGenerator(modelClass.asSubclass(PureModel.class));
+                                        generator.generate();
 
                                         log.info("finish model class[{}]", modelClass.getName());
                                         mybatisConfig.append("<mapper resource=\"" + modelClass.getName().replace(
