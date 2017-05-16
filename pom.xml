@@ -8,7 +8,7 @@
  
 	<groupId>com.nbm</groupId>
 	<artifactId>commons-aggr</artifactId>
-	<version>5.7.5</version>
+	<version>5.7.6-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>nbmcommons</name>
 	<modules>
@@ -24,7 +24,7 @@
   		<connection>scm:git:http://60.30.19.131:20020/git/commons/commons.git/</connection>
   		<url>scm:git:http://60.30.19.131:20020/git/commons/commons.git/</url>
   		<developerConnection>scm:git:http://60.30.19.131:20020/git/commons/commons.git/</developerConnection>
-	  <tag>commons-aggr-5.7.5</tag>
+	  <tag>HEAD</tag>
   </scm>
  
 	<dependencies>
