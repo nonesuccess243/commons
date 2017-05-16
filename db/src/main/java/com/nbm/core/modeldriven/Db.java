@@ -235,52 +235,59 @@ public enum Db
                                                 .getConnection();
                                 for (CrudGenerator generator : generators)
                                 {
-                                        DatabaseMetaData meta = connection
-                                                        .getMetaData();
-                                        ResultSet resultSet = meta.getTables(
-                                                        null, null,
-                                                        generator.getMeta()
-                                                                        .getDbTypeName(),
-                                                        null);
-
-                                        if (resultSet.next())
+                                        try
                                         {
-                                                log.error("表{}已经存在"
-                                                                + resultSet.getString(
-                                                                                "TABLE_CAT")
-                                                                + "\t"
-                                                                + resultSet.getString(
-                                                                                "TABLE_SCHEM")
-                                                                + "\t"
-                                                                + resultSet.getString(
-                                                                                "TABLE_NAME")
-                                                                + "\t"
-                                                                + resultSet.getString(
-                                                                                "TABLE_TYPE"),
+                                                DatabaseMetaData meta = connection
+                                                                .getMetaData();
+                                                ResultSet resultSet = meta.getTables(
+                                                                null, null,
                                                                 generator.getMeta()
-                                                                                .getDbTypeName());
-                                        } else
-                                        {
-                                                log.debug("使用以下sql建表：\n{}",
-                                                                generator.getCreateSqlContent());
-                                                int result = connection
-                                                                .createStatement()
-                                                                .executeUpdate(generator
-                                                                                .getCreateSqlContent());
-                                                if (result == 0)
+                                                                                .getDbTypeName(),
+                                                                null);
+        
+                                                if (resultSet.next())
                                                 {
-                                                        log.info("创建{}表成功",
+                                                        log.error("表{}已经存在"
+                                                                        + resultSet.getString(
+                                                                                        "TABLE_CAT")
+                                                                        + "\t"
+                                                                        + resultSet.getString(
+                                                                                        "TABLE_SCHEM")
+                                                                        + "\t"
+                                                                        + resultSet.getString(
+                                                                                        "TABLE_NAME")
+                                                                        + "\t"
+                                                                        + resultSet.getString(
+                                                                                        "TABLE_TYPE"),
                                                                         generator.getMeta()
                                                                                         .getDbTypeName());
                                                 } else
                                                 {
-                                                        log.error("创建{}表失败",
-                                                                        generator.getMeta()
-                                                                                        .getDbTypeName());
+                                                        log.debug("使用以下sql建表：\n{}",
+                                                                        generator.getCreateSqlContent());
+                                                        int result = connection
+                                                                        .createStatement()
+                                                                        .executeUpdate(generator
+                                                                                        .getCreateSqlContent());
+                                                        if (result == 0)
+                                                        {
+                                                                log.info("创建{}表成功",
+                                                                                generator.getMeta()
+                                                                                                .getDbTypeName());
+                                                        } else
+                                                        {
+                                                                log.error("创建{}表失败",
+                                                                                generator.getMeta()
+                                                                                                .getDbTypeName());
+                                                        }
                                                 }
+        
+                                                resultSet.close();
+                                        }catch(Exception e )
+                                        {
+                                                log.error("sql: " + generator.getCreateSqlContent(), e);
+                                                continue;
                                         }
-
-                                        resultSet.close();
                                 }
                         } catch (Exception e)
                         {
