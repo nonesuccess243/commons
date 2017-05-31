@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.nbm.commons.PackageUtils;
+import com.nbm.core.modeldriven.anno.DbTypeAnno;
 import com.nbm.core.modeldriven.generator.CrudGenerator;
 import com.younker.waf.db.DataSourceProvider;
 
@@ -29,7 +30,7 @@ public enum Db
         ORACLE
         {
                 @Override
-                public DbType getDbTypeByJavaType(Field field)
+                public DbType getDbTypeByJavaTypeWithDialect(Field field)
                 {
                         Class<?> type = field.getType();
                         if (type == Long.class || type == Integer.class
@@ -64,7 +65,7 @@ public enum Db
         MYSQL
         {
                 @Override
-                public DbType getDbTypeByJavaType(Field field)
+                public DbType getDbTypeByJavaTypeWithDialect(Field field)
                 {
                         Class<?> type = field.getType();
 
@@ -119,7 +120,18 @@ public enum Db
 
         private final static Logger log = LoggerFactory.getLogger(Db.class);
 
-        public abstract DbType getDbTypeByJavaType(Field field);
+        public DbType getDbTypeByJavaType(Field field)
+        {
+                
+                if( field.getType().getAnnotation(DbTypeAnno.class) != null )
+                {
+                        return field.getType().getAnnotation(DbTypeAnno.class).value();
+                }
+                
+                return getDbTypeByJavaTypeWithDialect(field);
+        }
+        
+        protected abstract DbType getDbTypeByJavaTypeWithDialect(Field field);
 
         // public abstract String getDbTypeByExtraInfoIsEmpty(YesOrNo
         // modelInfoIsEmpty);
