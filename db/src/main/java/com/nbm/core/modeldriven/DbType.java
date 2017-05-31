@@ -21,7 +21,18 @@ public enum DbType
         CHAR, DATE_TIME,
         DATE, TIME, DATETIME,
         FLOAT,
-        DOUBLE;
+        DOUBLE,
+        
+        //空间信息相关的字段
+        GEOMETRY,
+        POINT,
+        LINESTRING,
+        POLYGON,
+        MULTIPOINT,
+        MULTILINESTRING,
+        MULTIPOLYGON,
+        GEOMETRYCOLLECTION
+        ;
         
         
         /**
