@@ -25,7 +25,41 @@ public enum DbType
         
         //空间信息相关的字段
         GEOMETRY,
-        POINT,
+        POINT
+        {
+                @Override
+                public String getPopulatePrefix()
+                {
+                        return "ST_GeomFromText(";
+                }
+
+                @Override
+                public String getPopulateSuffix()
+                {
+                        return ")";
+                }
+
+                @Override
+                public boolean simple()
+                {
+                        return false;
+                }
+
+                @Override
+                public String getFetchPrefix()
+                {
+                        return "ST_AsText(";
+                }
+
+                @Override
+                public String getFetchSuffix()
+                {
+                        return ")";
+                }
+                
+                
+                
+        },
         LINESTRING,
         POLYGON,
         MULTIPOINT,
@@ -43,4 +77,45 @@ public enum DbType
         {
                 return this;
         }
+        
+        /**
+         * 是否为简单类型
+         * 
+         * 如果不是简单类型，意味着在mybatis通用配置文件或其它位置，有更多复杂的处理
+         * @return
+         */
+        public boolean simple()
+        {
+                return true;
+        }
+        
+        /**
+         * Mybatis通用配置文件中的前后缀
+         * @return
+         */
+        public String getPopulatePrefix()
+        {
+                return "";
+        }
+        
+        public String getPopulateSuffix()
+        {
+                return "";
+        }
+        
+        /**
+         * Mybatis通用配置文件中的前后缀
+         * @return
+         */
+        public String getFetchPrefix()
+        {
+                return "";
+        }
+        
+        public String getFetchSuffix()
+        {
+                return "";
+        }
+        
+       
 }

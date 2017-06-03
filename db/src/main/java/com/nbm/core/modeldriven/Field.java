@@ -136,13 +136,26 @@ public class Field
 		this.dbName = dbName;
 	}
 
+	
+	private DbType dbType;
+	
 	/**
-	 * 供freemarker配置文件调用
+	 * 
+	 * 
+	 * 返回该Field对应的数据库类型
+	 * 
+	 * 其内容应对应数据库中的列类型
+	 * 
+	 * 初始目的是为了生成Mybatis的配置文件用
 	 * @return
 	 */
 	public DbType getDbType()
 	{
-		return CrudGenerator.db.getDbTypeByJavaType(this);
+	        if( dbType == null )
+		{
+	                dbType = CrudGenerator.db.getDbTypeByJavaType(this);
+		}
+	        return dbType;
 	}
 
 	/**
@@ -304,5 +317,15 @@ public class Field
         public java.lang.reflect.Field getOriginField()
         {
                 return originField;
+        }
+        
+        public String getInsertPrefix()
+        {
+                return "";
+        }
+        
+        public String getInsertSuffix()
+        {
+                return "";
         }
 }
