@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.nbm.core.modeldriven.Db;
 import com.nbm.core.modeldriven.ModelMeta;
 import com.nbm.core.modeldriven.generator.CrudGenerator;
 import com.nbm.core.modeldriven.test.model.ModelDrivenTestModel;
