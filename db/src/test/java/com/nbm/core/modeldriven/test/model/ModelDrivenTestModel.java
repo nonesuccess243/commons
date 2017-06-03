@@ -3,6 +3,7 @@ package com.nbm.core.modeldriven.test.model;
 import com.nbm.core.modeldriven.Model;
 import com.nbm.core.modeldriven.anno.DbIgnore;
 import com.nbm.core.modeldriven.anno.ModelInfo;
+import com.nbm.core.modeldriven.anno.NameCol;
 import com.nbm.core.modeldriven.generator.CrudGenerator;
 
 @ModelInfo(tableName="TEST_MODEL")
@@ -25,6 +26,7 @@ public class ModelDrivenTestModel extends Model
          */
         private static final long serialVersionUID = 1L;
 
+        @NameCol
         private String name;
         
         private String remark;

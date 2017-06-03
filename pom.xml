@@ -4,6 +4,7 @@
  
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring.version>4.2.2.RELEASE</spring.version>
 	</properties>
  
 	<groupId>com.nbm</groupId>
