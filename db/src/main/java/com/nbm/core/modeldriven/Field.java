@@ -319,13 +319,23 @@ public class Field
                 return originField;
         }
         
-        public String getInsertPrefix()
+        public String getPopulatePrefix()
         {
-                return "";
+                return dbType.getPopulatePrefix();
         }
         
-        public String getInsertSuffix()
+        public String getPopulateSuffix()
         {
-                return "";
+                return dbType.getPopulateSuffix();
+        }
+        
+        public String getFetchPrefix()
+        {
+                return dbType.getFetchPrefix();
+        }
+
+        public String getFetchSuffix()
+        {
+                return dbType.getFetchSuffix();
         }
 }
