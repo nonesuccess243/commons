@@ -18,13 +18,6 @@ public class Point extends Shape
         
         public Point(){}
         
-        public Point(String pointString)
-        {
-                String[] s = pointString.replace("POINT", "").replaceAll("(", "").replaceAll(")", "").split(" ");
-                this.x = Double.parseDouble(s[0]);
-                this.y = Double.parseDouble(s[1]);
-                
-        }
         
         public double getX()
         {
