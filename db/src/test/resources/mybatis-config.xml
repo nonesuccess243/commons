@@ -14,7 +14,6 @@
 	<mappers>
 
 		<mapper resource="com/nbm/core/modeldriven/test/model/dao/ModelDrivenTestModelMapper.xml"/>
-		<mapper resource="com/nbm/core/modeldriven/dao/CommonMapper.xml"/>
 
 	</mappers>
 

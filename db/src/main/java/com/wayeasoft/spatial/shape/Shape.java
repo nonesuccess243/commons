@@ -1,8 +1,8 @@
 package com.wayeasoft.spatial.shape;
 
-import java.io.Serializable;
+import com.nbm.core.modeldriven.ComplexDbType;
 
-public abstract class Shape implements Serializable
+public abstract class Shape extends ComplexDbType 
 {
 
         /**

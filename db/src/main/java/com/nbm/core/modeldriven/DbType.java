@@ -68,6 +68,11 @@ public enum DbType
         GEOMETRYCOLLECTION
         ;
         
+//        @Override
+//        public String toString()
+//        {
+//                return "";
+//        }
         
         /**
          * Mybatis閰嶇疆鏂囦欢涓紝鏈夐儴鍒嗛渶瑕佹寚瀹氬弬鏁扮殑jdbctype灞炴�锛岃�姝ゅ睘鎬т笉鏀寔varchar2锛岀浉搴旂殑浣嶇疆瑕佸～鍐檝archar
