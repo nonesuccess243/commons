@@ -15,6 +15,12 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 import com.nbm.commons.db.meta.UnderlineCamelConverter;
 
+
+/**
+ * 用于表示实体类元信息的类
+ * @author niyuzhe
+ *
+ */
 public class ModelMeta
 {
         private final static Logger log = LoggerFactory.getLogger(ModelMeta.class);

@@ -61,28 +61,32 @@ public class CommonDao
 
                 result = wrapperResultMap(modelClass, result);
                 
-                ConvertUtilsBean utils = new ConvertUtilsBean();
+                BeanUtilsBeanFactory.registerConverter(modelClass);
                 
-                utils.register(new Converter()
-                {
-                        @Override
-                        public Object convert(Class type, Object value)
-                        {
-                                Point point = new Point();
-                                String[] s = ((String)value).replace("POINT", "").replace("(", "").replace(")", "").split(" ");
-                                point.setX(Double.parseDouble(s[0]));
-                                point.setY(Double.parseDouble(s[1]));
-                                return point;
-                        }
-                }, Point.class);   
+//                ConvertUtilsBean utils = new ConvertUtilsBean();
+//                
+//
+//                
+//                BeanUtilsBean beanUtils = new BeanUtilsBean(utils,new PropertyUtilsBean()); 
+                
+//                utils.register(new Converter()
+//                {
+//                        @Override
+//                        public Object convert(Class type, Object value)
+//                        {
+//                                Point point = new Point();
+//                                String[] s = ((String)value).replace("POINT", "").replace("(", "").replace(")", "").split(" ");
+//                                point.setX(Double.parseDouble(s[0]));
+//                                point.setY(Double.parseDouble(s[1]));
+//                                return point;
+//                        }
+//                }, Point.class);   
 
-                
-                BeanUtilsBean beanUtils = new BeanUtilsBean(utils,new PropertyUtilsBean()); 
                 
                 try
                 {
                         T m = modelClass.newInstance();
-                        beanUtils.populate(m, result);
+                        BeanUtilsBeanFactory.get().populate(m, result);
                         return m;
                 } catch (Exception e)
                 {
