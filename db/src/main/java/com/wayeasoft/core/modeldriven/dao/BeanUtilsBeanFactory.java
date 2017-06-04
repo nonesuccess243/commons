@@ -5,10 +5,7 @@ import java.util.Set;
 
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.ConvertUtilsBean;
-import org.apache.commons.beanutils.Converter;
 import org.apache.commons.beanutils.PropertyUtilsBean;
-import org.h2.util.New;
-
 import com.nbm.core.modeldriven.ComplexDbType;
 import com.nbm.core.modeldriven.Field;
 import com.nbm.core.modeldriven.ModelMeta;
