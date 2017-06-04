@@ -11,7 +11,7 @@ import com.nbm.core.modeldriven.anno.DbTemplate;
         fetchSuffix=")", 
         populatePrefix = "ST_GeomFromText(", 
         populateSuffix=")")
-public class Point extends Shape
+public class Point extends SpatialShape
 {
         /**
          * 

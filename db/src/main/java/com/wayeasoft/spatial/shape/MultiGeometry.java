@@ -2,8 +2,13 @@ package com.wayeasoft.spatial.shape;
 
 import org.apache.commons.beanutils.Converter;
 
-public class Circle extends SpatialShape
+public class MultiGeometry extends SpatialShape
 {
+
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
 
         @Override
         public String getSqlString()
