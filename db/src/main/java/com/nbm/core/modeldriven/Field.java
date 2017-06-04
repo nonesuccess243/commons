@@ -1,9 +1,11 @@
 package com.nbm.core.modeldriven;
 
+import java.lang.annotation.Annotation;
 import java.util.Date;
 
 import com.nbm.commons.db.meta.UnderlineCamelConverter;
 import com.nbm.core.modeldriven.anno.DbIgnore;
+import com.nbm.core.modeldriven.anno.DbTemplate;
 import com.nbm.core.modeldriven.anno.DisplayName;
 import com.nbm.core.modeldriven.anno.Length;
 import com.nbm.core.modeldriven.anno.MysqlDateTime;
@@ -31,6 +33,8 @@ public class Field
 	private int maxLength;
 
 	private MySqlDateType dateType;
+	
+	private DbTemplate dbTemplate;
 	
 	/**
 	 * 如果此类的信息不够，子类可以根据此字段获取更多信息
@@ -91,6 +95,44 @@ public class Field
                 if(f.getAnnotation(NotNull.class) != null )
                 {
                         setNotNull(true);
+                }
+                
+                dbTemplate = type.getAnnotation(DbTemplate.class);
+                if( dbTemplate == null)
+                {
+                        dbTemplate = new DbTemplate()
+                        {
+                                
+                                @Override
+                                public Class<? extends Annotation> annotationType()
+                                {
+                                        return DbTemplate.class;
+                                }
+                                
+                                @Override
+                                public String populateSuffix()
+                                {
+                                        return "";
+                                }
+                                
+                                @Override
+                                public String populatePrefix()
+                                {
+                                        return "";
+                                }
+                                
+                                @Override
+                                public String fetchSuffix()
+                                {
+                                        return "";
+                                }
+                                
+                                @Override
+                                public String fetchPrefix()
+                                {
+                                        return "";
+                                }
+                        };
                 }
 	}
 	
@@ -318,24 +360,9 @@ public class Field
         {
                 return originField;
         }
-        
-        public String getPopulatePrefix()
-        {
-                return dbType.getPopulatePrefix();
-        }
-        
-        public String getPopulateSuffix()
-        {
-                return dbType.getPopulateSuffix();
-        }
-        
-        public String getFetchPrefix()
-        {
-                return dbType.getFetchPrefix();
-        }
 
-        public String getFetchSuffix()
+        public DbTemplate getDbTemplate()
         {
-                return dbType.getFetchSuffix();
+                return dbTemplate;
         }
 }

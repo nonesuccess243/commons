@@ -1,5 +1,14 @@
 package com.nbm.core.modeldriven;
 
+
+/**
+ * 用于表示数据库列类型的枚举类
+ * 
+ * TODO 用枚举则不支持扩展，在程序需要Java中的类类型对某列时不好扩展
+ * 
+ * @author niyuzhe
+ *
+ */
 public enum DbType
 {
         DECIMAL,
@@ -28,37 +37,10 @@ public enum DbType
         POINT
         {
                 @Override
-                public String getPopulatePrefix()
-                {
-                        return "ST_GeomFromText(";
-                }
-
-                @Override
-                public String getPopulateSuffix()
-                {
-                        return ")";
-                }
-
-                @Override
                 public boolean simple()
                 {
                         return false;
                 }
-
-                @Override
-                public String getFetchPrefix()
-                {
-                        return "ST_AsText(";
-                }
-
-                @Override
-                public String getFetchSuffix()
-                {
-                        return ")";
-                }
-                
-                
-                
         },
         LINESTRING,
         POLYGON,
@@ -95,33 +77,6 @@ public enum DbType
                 return true;
         }
         
-        /**
-         * Mybatis通用配置文件中的前后缀
-         * @return
-         */
-        public String getPopulatePrefix()
-        {
-                return "";
-        }
-        
-        public String getPopulateSuffix()
-        {
-                return "";
-        }
-        
-        /**
-         * Mybatis通用配置文件中的前后缀
-         * @return
-         */
-        public String getFetchPrefix()
-        {
-                return "";
-        }
-        
-        public String getFetchSuffix()
-        {
-                return "";
-        }
         
        
 }

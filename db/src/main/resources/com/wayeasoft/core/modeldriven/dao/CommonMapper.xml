@@ -84,7 +84,7 @@
 					${field.dbName}
 				</when>
 				<otherwise>
-					${field.fetchPrefix}${field.dbName}${field.fetchSuffix} AS ${field.dbName}<!-- AS ${field.dbName}_STRING -->
+					${field.dbTemplate.fetchPrefix}${field.dbName}${field.dbTemplate.fetchSuffix} AS ${field.dbName}<!-- AS ${field.dbName}_STRING -->
 				</otherwise>
 			</choose>
 			
@@ -164,7 +164,7 @@
 					#{record.${field.name}}
 				</when>
 				<otherwise>
-					${field.populatePrefix}#{record.${field.name}.sqlString}${field.populateSuffix}
+					${field.dbTemplate.populatePrefix}#{record.${field.name}.sqlString}${field.dbTemplate.populateSuffix}
 				</otherwise>
 			</choose>
 		</foreach>
@@ -182,7 +182,7 @@
 					#{record.${field.name}}
 				</when>
 				<otherwise>
-					${field.dbType.populatePrefix}#{record.${field.name}.sqlString}${field.dbType.populateSuffix}
+					${field.dbTemplate.populatePrefix}#{record.${field.name}.sqlString}${field.dbTemplate.populateSuffix}
 				</otherwise>
 			</choose>
 		</foreach>
