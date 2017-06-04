@@ -23,7 +23,6 @@ import com.nbm.core.modeldriven.Field;
 import com.nbm.core.modeldriven.ModelMeta;
 import com.nbm.core.modeldriven.PureModel;
 import com.nbm.exception.NbmBaseRuntimeException;
-import com.wayeasoft.spatial.shape.Point;
 
 /**
  * 基于spring和spring-mybatis的common dao
