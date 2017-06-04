@@ -2,6 +2,15 @@ package com.wayeasoft.spatial.shape;
 
 import org.apache.commons.beanutils.Converter;
 
+import com.nbm.core.modeldriven.DbType;
+import com.nbm.core.modeldriven.anno.DbTemplate;
+import com.nbm.core.modeldriven.anno.DbTypeAnno;
+
+@DbTypeAnno(DbType.POLYGON)
+@DbTemplate(fetchPrefix="ST_AsText(", 
+        fetchSuffix=")", 
+        populatePrefix = "ST_GeomFromText(", 
+        populateSuffix=")")
 public class Polygon extends SpatialShape
 {
 
