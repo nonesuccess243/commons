@@ -15,6 +15,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.nbm.core.modeldriven.ModelMeta;
+import com.nbm.core.modeldriven.enums.YesOrNo;
 import com.nbm.core.modeldriven.generator.CrudGenerator;
 import com.nbm.core.modeldriven.test.model.ModelDrivenTestModel;
 import com.wayeasoft.test.spring.RootConfig;
@@ -100,10 +101,18 @@ public class CommonDaoTest
 
                 model.setRemark("remark");
                 model.setName("abc");
+                model.setYesOrNo(YesOrNo.NO);
 
                 Long result = dao.insert(model);
                 
                 assertNotNull(result);
+                
+                assertNotNull(model.getId());
+                
+                ModelDrivenTestModel model2 = dao.selectById(ModelDrivenTestModel.class, model.getId());
+                assertNotNull(model2);
+                assertEquals(model.getName(), model2.getName());
+                assertEquals(model.getYesOrNo(), model2.getYesOrNo());
         }
 
         @Test
