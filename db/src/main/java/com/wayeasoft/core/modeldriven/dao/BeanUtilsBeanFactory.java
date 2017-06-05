@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.ConvertUtilsBean;
+import org.apache.commons.beanutils.Converter;
 import org.apache.commons.beanutils.PropertyUtilsBean;
 import com.nbm.core.modeldriven.ComplexDbType;
 import com.nbm.core.modeldriven.Field;
@@ -14,48 +15,71 @@ import com.nbm.exception.NbmBaseRuntimeException;
 
 /**
  * 用于commondao在select数据后转为Java类的转换工具的生成过程
+ * 
  * @author niyuzhe
  *
  */
 public class BeanUtilsBeanFactory
 {
-        
-        private static ConvertUtilsBean utils = new ConvertUtilsBean();
-        
-        private static BeanUtilsBean beanUtils = new BeanUtilsBean(utils,new PropertyUtilsBean()); 
-        
+
+        private static ConvertUtilsBean utils = new ConvertUtilsBean()
+        {
+                @Override
+                public Object convert(String value, Class clazz)
+                {
+                        if (clazz.isEnum())
+                        {
+                                return Enum.valueOf(clazz, value);
+                        } else
+                        {
+                                return super.convert(value, clazz);
+                        }
+                }
+        };
+
+        private static BeanUtilsBean beanUtils = new BeanUtilsBean(utils, new PropertyUtilsBean());
+
+
         public static BeanUtilsBean get()
         {
                 return beanUtils;
         }
-        
+
         private static Set<Class<? extends PureModel>> registered = new HashSet<>();
-        
-        public static void registerConverter(Class<? extends PureModel> modelClass)
+
+        /**
+         * 判断某个Model类中的所有字段是否有ConplexDbType，如果有的话，注册converter
+         * 
+         * 会做缓存，如果第二次以上判断此类的话，会跳过判断过程直接返回。
+         * 
+         * @param modelClass
+         */
+        static void registerModelClass(Class<? extends PureModel> modelClass)
         {
-                if( registered.contains(modelClass))
+                if (registered.contains(modelClass))
                 {
                         return;
                 }
-                
+
                 try
                 {
-                        for( Field fields : ModelMeta.getModelMeta(modelClass).getDbFields())
+                        for (Field fields : ModelMeta.getModelMeta(modelClass).getDbFields())
                         {
-                                if( ComplexDbType.class.isAssignableFrom(fields.getType()))
+                                if (ComplexDbType.class.isAssignableFrom(fields.getType()))
                                 {
-                                        
-                                        Class<? extends ComplexDbType> dbClass = fields.getType().asSubclass(ComplexDbType.class);
-                                        
+
+                                        Class<? extends ComplexDbType> dbClass = fields.getType()
+                                                        .asSubclass(ComplexDbType.class);
+
                                         utils.register(dbClass.newInstance().getConverter(), dbClass);
                                 }
                         }
-                        
+
                 } catch (InstantiationException | IllegalAccessException e)
                 {
                         throw new NbmBaseRuntimeException("", e);
                 }
-                
+
                 registered.add(modelClass);
         }
 

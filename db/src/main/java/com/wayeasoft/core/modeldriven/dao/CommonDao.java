@@ -6,10 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.beanutils.BeanUtilsBean;
-import org.apache.commons.beanutils.ConvertUtilsBean;
-import org.apache.commons.beanutils.Converter;
-import org.apache.commons.beanutils.PropertyUtilsBean;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.poi.ss.formula.functions.T;
 import org.slf4j.Logger;
@@ -28,6 +24,7 @@ import com.nbm.exception.NbmBaseRuntimeException;
  * 基于spring和spring-mybatis的common dao
  * 
  * 需要注入sqlSession
+ * 
  * 
  * @author niyuzhe
  *
@@ -60,26 +57,8 @@ public class CommonDao
 
                 result = wrapperResultMap(modelClass, result);
                 
-                BeanUtilsBeanFactory.registerConverter(modelClass);
+                BeanUtilsBeanFactory.registerModelClass(modelClass);
                 
-//                ConvertUtilsBean utils = new ConvertUtilsBean();
-//                
-//
-//                
-//                BeanUtilsBean beanUtils = new BeanUtilsBean(utils,new PropertyUtilsBean()); 
-                
-//                utils.register(new Converter()
-//                {
-//                        @Override
-//                        public Object convert(Class type, Object value)
-//                        {
-//                                Point point = new Point();
-//                                String[] s = ((String)value).replace("POINT", "").replace("(", "").replace(")", "").split(" ");
-//                                point.setX(Double.parseDouble(s[0]));
-//                                point.setY(Double.parseDouble(s[1]));
-//                                return point;
-//                        }
-//                }, Point.class);   
 
                 
                 try
@@ -89,39 +68,11 @@ public class CommonDao
                         return m;
                 } catch (Exception e)
                 {
-                        throw new RuntimeException(e);
+                        throw new NbmBaseRuntimeException("执行commondao的selectById函数，将数据库内容转化为Java类时发生异常", e)
+                                .set("modelClass", modelClass)
+                                .set("id", id);
                 }
 
-        }
-
-        /**
-         * mybatis会自动把结果集的列名转换为大写，因此即便在sql中用了as也无法准确指定列名
-         * 所以，在mybatis的结果集中，保留数据库的下划线命名法，在此处转换一遍
-         * 
-         * @param modelClass
-         * @param result
-         * @return 转换后的结果
-         */
-        private static <T extends PureModel> Map<String, Object> wrapperResultMap(Class<T> modelClass,
-                        Map<String, Object> result)
-        {
-
-                Map<String, Object> newResult = new HashMap<>(result.size());
-
-                ModelMeta meta = ModelMeta.getModelMeta(modelClass);
-                for (Map.Entry<String, Object> entry : result.entrySet())
-                {
-                        if (meta.getFieldByDbName(entry.getKey()) != null)
-                        {
-                                newResult.put(meta.getFieldByDbName(entry.getKey()).getName(), entry.getValue());
-                        } else
-                        {
-                                newResult.put(DbNamingConverter.DEFAULT_ONE.columnName2JavaPropertyName(entry.getKey()),
-                                                entry.getValue());
-                        }
-                }
-
-                return newResult;
         }
 
         /**
@@ -301,6 +252,36 @@ public class CommonDao
                 param.put("meta", ModelMeta.getModelMeta(modelClass));
                 param.put("example", example);
                 return sqlSession.delete(PACKAGE_NAME + ".deleteById", param);
+        }
+
+        /**
+         * mybatis会自动把结果集的列名转换为大写，因此即便在sql中用了as也无法准确指定列名
+         * 所以，在mybatis的结果集中，保留数据库的下划线命名法，在此处转换一遍
+         * 
+         * @param modelClass
+         * @param result
+         * @return 转换后的结果
+         */
+        private static <T extends PureModel> Map<String, Object> wrapperResultMap(Class<T> modelClass,
+                        Map<String, Object> result)
+        {
+        
+                Map<String, Object> newResult = new HashMap<>(result.size());
+        
+                ModelMeta meta = ModelMeta.getModelMeta(modelClass);
+                for (Map.Entry<String, Object> entry : result.entrySet())
+                {
+                        if (meta.getFieldByDbName(entry.getKey()) != null)
+                        {
+                                newResult.put(meta.getFieldByDbName(entry.getKey()).getName(), entry.getValue());
+                        } else
+                        {
+                                newResult.put(DbNamingConverter.DEFAULT_ONE.columnName2JavaPropertyName(entry.getKey()),
+                                                entry.getValue());
+                        }
+                }
+        
+                return newResult;
         }
 
 }

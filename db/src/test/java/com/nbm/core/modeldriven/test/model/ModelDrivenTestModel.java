@@ -4,6 +4,7 @@ import com.nbm.core.modeldriven.Model;
 import com.nbm.core.modeldriven.anno.DbIgnore;
 import com.nbm.core.modeldriven.anno.ModelInfo;
 import com.nbm.core.modeldriven.anno.NameCol;
+import com.nbm.core.modeldriven.enums.YesOrNo;
 import com.nbm.core.modeldriven.generator.CrudGenerator;
 
 @ModelInfo(tableName="TEST_MODEL")
@@ -33,6 +34,8 @@ public class ModelDrivenTestModel extends Model
         
         @DbIgnore
         private String state;
+        
+        private YesOrNo yesOrNo;
 
         
 
@@ -70,5 +73,15 @@ public class ModelDrivenTestModel extends Model
         {
                 CrudGenerator gen = new CrudGenerator(ModelDrivenTestModel.class);
                 gen.generate();
+        }
+
+        public YesOrNo getYesOrNo()
+        {
+                return yesOrNo;
+        }
+
+        public void setYesOrNo(YesOrNo yesOrNo)
+        {
+                this.yesOrNo = yesOrNo;
         }
 }
