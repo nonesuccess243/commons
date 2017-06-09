@@ -356,13 +356,13 @@ public class CommonExample
                         return (Criteria) this;
                 }
 
-                public Criteria andIn(String columnName, List<Object> values)
+                public Criteria andIn(String columnName, List<?> values)
                 {
                         addCriterion(columnName + " in", values, columnName);
                         return (Criteria) this;
                 }
 
-                public Criteria andNotIn(String columnName, List<Object> values)
+                public Criteria andNotIn(String columnName, List<?> values)
                 {
                         addCriterion(columnName + " not in", values, columnName);
                         return (Criteria) this;
