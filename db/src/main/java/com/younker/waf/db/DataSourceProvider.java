@@ -64,6 +64,11 @@ public class DataSourceProvider
                 }
         }
 
+        public DataSourceProvider(DataSource dataSource)
+        {
+                ds = dataSource;
+        }
+
         public static DataSourceProvider instance()
         {
                 if (_instance == null)
@@ -71,6 +76,21 @@ public class DataSourceProvider
                         _instance = new DataSourceProvider();
                 }
                 return _instance;
+        }
+        
+        /**
+         * 传入datasource初始化的方式，仅用于与spring适配
+         * @param dataSource
+         * @return
+         */
+        public static DataSourceProvider initInstance( DataSource dataSource )
+        {
+                if (_instance == null)
+                {
+                        _instance = new DataSourceProvider(dataSource);
+                }
+                return _instance;
+                
         }
 
         public DataSource getDataSource()
