@@ -125,13 +125,18 @@ public class CrudGenerator
                 mapperCfg.setClassForTemplateLoading(CrudGenerator.class, "");
                 mapperCfg.setObjectWrapper(new DefaultObjectWrapper());
 
-                // 初始化dao类要放在的package下，保证有此文件夹
-                daoDir = GeneratorFileUtils.INSTANCE
-                                .generateDaoPackage(meta.getModelClass());
-                resourceDir = GeneratorFileUtils.INSTANCE
-                                .generateResourcePackage(meta.getModelClass());
-                sqlDir = GeneratorFileUtils.INSTANCE
-                                .generateSqlPackage(meta.getModelClass());
+                if( GENERATE_FILE )
+                {
+                        // 初始化dao类要放在的package下，保证有此文件夹
+                        daoDir = GeneratorFileUtils.INSTANCE
+                                        .generateDaoPackage(meta.getModelClass());
+                        resourceDir = GeneratorFileUtils.INSTANCE
+                                        .generateResourcePackage(meta.getModelClass());
+                        sqlDir = GeneratorFileUtils.INSTANCE
+                                        .generateSqlPackage(meta.getModelClass());
+                }
+                
+               
 
                 root = GeneratorFileUtils.INSTANCE.generateMapperRoot(meta);
 
