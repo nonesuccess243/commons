@@ -98,7 +98,7 @@ public class PackageUtils
                                 results.add(Class.forName(className));
                         } catch (Exception e)
                         {
-                                log.error("generate class object error[" + className + "]");
+                                log.error("generate class object error[" + className + "]", e);
                         }
                 }
                 
