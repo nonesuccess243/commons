@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 import com.nbm.commons.db.meta.UnderlineCamelConverter;
+import com.nbm.core.modeldriven.anno.DisplayName;
 
 
 /**
@@ -43,6 +44,11 @@ public class ModelMeta
         {
                 super();
                 this.modelClass = modelClass;
+                
+                if(modelClass.getAnnotation(DisplayName.class)!=null)
+                {
+                        displayName = modelClass.getAnnotation(DisplayName.class).value();
+                }
                 
                 fields = ModelUtils.INSTANCE.getFields(modelClass);
                 
@@ -74,6 +80,11 @@ public class ModelMeta
         }
         
         private Class<? extends PureModel> modelClass;
+        
+        /**
+         * 用display注解配置的字符串，一般用于配置显示用的中文名
+         */
+        private String displayName;
 
         private List<Field> fields;
         
@@ -182,5 +193,10 @@ public class ModelMeta
         {
                 return fieldMapByDbName.get(dbFieldName);
                                 
+        }
+
+        public String getDisplayName()
+        {
+                return displayName;
         }
 }
