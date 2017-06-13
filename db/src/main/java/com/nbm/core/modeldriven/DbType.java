@@ -42,12 +42,54 @@ public enum DbType
                         return false;
                 }
         },
-        LINESTRING,
-        POLYGON,
-        MULTIPOINT,
-        MULTILINESTRING,
-        MULTIPOLYGON,
+        LINESTRING
+        {
+                @Override
+                public boolean simple()
+                {
+                        return false;
+                }
+        },
+        POLYGON
+        {
+                @Override
+                public boolean simple()
+                {
+                        return false;
+                }
+        },
+        MULTIPOINT
+        {
+                @Override
+                public boolean simple()
+                {
+                        return false;
+                }
+        },
+        MULTILINESTRING
+        {
+                @Override
+                public boolean simple()
+                {
+                        return false;
+                }
+        },
+        MULTIPOLYGON
+        {
+                @Override
+                public boolean simple()
+                {
+                        return false;
+                }
+        },
         GEOMETRYCOLLECTION
+        {
+                @Override
+                public boolean simple()
+                {
+                        return false;
+                }
+        }
         ;
         
 //        @Override
