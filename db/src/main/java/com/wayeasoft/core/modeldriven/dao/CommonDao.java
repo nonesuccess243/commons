@@ -107,12 +107,14 @@ public class CommonDao
 
                 log.debug("after select ,the map is {}", result.toString());
 
+                BeanUtilsBeanFactory.registerModelClass(modelClass);
+                
                 result = wrapperResultMap(modelClass, result);
 
                 try
                 {
                         T m = modelClass.newInstance();
-                        BeanUtils.populate(m, result);
+                        BeanUtilsBeanFactory.get().populate(m, result);
                         return m;
                 } catch (Exception e)
                 {
@@ -127,6 +129,7 @@ public class CommonDao
          */
         public <T extends PureModel> List<T> selectByExample(Class<T> modelClass, CommonExample example)
         {
+                BeanUtilsBeanFactory.registerModelClass(modelClass);
 
                 Map<String, Object> param = new HashMap<>();
                 param.put("meta", ModelMeta.getModelMeta(modelClass));
@@ -149,7 +152,7 @@ public class CommonDao
                         for (Map<String, Object> map : result)
                         {
                                 T m = modelClass.newInstance();
-                                BeanUtils.populate(m, wrapperResultMap(modelClass, map));
+                                BeanUtilsBeanFactory.get().populate(m, wrapperResultMap(modelClass, map));
                                 results.add(m);
                         }
                 } catch (Exception exception)
