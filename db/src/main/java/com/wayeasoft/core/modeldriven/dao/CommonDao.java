@@ -254,7 +254,7 @@ public class CommonDao
                 Map<String, Object> param = new HashMap<>();
                 param.put("meta", ModelMeta.getModelMeta(modelClass));
                 param.put("example", example);
-                return sqlSession.delete(PACKAGE_NAME + ".deleteById", param);
+                return sqlSession.delete(PACKAGE_NAME + ".deleteByExample", param);
         }
 
         /**
