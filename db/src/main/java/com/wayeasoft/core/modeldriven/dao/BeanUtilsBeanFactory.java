@@ -1,12 +1,14 @@
 package com.wayeasoft.core.modeldriven.dao;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.ConvertUtilsBean;
-import org.apache.commons.beanutils.Converter;
 import org.apache.commons.beanutils.PropertyUtilsBean;
+
 import com.nbm.core.modeldriven.ComplexDbType;
 import com.nbm.core.modeldriven.Field;
 import com.nbm.core.modeldriven.ModelMeta;
@@ -40,9 +42,26 @@ public class BeanUtilsBeanFactory
         private static BeanUtilsBean beanUtils = new BeanUtilsBean(utils, new PropertyUtilsBean());
 
 
-        public static BeanUtilsBean get()
+//        public static BeanUtilsBean get()
+//        {
+//                return beanUtils;
+//        }
+        
+        
+        /**
+         * 代理beanUtils的populate行为
+         * @param bean
+         * @param properties
+         * @throws IllegalAccessException
+         * @throws InvocationTargetException
+         */
+        public static void populate(Object bean, Map properties) throws IllegalAccessException, InvocationTargetException
         {
-                return beanUtils;
+                if( PureModel.class.isAssignableFrom(bean.getClass()))
+                {
+                        registerModelClass(bean.getClass().asSubclass(PureModel.class));
+                }
+                beanUtils.populate(bean, properties);
         }
 
         private static Set<Class<? extends PureModel>> registered = new HashSet<>();

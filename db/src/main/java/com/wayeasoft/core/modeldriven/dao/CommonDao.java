@@ -57,14 +57,10 @@ public class CommonDao
 
                 result = wrapperResultMap(modelClass, result);
                 
-                BeanUtilsBeanFactory.registerModelClass(modelClass);
-                
-
-                
                 try
                 {
                         T m = modelClass.newInstance();
-                        BeanUtilsBeanFactory.get().populate(m, result);
+                        BeanUtilsBeanFactory.populate(m, result);
                         return m;
                 } catch (Exception e)
                 {
@@ -114,7 +110,7 @@ public class CommonDao
                 try
                 {
                         T m = modelClass.newInstance();
-                        BeanUtilsBeanFactory.get().populate(m, result);
+                        BeanUtilsBeanFactory.populate(m, result);
                         return m;
                 } catch (Exception e)
                 {
@@ -152,7 +148,7 @@ public class CommonDao
                         for (Map<String, Object> map : result)
                         {
                                 T m = modelClass.newInstance();
-                                BeanUtilsBeanFactory.get().populate(m, wrapperResultMap(modelClass, map));
+                                BeanUtilsBeanFactory.populate(m, wrapperResultMap(modelClass, map));
                                 results.add(m);
                         }
                 } catch (Exception exception)
