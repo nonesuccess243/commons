@@ -11,6 +11,7 @@ public class FkModel extends PureModel
          */
         private static final long serialVersionUID = 1L;
         
+        @Fk(foreign = ModelDrivenTestModel.class)
         private Long modelDrivenTestModelId;
 
         public Long getModelDrivenTestModelId()

@@ -109,21 +109,24 @@ public class Field
                         }
                        
                         
-                }else if( f.getName().toString().endsWith("Id"))
-                {
-                        fk = true;
-                        
-                        try
-                        {
-                                // 这里调用了ModelMeta类的函数，需要获取的是所指向的类的ModelMeta对象，但此时对应的类的ModelMeta对象可能仍未构建完成
-                                foreign = ModelMeta.getModelMetaBySimpleName(DbNamingConverter.DEFAULT_ONE.javaPropertyName2JavaTypeName(
-                                         f.getName().substring(0, f.getName().length()-2))).getModelClass();
-                        }catch(Exception exception )
-                        {
-                              throw new ModelMetaInitException(exception);
-                        }
-                        
-                }else
+                }
+                //暂时删掉这部分内容，计划将所有外键的识别都归结到fk注解上，避免代码混乱
+//                else if( f.getName().toString().endsWith("Id"))
+//                {
+//                        fk = true;
+//                        
+//                        try
+//                        {
+//                                // 这里调用了ModelMeta类的函数，需要获取的是所指向的类的ModelMeta对象，但此时对应的类的ModelMeta对象可能仍未构建完成
+//                                foreign = ModelMeta.getModelMetaBySimpleName(DbNamingConverter.DEFAULT_ONE.javaPropertyName2JavaTypeName(
+//                                         f.getName().substring(0, f.getName().length()-2))).getModelClass();
+//                        }catch(Exception exception )
+//                        {
+//                              throw new ModelMetaInitException(exception);
+//                        }
+//                        
+//                }
+                else
                 {
                         fk = false;
                 }

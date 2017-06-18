@@ -49,12 +49,12 @@ public class ModelMeta
         
         
         
-        static
-        {
-                discover("com.nbm");
-                discover("com.wayeasoft");
-        }
-        
+//        static
+//        {
+//                discover("com.nbm");
+//                discover("com.wayeasoft");
+//        }
+//        
         /**
          * 发现packageName中的Model
          */
