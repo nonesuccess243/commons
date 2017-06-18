@@ -202,4 +202,10 @@ public enum UnderlineCamelConverter implements DbNamingConverter
 		return typeName;
 	}
 
+        @Override
+        public String javaPropertyName2JavaTypeName(String propertyName)
+        {
+                return propertyName.substring(0, 1).toUpperCase() + propertyName.substring(1);
+        }
+
 }

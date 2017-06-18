@@ -44,5 +44,13 @@ public class UnderlineCamelConverterTest
 		assertEquals("some_java_name", UnderlineCamelConverter.INSTANCE.javaName2WebPath("someJavaName"));
 		assertEquals("_some_java_name", UnderlineCamelConverter.INSTANCE.javaName2WebPath("_someJavaName"));
 	}
+	
+	@Test
+	public void testJavaPropertyName2JavaTypeName()
+	{
+	        assertEquals("ModelDriven", UnderlineCamelConverter.INSTANCE.javaPropertyName2JavaTypeName("modelDriven"));
+	}
+	
+	
 
 }
