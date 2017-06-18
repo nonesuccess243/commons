@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.nbm.core.modeldriven.test.model.FkModel;
 import com.nbm.core.modeldriven.test.model.ModelDrivenTestModel;
 
 public class ModelMetaTest
@@ -37,6 +38,28 @@ public class ModelMetaTest
         public void test()
         {
                 assertEquals("测试Model",ModelMeta.getModelMeta(ModelDrivenTestModel.class).getDisplayName());
+        }
+        @Test
+        public void testDiscoverAndSimpleName()
+        {
+                assertNotNull(ModelMeta.getModelMetaBySimpleName("ModelDrivenTestModel"));
+                
+        }
+        @Test
+        public void testFk()
+        {
+//                ModelMeta.discover("com.nbm");
+                
+                ModelMeta.getModelMeta(FkModel.class);
+//                
+                
+                assertTrue(ModelMeta.getModelMeta(FkModel.class).getField("modelDrivenTestModelId").isFk());
+                assertEquals(ModelMeta.getModelMeta(FkModel.class).getField("modelDrivenTestModelId").getForeign(), ModelDrivenTestModel.class);
+
+                
+                assertTrue(ModelMeta.getModelMeta(FkModel.class).getField("otherModelDrivenTestModelId").isFk());
+                assertEquals(ModelMeta.getModelMeta(FkModel.class).getField("otherModelDrivenTestModelId").getForeign(), ModelDrivenTestModel.class);
+//                
         }
 
 }

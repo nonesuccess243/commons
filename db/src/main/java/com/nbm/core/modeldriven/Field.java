@@ -3,20 +3,29 @@ package com.nbm.core.modeldriven;
 import java.lang.annotation.Annotation;
 import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.nbm.commons.db.meta.DbNamingConverter;
 import com.nbm.commons.db.meta.UnderlineCamelConverter;
 import com.nbm.core.modeldriven.anno.DbIgnore;
 import com.nbm.core.modeldriven.anno.DbTemplate;
 import com.nbm.core.modeldriven.anno.DisplayName;
+import com.nbm.core.modeldriven.anno.Fk;
 import com.nbm.core.modeldriven.anno.Length;
 import com.nbm.core.modeldriven.anno.MysqlDateTime;
 import com.nbm.core.modeldriven.anno.NameCol;
 import com.nbm.core.modeldriven.anno.NotNull;
 import com.nbm.core.modeldriven.anno.Pk;
 import com.nbm.core.modeldriven.enums.MySqlDateType;
+import com.nbm.core.modeldriven.exception.ModelMetaInitException;
 import com.nbm.core.modeldriven.generator.CrudGenerator;
 
 public class Field
 {
+        
+        private final static Logger log = LoggerFactory.getLogger(Field.class);
+        
 	private String name;
 
 	private String dbName;
@@ -24,6 +33,16 @@ public class Field
 	private String displayName;
 
 	private boolean pk;
+	
+	/**
+	 * 该字段是否为外键
+	 */
+	private boolean fk;
+	
+	/**
+	 * 当fk为true时，表示外键所指向的model类
+	 */
+	private Class<? extends PureModel> foreign;
 
 	private boolean dbIgnore;
 
@@ -41,7 +60,7 @@ public class Field
 	 */
 	private java.lang.reflect.Field originField;
 
-	public Field( java.lang.reflect.Field f )
+	public Field( java.lang.reflect.Field f ) throws ModelMetaInitException
 	{
 	        
 	        this.originField = f;
@@ -73,6 +92,43 @@ public class Field
                 } else
                 {
                         setPk(false);
+                }
+                
+                log.debug("fieldname:{}, fk:{}", f.getName(),f.getAnnotation(Fk.class) );
+                
+                if( f.getAnnotation(Fk.class) != null )
+                {
+                        fk = true;
+                        if( f.getAnnotation(Fk.class).foreign() != null )
+                        {
+                                foreign = f.getAnnotation(Fk.class).foreign();
+                        }else
+                        {
+                                foreign = ModelMeta.getModelMetaBySimpleName(DbNamingConverter.DEFAULT_ONE.javaPropertyName2JavaTypeName(
+                                                f.getName().substring(0, f.getName().length()-2))).getModelClass();
+                        }
+                       
+                        
+                }
+                //暂时删掉这部分内容，计划将所有外键的识别都归结到fk注解上，避免代码混乱
+//                else if( f.getName().toString().endsWith("Id"))
+//                {
+//                        fk = true;
+//                        
+//                        try
+//                        {
+//                                // 这里调用了ModelMeta类的函数，需要获取的是所指向的类的ModelMeta对象，但此时对应的类的ModelMeta对象可能仍未构建完成
+//                                foreign = ModelMeta.getModelMetaBySimpleName(DbNamingConverter.DEFAULT_ONE.javaPropertyName2JavaTypeName(
+//                                         f.getName().substring(0, f.getName().length()-2))).getModelClass();
+//                        }catch(Exception exception )
+//                        {
+//                              throw new ModelMetaInitException(exception);
+//                        }
+//                        
+//                }
+                else
+                {
+                        fk = false;
                 }
                 
                 if( f.getAnnotation(NameCol.class) != null)
@@ -240,7 +296,7 @@ public class Field
 		return pk;
 	}
 
-	public void setPk(boolean pk)
+	private void setPk(boolean pk)
 	{
 		this.pk = pk;
 	}
@@ -364,5 +420,15 @@ public class Field
         public DbTemplate getDbTemplate()
         {
                 return dbTemplate;
+        }
+
+        public boolean isFk()
+        {
+                return fk;
+        }
+
+        public Class<? extends PureModel> getForeign()
+        {
+                return foreign;
         }
 }

@@ -25,5 +25,13 @@ public interface DbNamingConverter
 	 * 返回数据库类型对应的Java类型
 	 */
 	public abstract String sqlType2JavaTypeName(int type);
+	
+	/**
+	 * 某些情况下Java的属性名会表示另外一个实体类的名字，因此需要做此转换
+	 * @param properyName
+	 * @return
+	 */
+	public abstract String javaPropertyName2JavaTypeName( String properyName );
+	
 
 }

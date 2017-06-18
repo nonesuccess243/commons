@@ -26,6 +26,11 @@ public class NbmBaseException extends Exception
         {
                 super();
         }
+        
+        public NbmBaseException( Exception e)
+        {
+                super(e);
+        }
 
         public NbmBaseException(String errorMessage)
         {
