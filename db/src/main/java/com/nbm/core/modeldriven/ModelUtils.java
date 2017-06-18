@@ -9,6 +9,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.nbm.core.modeldriven.exception.ModelMetaInitException;
+
 public enum ModelUtils
 {
 
@@ -16,7 +18,7 @@ public enum ModelUtils
 
         private final static Logger log = LoggerFactory.getLogger(ModelUtils.class);
 
-        public List<Field> getFields(Class<? extends PureModel> modelClass)
+        public List<Field> getFields(Class<? extends PureModel> modelClass) throws ModelMetaInitException
         {
                 List<Field> result = new ArrayList<>();
 
@@ -53,7 +55,7 @@ public enum ModelUtils
 
         }
 
-        private List<Field> handleAClass(Class<? extends PureModel> modelClass)
+        private List<Field> handleAClass(Class<? extends PureModel> modelClass) throws ModelMetaInitException
         {
                 List<Field> result = new ArrayList<>();
 
