@@ -17,7 +17,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>4.2.2.RELEASE</spring.version>
 		<druid.version>1.0.29</druid.version>
-		<commons.version>5.8.1</commons.version>
 	</properties>
 
 	<dependencies>
@@ -126,7 +125,7 @@
 		<dependency>
 			<groupId>com.nbm</groupId>
 			<artifactId>db</artifactId>
-			<version>${commons.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 
 
