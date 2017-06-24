@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE DBGrids SYSTEM "dbgrid.dtd" >
+
+<DBGrids>
+	
+	<!-- YWAF相关 -->
+	<DBType>
+		<param>MYSQL</param>
+	</DBType>
+	<!-- </>sender_id,send_date,is_system, ,content,remark,state -->
+	<!-- 查询消息 -->
+       <DBGrid>
+       	<grid-name>/public/message/displaymessageuser</grid-name>
+			<grid-table>
+			    <!-- message meg,message_ower megor,s_code sde,s_user us -->
+			    message_ower megor LEFT JOIN
+				message meg ON (megor.message_id = meg.id) LEFT JOIN
+				s_code sde ON (sde.code = megor.receive_state)
+			</grid-table>
+			<grid-cols>
+				megor.message_id,meg.title,meg.send_date,sde.name
+			</grid-cols>
+			<grid-label>
+			    megor.message_id$h,标题,时间$d1,状态
+			</grid-label>
+			<grid-fields>
+			    id,title,receive_date,name
+			</grid-fields>
+			<grid-relation>
+			    megor.receiver_id = #employee.id
+			</grid-relation>
+			<grid-orderBy>
+			    CASE megor.receive_state WHEN 'UNREAD' THEN 'READ' END,meg.send_date desc
+			</grid-orderBy>
+			<grid-groupBy>GROUP_BY_COL1, GROUP_BY_COL2</grid-groupBy>
+			<grid-rowsPerPage>20</grid-rowsPerPage>
+       </DBGrid>
+</DBGrids> 
