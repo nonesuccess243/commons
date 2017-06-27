@@ -19,6 +19,8 @@
 		<druid.version>1.0.29</druid.version>
 	</properties>
 
+
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -127,10 +129,15 @@
 			<artifactId>db</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.nbm</groupId>
 			<artifactId>dbgrid</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.nbm</groupId>
+			<artifactId>waf</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 
@@ -156,6 +163,8 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+
 	<build>
 		<finalName>wafdemo</finalName>
 	</build>
