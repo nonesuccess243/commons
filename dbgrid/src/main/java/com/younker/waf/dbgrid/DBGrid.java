@@ -176,7 +176,7 @@ public class DBGrid implements Serializable
                 StringBuffer tsb = new StringBuffer();
                 tsb.append("select count(*) from ").append(getGridTable()).append("\n")
                                 .append(getWhereSQL()).append("\n").append(getGridGroupByWithGroupBy())
-                                .append("\n").append(getGridOrderByWithOrderBy());
+                                .append("\n");//倪玉哲 20170701修改，去掉orderby子句，在count查询中，排序无意义
                 log.debug("count data:" + tsb.toString());
                 return tsb.toString();
         }

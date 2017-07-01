@@ -1,13 +1,13 @@
 package com.wayeasoft.waf.demo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import com.nbm.core.modeldriven.Db;
 import com.nbm.core.modeldriven.PureModel;
 import com.nbm.core.modeldriven.anno.DbIgnore;
 import com.nbm.core.modeldriven.anno.NameCol;
 import com.nbm.core.modeldriven.generator.CrudGenerator;
-import com.younker.waf.db.DataSourceProvider;
 
 public class DemoModel extends PureModel implements Serializable
 {
@@ -24,6 +24,10 @@ public class DemoModel extends PureModel implements Serializable
         
         @DbIgnore
         private String[] remarks;
+        
+        private Date currentDate;
+        
+        private Date currentTime;
         
         public String[] getRemarks()
         {
@@ -54,6 +58,22 @@ public class DemoModel extends PureModel implements Serializable
         {
                 CrudGenerator.GENERATE_FILE = true;
                 Db.MYSQL.generateAll("com.wayeasoft.waf.demo");
+        }
+        public Date getCurrentDate()
+        {
+                return currentDate;
+        }
+        public void setCurrentDate(Date currentDate)
+        {
+                this.currentDate = currentDate;
+        }
+        public Date getCurrentTime()
+        {
+                return currentTime;
+        }
+        public void setCurrentTime(Date currentTime)
+        {
+                this.currentTime = currentTime;
         }
 
 }

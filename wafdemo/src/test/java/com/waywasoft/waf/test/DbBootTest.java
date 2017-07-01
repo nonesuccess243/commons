@@ -1,11 +1,9 @@
 package com.waywasoft.waf.test;
 
-
-import java.lang.reflect.InvocationTargetException;
-import java.sql.SQLException;
-
 import javax.sql.DataSource;
 
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -16,45 +14,47 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.junit.Assert.*;
-
 import com.wayeasoft.springmvc.config.RootConfig;
-import com.younker.waf.db.DataSourceProvider;
+import com.wayeasoft.waf.demo.utils.DbBooter;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes =
 { RootConfig.class })
-public class DataSourceSpringTest
+public class DbBootTest
 {
-
-        private final static Logger log = LoggerFactory
-                        .getLogger(DataSourceSpringTest.class);
-
+        private final static Logger log = LoggerFactory.getLogger(DbBootTest.class);
+        
         @Autowired
         private DataSource dataSource;
+        
+        @Autowired
+        private DbBooter dbBooter;
 
         @BeforeClass
-        public static void setUpBeforeClass()
+        public static void setUpBeforeClass() throws Exception
         {
+        }
 
+        @AfterClass
+        public static void tearDownAfterClass() throws Exception
+        {
         }
 
         @Before
         public void setUp() throws Exception
         {
-                DataSourceProvider.initInstance(dataSource);
+        }
+
+        @After
+        public void tearDown() throws Exception
+        {
         }
 
         @Test
-        public void test()
-                        throws InstantiationException, IllegalAccessException,
-                        InvocationTargetException, SQLException
+        public void test() throws Exception
         {
+//                dbBooter.boot();
                 
-                assertNotNull(dataSource);
-                
-                DataSourceProvider.instance();
-                assertNotNull(DataSourceProvider.instance().getDataSource());
         }
 
 }
