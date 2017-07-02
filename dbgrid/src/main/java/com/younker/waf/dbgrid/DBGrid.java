@@ -819,6 +819,8 @@ public class DBGrid implements Serializable
                 }
                 
                 List<DBGridRow> datas =  (List<DBGridRow>) result;
+
+                //执行装饰逻辑
                 getGridDecorate().handleData(datas);
                 return datas;
         }
