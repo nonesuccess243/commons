@@ -24,10 +24,13 @@ public class DemoModel extends PureModel implements Serializable
         
         @DbIgnore
         private String[] remarks;
+
+
+        //两个时间相关的字段原本命名为currentDate和currentTime，但在h2中测试时，这两个单词是关键词，为避免未知问题，改掉。
+
+        private Date someDate;
         
-        private Date currentDate;
-        
-        private Date currentTime;
+        private Date someTime;
         
         public String[] getRemarks()
         {
@@ -59,21 +62,21 @@ public class DemoModel extends PureModel implements Serializable
                 CrudGenerator.GENERATE_FILE = true;
                 Db.MYSQL.generateAll("com.wayeasoft.waf.demo");
         }
-        public Date getCurrentDate()
+        public Date getSomeDate()
         {
-                return currentDate;
+                return someDate;
         }
-        public void setCurrentDate(Date currentDate)
+        public void setSomeDate(Date someDate)
         {
-                this.currentDate = currentDate;
+                this.someDate = someDate;
         }
-        public Date getCurrentTime()
+        public Date getSomeTime()
         {
-                return currentTime;
+                return someTime;
         }
-        public void setCurrentTime(Date currentTime)
+        public void setSomeTime(Date someTime)
         {
-                this.currentTime = currentTime;
+                this.someTime = someTime;
         }
 
 }

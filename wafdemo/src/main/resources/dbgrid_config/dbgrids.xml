@@ -4,25 +4,28 @@
 
 <DBGrids>
 	
-	<!-- YWAF相关 -->
 	<DBType>
 		<param>MYSQL</param>
 	</DBType>
 	<!-- </>sender_id,send_date,is_system, ,content,remark,state -->
 	<!-- 查询消息 -->
        <DBGrid>
+		   <grid-title>示例dbgrid</grid-title>
        	<grid-name>/public/demodbgrid/demo</grid-name>
+
+
 			<grid-table>
 			    DEMO_MODEL
 			</grid-table>
 			<grid-cols>
-				ID, NAME, COUNT, CURRENT_DATE, CURRENT_TIME
+				ID, NAME, COUNT, SOME_DATE, SOME_DATE, SOME_TIME, SOME_TIME
 			</grid-cols>
 			<grid-label>
-			   	id, 名称,数量,当前日期$d,当前时间$t
+			   	id$h, 名称,数量,当前日期,当前日期$d,当前时间,当前时间$t
 			</grid-label>
+		   <!--grid-field会用做给前端返回json数据的属性名-->
 			<grid-fields>
-			   	id, name, count, current_date, current_time
+			   	id, name, count, some_date, some_date2, some_time, some_time2
 			</grid-fields>
 			<grid-orderBy>
 			    id
