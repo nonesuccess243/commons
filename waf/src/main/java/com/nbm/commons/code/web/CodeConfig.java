@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
  * @author computer
  * 
  */
-@WebListener
+//@WebListener
 public class CodeConfig implements ServletContextListener
 {
         private final static Logger log = LoggerFactory.getLogger(CodeConfig.class);

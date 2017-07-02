@@ -19,7 +19,8 @@
 		<module>dbgrid</module>
 		<module>httpclient</module>
 		<module>report</module>
-	</modules>
+    	<module>wafdemo</module>
+  </modules>
  
 	<scm>
   		<connection>scm:git:http://60.30.19.131:20020/git/commons/commons.git/</connection>
@@ -96,7 +97,7 @@
 					</execution>
 				</executions>
 			</plugin>
- 
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-release-plugin</artifactId>
@@ -107,7 +108,7 @@
 					<additionalparam>-Xdoclint:none</additionalparam>
 				</configuration>
 			</plugin>
- 
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
@@ -115,7 +116,7 @@
 					<additionalparam>-Xdoclint:none</additionalparam>
 				</configuration>
 			</plugin>
- 
+
 		</plugins>
 	</build>
  

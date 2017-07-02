@@ -59,11 +59,11 @@ public class JsonDBGridServlet extends DBGridServlet
                 // dispatch
                 log.debug(request.getRequestURI());
                 String uri = request.getRequestURI();
-                if (uri.indexOf(JSON_URI) != -1)
+                if (uri.contains(JSON_URI))
                 {
                         doData(request, response);
 
-                } else if (uri.indexOf(JSON_META_URI) != -1)
+                } else if (uri.contains(JSON_META_URI))
                 {
                         doMeta(request, response);
                 } else

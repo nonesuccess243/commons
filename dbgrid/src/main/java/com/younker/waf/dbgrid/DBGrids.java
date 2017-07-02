@@ -8,6 +8,8 @@
 package com.younker.waf.dbgrid;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -80,7 +82,16 @@ public class DBGrids implements Serializable
                 } else
                         throw new NbmBaseRuntimeException("找不到dbgrid[" + gridName + "]").set(
                                         "currentDbgrids", dbGrids);
-        }
+       }
+
+        /**
+         * 返回所有dbgrid实例。这个返回值是只读的，不能修改
+         * @return
+         */
+       public Collection<DBGrid> getAllDBGrids()
+       {
+               return Collections.unmodifiableCollection(dbGrids.values());
+       }
 
         /**
          * 配置文件中读取到import元素时的处理函数

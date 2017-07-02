@@ -173,6 +173,16 @@ public class ModelMeta
                 return result;
         }
         
+        
+        /**
+         * 
+         * @return 所有已知的model类的modelmeta信息
+         */
+        public static Collection<ModelMeta> getAllDiscoveredModelMeta()
+        {
+                return CACHE.values();
+        }
+        
         public static ModelMeta getModelMetaBySimpleName( String modelClassSimpleName )
         {
                 ModelMeta result = CACHE_BY_SIMPLE.get(modelClassSimpleName);

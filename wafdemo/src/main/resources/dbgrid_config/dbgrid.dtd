@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT DBGrids ((imports)?,(DBType)?,(DBGrid)*)>
+<!ELEMENT imports (import)* >
+<!ELEMENT import (#PCDATA) >
+<!ELEMENT DBType (param?) >
+<!ELEMENT param (#PCDATA) >
+
+<!ELEMENT DBGrid (
+	grid-title?,
+	grid-name,
+	grid-table,
+	grid-cols,
+	grid-label,
+	grid-fields?,
+	grid-relation?,
+	grid-condCols?,
+	grid-param?,
+	grid-operation?,
+	grid-where?,
+	grid-queryType?,
+	grid-orderBy?,
+	grid-groupBy?,
+	grid-test?,
+	grid-color?,
+	grid-rowsPerPage?,
+	grid-type?,
+	grid-handler?,
+	grid-forwardURL?
+) >
+
+
+
+
+<!ELEMENT grid-title (#PCDATA) >
+<!ELEMENT grid-name (#PCDATA) >
+<!ELEMENT grid-table (#PCDATA) >
+<!ELEMENT grid-cols (#PCDATA) >
+<!ELEMENT grid-label (#PCDATA) >
+<!ELEMENT grid-fields (#PCDATA) >
+<!ELEMENT grid-relation (#PCDATA) >
+<!ELEMENT grid-condCols (#PCDATA) >
+<!ELEMENT grid-param (#PCDATA) >
+<!ELEMENT grid-operation (#PCDATA) >
+<!ELEMENT grid-where (#PCDATA) >
+<!ELEMENT grid-queryType (#PCDATA) >
+<!ELEMENT grid-orderBy (#PCDATA) >
+<!ELEMENT grid-groupBy (#PCDATA) >
+<!ELEMENT grid-test (#PCDATA) >
+<!ELEMENT grid-color (#PCDATA) >
+<!ELEMENT grid-rowsPerPage (#PCDATA) >
+<!ELEMENT grid-type (#PCDATA) >
+<!ELEMENT grid-handler (#PCDATA) >
+<!ELEMENT grid-forwardURL (#PCDATA) >

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSessionListener;
  * Application Lifecycle Listener implementation class OnlineUserListener
  *
  */
-@WebListener
+//@WebListener
 public class OnlineUserListener implements HttpSessionListener
 {
         public String ONLINE_INFO_APPLICATION_KEY = "online_info_application";
