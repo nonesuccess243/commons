@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>数据列表组件dbgrids.xml配置说明</title>
+</head>
+
+<body>
+<h2 align="center"><strong>数据列表组件<font face="Arial, Helvetica, sans-serif">dbgrids.xml</font>配置说明</strong> 
+</h2>
+<table align="center" border="1px" bordercolor="#3366cc" cellspacing="2" cellpadding="2" width="90%">
+  <tr> 
+    <td width="100">参数</td>
+    <td>使用说明</td>
+  </tr>
+  <tr> 
+    <td>grid-name<font color="#FF0000">*</font></td>
+    <td>标识dbgrid，其为唯一，大小写敏感。调用时以此为参数</td>
+  </tr>
+  <tr> 
+    <td>grid-table<font color="#FF0000">*</font></td>
+    <td>列表中数据的来源。如果有多个表，以逗号隔开。如table1 tb1,table2 tb2&nbsp; 其中tb1为table1的别名，tb2为table2的别名。</td>
+  </tr>
+  <tr> 
+    <td>grid-cols<font color="#FF0000">*</font></td>
+    <td>列表的数据项。字段以逗号隔开。 如果字段来自不同的表，则表示如下：tb1.col1,tb2.col2</td>
+  </tr>
+  <tr> 
+    <td>grid-label<font color="#FF0000">*</font></td>
+    <td>列表的标题，如果没有，则以字段名作为标题。标题以逗号隔开。如果不显示出，可在标题后加$h,如 列表中的“个人序号”不显示，则表示为：个人序号$h<br> 
+      <strong>如果字段值为日期型：</strong><br> &nbsp;&nbsp;&nbsp;如果字段 “notice_date”显示格式为yyyy-mm-dd，列表标题为“通知日期”，则其grid-label 
+      为： 委托日期$d1;如果字段“modidy_time”显示格式为yyyy-mm-dd hh:mm:ss，列表标题为“修改时间”，则其grid-label 
+      为：修改时间$d2。<br> <strong>如果字段值为数字型：</strong><br> &nbsp;&nbsp;&nbsp;如果字段“expense”显示格式为&quot;#,###.##&quot;，列表标题为“费用金额”，其grid-label 
+      为：费用金额$n2；如果字段“expense”值显示格式为&quot;#,###.###&quot;，列表标题为“费用金额”，其grid-label 
+      为：费用金额$n3，以此类推。 </td>
+  </tr>
+  <tr> 
+    <td>grid-relation</td>
+    <td>如果列表来自两个表，则此参数表示两个表之间的关系，多个条件以and 或 or 连接，如tb1.consign_no=tb2.consign_no 
+      and tb1.col1=tb2.col2</td>
+  </tr>
+  <tr> 
+    <td>grid-condCols</td>
+    <td>列表中所要求的条件字段，如果字段类型为数字型的，则在字段后增加“$n"；如果字段类型为日期类型，则在字段后增加"$d"</td>
+  </tr>
+  <tr> 
+    <td>grid-param</td>
+    <td>每个字段对应的请求参数名，如果条件涉及两个参数（between 参数1 and 参数2），则表示如下：参数1+参数2。</td>
+  </tr>
+  <tr> 
+    <td>grid-operation</td>
+    <td><p>对应的条件字段中的运算符，必须是有几个条件字段，就对应几个运算符。具体的运算符号如下：<br>
+        1:=<br>
+        2:!=<br>
+        3:&gt;<br>
+        4:&gt;=<br>
+        5:&lt; <br>
+        6:&lt;=<br>
+        7 :between and<br>
+        8 :'*%'<br>
+        9 :'%*'<br>
+        10 :'%*%' </td>
+  </tr>
+  <tr> 
+    <td>grid-where</td>
+    <td>列表的初始条件，如expense=1000，或person_no=@person_no,其中@person_no表示person_no是由页面上传递过来的参数名</td>
+  </tr>
+  <tr> 
+    <td>grid-queryType</td>
+    <td><p>查询的连接逻辑,只能为'and' 或'or';如果没有此项，系统默认为'and'</p></td>
+  </tr>
+  <tr> 
+    <td>grid-orderBy</td>
+    <td>列表的初始排序条件，例以金额降序排序，则表示为 expense desc，升序排序则表示为expense asc,多个字段以逗号隔开。</td>
+  </tr>
+  <tr> 
+    <td>grid-groupBy</td>
+    <td>列表的分组条件。</td>
+  </tr>
+  <tr> 
+    <td>grid-test</td>
+    <td>配合grid-color使用，指明需要加亮显示的字段名称</td>
+  </tr>
+  <tr> 
+    <td>grid-color</td>
+    <td>突出显示符合特定条件的某一行或几行数据,格式为value1,value2=color1,color2结合grid-test,如果grid-test指定的字段的值=value1，则该行数据的显示颜色为color1 
+    </td>
+  </tr>
+  <tr>
+    <td>grid-rowsPerPage</td>
+    <td>分页显示，每页的记录数（行数）</td>
+  </tr>
+  <tr> 
+    <td>grid-type</td>
+    <td>列表的类型：0－普通列表（默认类型）； 1－带有复选框的列表 ；2－带有单选框的列表</td>
+  </tr>
+  <tr> 
+    <td>grid-handler<font color="#FF0000">*</font></td>
+    <td>处理列表中的”单击“、”双击“事件的个性化函数集。其中处理”单击“事件的函数必须为handleClick(),处理”双击“事件的函数必须为handleDblClick().</td>
+  </tr>
+  
+  <tr> 
+    <td colspan="2"><p>例：列表中标题为”字段1“、”字段2“、”字段3“、”字段4“，其相应的信息类型为“隐藏字段”、“＃,###.##”、“yyyy-mm-dd”、“yyyy-mm-dd 
+        hh:mm:ss”，列表来源于表tab1,tab2，表tab1与表tab2的关系为tab1.col1=tab2.col1，以金额为排序。则参数设置如下： 
+        <br>
+        <br>
+        &lt;grid-name&gt;DemoList&lt;/grid-name&gt; <br>
+        &lt;grid-table&gt;tab1 t1,tab2 t2&lt;/grid-table&gt; <br>
+        &lt;grid-label&gt;字段1$h,字段2$n2,字段3$d1,字段4$d2&lt;/grid-label&gt;<br>
+        &lt;grid-cols&gt;t1.col1,t1.col2,tb2.col3 ,tb2.col4&lt;/grid-cols&gt;<br>
+        &lt;grid-relation&gt;t1.col1=t2.col1&lt;/grid-relation&gt; <br>
+        &lt;grid-condCols&gt;t1.col2,t2.col3&lt;/grid-condCols&gt;<br>
+        &lt;grid-param&gt;lparam1,lparam2&lt;/grid-param&gt;<br>
+        &lt;grid-operation&gt;1,3&lt;/grid-operation&gt;<br>
+        &lt;grid-orderBy&gt;t1.col2&lt;/grid-orderBy&gt;<br>
+        &lt;grid-handler&gt;/hr/baseinfo/eventHandler.js&lt;/grid-handler&gt;
+      <p>如过页面上有文本框text1、text2为条件，则请求为:<br>
+        window.navigate("demo.list?dbgrid=DemoList&lparam1="+text1.value+"&lparam2="+text2.value); 
+    </td>
+  </tr>
+  <tr bordercolor="#0000FF"> 
+    <td colspan="2"><font color="#0000FF">带<font color="#FF0000"></font></font><font color="#FF0000">*<font color="#0000FF">标记的为必选参数，不需要的参数则不要列出，该配置参数也适用于弹出式下拉列表的配置文件(dropdownlists.xml)。</font></font></td>
+  </tr>
+</table>
+
+<table  border="0" width="90%" align="center">
+<tr><td align="center" ><hr color="#3366cc"></td></tr>
+<tr><td align="center" ><font color="#0000ff">阳客软件(YounkerSoft) 2003-2004 版权所有</font> </td></tr>
+</table>
+</body>
+</html>
