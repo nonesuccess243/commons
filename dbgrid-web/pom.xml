@@ -1,34 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>commons-aggr</artifactId>
-        <groupId>com.nbm</groupId>
-        <version>5.10.1-SNAPSHOT</version>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<artifactId>commons-aggr</artifactId>
+		<groupId>com.nbm</groupId>
+		<version>5.10.1-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
 
-    <artifactId>dbgrid-web</artifactId>
-    <dependencies>
-        <dependency>
-            <groupId>com.nbm</groupId>
-            <artifactId>dbgrid</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+	<artifactId>dbgrid-web</artifactId>
+	<dependencies>
+		<dependency>
+			<groupId>com.nbm</groupId>
+			<artifactId>dbgrid</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 
-        <dependency>
-            <groupId>com.nbm</groupId>
-            <artifactId>wafdemo</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+		<dependency>
+			<groupId>com.nbm</groupId>
+			<artifactId>waf</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
 
-    </dependencies>
+		<dependency>
+			<groupId>com.wayeasoft.webjar</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>3.3.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.wayeasoft.webjar</groupId>
+			<artifactId>easyui</artifactId>
+			<version>1.4.5</version>
+		</dependency>
+
+	</dependencies>
 
 
 </project>

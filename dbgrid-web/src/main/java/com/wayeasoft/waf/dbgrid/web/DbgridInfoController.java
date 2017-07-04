@@ -1,6 +1,5 @@
 package com.wayeasoft.waf.dbgrid.web;
 
-import com.wayeasoft.waf.springmvc.controller.BaseController;
 import com.younker.waf.dbgrid.DBGrid;
 import com.younker.waf.dbgrid.DBGridEngine;
 import org.springframework.stereotype.Controller;
@@ -14,7 +13,7 @@ import java.util.Collection;
  */
 @Controller
 @RequestMapping("/internal/dbgrid")
-public class DbgridInfoController extends BaseController
+public class DbgridInfoController 
 {
         @RequestMapping("/list.do")
         public String queryById(Model model)
@@ -23,6 +22,6 @@ public class DbgridInfoController extends BaseController
                 Collection<DBGrid> dbgrids = DBGridEngine.getDefaultInstance().getDBGrids().getAllDBGrids();
                 model.addAttribute("dbgrids", dbgrids);
 
-                return "list";
+                return "/dbgrid/list";
         }
 }
