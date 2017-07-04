@@ -879,6 +879,13 @@ public class DBGrid implements Serializable
                 return count;
         }
         
+        
+        /**
+         * 在数据库中查询，获取根据当前dbgrid条件所能匹配的记录数目
+         * 
+         * @param connection
+         * @return
+         */
         public int getCount( Connection connection )
         {
                 QueryRunner run = new ScrollQueryRunner(DataSourceProvider.instance()
