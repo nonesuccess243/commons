@@ -19,6 +19,7 @@
 				<th>gridName</th>
 				<th>dbgrid meta</th>
 				<th>dbgrid data</th>
+				<th>easyui</th>
 			</tr>
 			<c:forEach items="${dbgrids}" var="dbgrid">
 				<tr>
@@ -28,6 +29,7 @@
 							meta</a></td>
 					<td><a href="${dbgrid.gridName}.jsonlist" target="_blank">dbgrid
 							data</a></td>
+					<td><a href="/dbgrid/easyui.jsp?dbgrid=${dbgrid.gridName}" target="_blank">easyui</a></td>
 				</tr>
 
 			</c:forEach>
