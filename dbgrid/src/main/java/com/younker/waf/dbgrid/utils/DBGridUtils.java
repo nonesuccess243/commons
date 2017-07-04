@@ -48,6 +48,21 @@ public enum DBGridUtils
                 return dbgrid;
         }
         
+        
+        /**
+         * 根据url解析dbgrid名称。
+         * 
+         * 规则为：从第一个字符一直匹配到最后一个.
+         * 
+         * 如：
+         * 
+         * 请求范围：/a/b/c/d.jsonlist
+         * 
+         * 则将dbgrid解析为/a/b/c/d
+         * 
+         * @param url
+         * @return
+         */
         public String getDbgridName(String url)
         {
                 String gridName = url.substring(0, url.lastIndexOf("."));
