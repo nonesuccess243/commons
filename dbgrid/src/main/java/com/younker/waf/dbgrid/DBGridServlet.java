@@ -174,7 +174,7 @@ public class DBGridServlet extends HttpServlet
                         return null;
                 }
                 
-                log.debug(dbgrid.getWhereSQL());
+                log.debug("where sql: {}", dbgrid.getWhereSQL());
                 
                 log.debug("根据前台传入的参数，显示第{}页", page);
                 

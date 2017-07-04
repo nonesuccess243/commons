@@ -150,14 +150,14 @@ public class JsonDBGridServlet extends DBGridServlet
                         return;// TODO 增加错误处理
                 List<DBGridRow> results = dbgrid.getData();
 
-                dbgrid_log.debug("dbgrid[{}], sessionId[{}]  SQL:\n{}", dbgrid.getGridName(),request.getSession().getId(),
+                dbgrid_log.info("dbgrid: [{}], sessionId: [{}], recordNum: [{}]  SQL:\n{}", dbgrid.getGridName(),request.getSession().getId(),
+                                dbgrid.getRecordNum(),
                                 dbgrid.getSQL());
 
                 List<DBGridItem> titles = dbgrid.getGridTitles();
 
                 String result = generateJsonData(dbgrid.getRecordNum(), results, titles);
 
-                dbgrid_log.debug("recordNum: " + dbgrid.getRecordNum());
 
                 response.setContentType("text/plain");
                 response.setHeader("Cache-Control", "no-cache");
@@ -222,15 +222,5 @@ public class JsonDBGridServlet extends DBGridServlet
                 return param.replaceAll("\\\\", "\\\\\\\\").replaceAll("\"", "\\\\\"").replaceAll("\\r\\n", "</br>")
                                 .replaceAll("\\n", "</br>");
         }
-        
-        public static void main(String[] args)
-        {
-                String s = "\"\"徐静\r\n\r\n\r\n徐静";
-                s = s.replaceAll("\\\\", "\\\\\\\\").replaceAll("\"", "\\\\\"").replaceAll("\\r\\n", "</br>")
-                .replaceAll("\\n", "</br>");
-                
-                System.out.println(s);
-        }
-        
 
 }
