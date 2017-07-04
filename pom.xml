@@ -20,7 +20,8 @@
 		<module>httpclient</module>
 		<module>report</module>
     	<module>wafdemo</module>
-  </modules>
+        <module>dbgrid-web</module>
+    </modules>
  
 	<scm>
   		<connection>scm:git:http://60.30.19.131:20020/git/commons/commons.git/</connection>
@@ -55,6 +56,44 @@
 			<version>1.1.3</version>
 		</dependency>
 	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-web</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-config</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+		</dependencies>
+
+
+	</dependencyManagement>
  
 	<distributionManagement>
 		<repository>
