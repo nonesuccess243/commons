@@ -104,8 +104,8 @@ public class DBGridGenerator
 	public DBGrids getDBGrids(String filePath)
 	{
 //		log.debug(filePath);
-//		URL configFile = null;
 //		try
+//		URL configFile = null;
 //		{
 //			configFile = ctx.getResource(filePath);
 //		} catch (MalformedURLException e)
