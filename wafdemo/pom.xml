@@ -15,7 +15,6 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>4.2.2.RELEASE</spring.version>
 		<druid.version>1.0.29</druid.version>
 	</properties>
 
@@ -38,32 +37,27 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 
 
@@ -124,22 +118,7 @@
 			<version>5.1.42</version>
 		</dependency>
 
-		<dependency>
-			<groupId>com.nbm</groupId>
-			<artifactId>db</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.nbm</groupId>
-			<artifactId>dbgrid</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.nbm</groupId>
-			<artifactId>waf</artifactId>
-			<version>${project.version}</version>
-		</dependency>
+		
 
 
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
@@ -166,9 +145,32 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
         </dependency>
+        
+        <dependency>
+			<groupId>com.nbm</groupId>
+			<artifactId>db</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.nbm</groupId>
+			<artifactId>dbgrid</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.nbm</groupId>
+			<artifactId>dbgrid-web</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.nbm</groupId>
+			<artifactId>waf</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+        
     </dependencies>
-
-
 	<build>
 		<finalName>wafdemo</finalName>
 	</build>

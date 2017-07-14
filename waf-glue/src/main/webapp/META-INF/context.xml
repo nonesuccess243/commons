@@ -1,7 +1,0 @@
-<Context path="" docBase="ROOT">
-<Resource name="jdbc/ds" auth="Container"
-              type="javax.sql.DataSource" driverClassName="oracle.jdbc.driver.OracleDriver"
-              url="jdbc:oracle:thin:@192.168.56.156:1521:ORCL"
-              username="bhrkjs" password="bhrkjs" maxActive="20" maxIdle="10"
-              maxWait="-1"/>
-</Context>
