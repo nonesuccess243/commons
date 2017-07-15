@@ -14,13 +14,19 @@ public class Code
 
         @Column("NAME")
         private String name;
-
+        
+        /**
+         * 助记符
+         */
         @Column("MNEMONIC")
         private String mnemonic;
 
         @Column("REMARK")
         private String remark;
         
+        /**
+         * 显示顺序
+         */
         @Column("SHOW_ORDER")
         private String showOrder;
 
