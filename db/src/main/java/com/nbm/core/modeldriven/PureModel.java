@@ -14,8 +14,8 @@ import com.nbm.core.modeldriven.anno.NotNull;
  *
  */
 public abstract class PureModel implements Serializable ,Cloneable
-{
-
+{ 
+   
 	/**
 	 * 
 	 */
