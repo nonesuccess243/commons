@@ -14,8 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.nbm.waf.boot.DbBooter;
 import com.wayeasoft.springmvc.config.RootConfig;
-import com.wayeasoft.waf.demo.utils.DbBooter;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes =

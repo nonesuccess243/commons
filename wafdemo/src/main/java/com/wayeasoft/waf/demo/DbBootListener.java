@@ -5,13 +5,11 @@ import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.context.event.ContextStartedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
-import com.wayeasoft.waf.demo.utils.DbBooter;
+import com.nbm.waf.boot.DbBooter;
 import com.younker.waf.db.DataSourceProvider;
 
 @Component

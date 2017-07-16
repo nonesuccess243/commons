@@ -1,4 +1,4 @@
-package com.wayeasoft.waf.demo.utils;
+package com.nbm.waf.boot;
 
 import java.sql.ResultSet;
 import java.util.Iterator;
@@ -8,7 +8,6 @@ import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.nbm.core.modeldriven.ModelMeta;
