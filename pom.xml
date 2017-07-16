@@ -9,7 +9,7 @@
  
 	<groupId>com.nbm</groupId>
 	<artifactId>commons-aggr</artifactId>
-	<version>6.0.1-SNAPSHOT</version>
+	<version>6.1.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>nbmcommons</name>
 	<modules>

@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @ImportResource("classpath:spring-config.xml")
-@ComponentScan(basePackages="com.wayeasoft", 
+@ComponentScan(basePackages="com.wayeasoft,com.nbm.waf.boot", 
         excludeFilters={@Filter(type=FilterType.ANNOTATION, value=EnableWebMvc.class)})
 @PropertySource("classpath:spring-config.properties")
 public class RootConfig
