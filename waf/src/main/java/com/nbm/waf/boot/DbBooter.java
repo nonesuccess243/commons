@@ -23,7 +23,7 @@ public class DbBooter
         private DataSource dataSource;
         
         
-        private String basePackage = "com.wayeasoft.waf.demo";
+        private String basePackage = "com.wayeasoft";
 
         public void boot() throws Exception
         {

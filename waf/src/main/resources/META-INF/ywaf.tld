@@ -330,14 +330,14 @@
 	<!-- 用于显示单个web资源的标签，标签只用于读取资源，应能包含一段负责具体显示的html -->
 	<tag>
 		<name>webInfo</name>
-		<tag-class>com.nbm.commons.code.web.SingleSelectTag</tag-class>
+		<tag-class>com.wayeasoft.waf.webinfo.taglib.WebInfoTag</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
 			<name>webInfoTypeCode</name>
 			<required>true</required>
 		</attribute>
 		<attribute>
-			<name>webInfoId</name>
+			<name>webInfoCode</name>
 			<required>true</required>
 		</attribute>
 	</tag>
@@ -345,7 +345,7 @@
 	<!-- 用于显示单个web资源的标签，标签只用于读取资源，应能包含一段负责具体显示的html -->
 	<tag>
 		<name>webInfoList</name>
-		<tag-class>com.nbm.commons.code.web.SingleSelectTag</tag-class>
+		<tag-class>com.wayeasoft.waf.webinfo.taglib.WebInfoListTag</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
 			<name>webInfoTypeCode</name>
