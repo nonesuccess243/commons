@@ -9,7 +9,7 @@
  
 	<groupId>com.nbm</groupId>
 	<artifactId>commons-aggr</artifactId>
-	<version>6.1.1-SNAPSHOT</version>
+	<version>6.2.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>nbmcommons</name>
 	<modules>
@@ -19,7 +19,6 @@
 		<module>dbgrid</module>
 		<module>httpclient</module>
 		<module>report</module>
-    	<module>wafdemo</module>
         <module>dbgrid-web</module>
     </modules>
  
