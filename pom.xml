@@ -19,7 +19,6 @@
 		<module>dbgrid</module>
 		<module>httpclient</module>
 		<module>report</module>
-    	<module>wafdemo</module>
         <module>dbgrid-web</module>
     </modules>
  
