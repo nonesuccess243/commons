@@ -50,6 +50,8 @@
 			paramcount="0" />
 		<call-method-rule pattern="grid-forwardURL"
 			methodname="setForwardURL" paramcount="0" />
+		<call-method-rule pattern="grid-decorate"
+			methodname="setGridDecorate" paramcount="0" />
 		<set-next-rule methodname="addDBGrid" />
 	</pattern>
 	
