@@ -76,7 +76,7 @@ public class DBGrids implements Serializable
                                         "gridQueryType", "gridOperation", "gridParam",
                                         "gridCondCols", "gridWhere", "gridParent", "gridRelation",
                                         "gridFields", "gridLabel", "gridCols", "gridTable",
-                                        "gridTitle", "gridName" });
+                                        "gridTitle", "gridName", "gridDecorate" });
 
                         return newGrid;
                 } else
