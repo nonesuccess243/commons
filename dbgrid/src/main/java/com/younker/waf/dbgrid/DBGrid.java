@@ -975,4 +975,9 @@ public class DBGrid implements Serializable
                 }
         }
 
+        public void setGridDecorate(DBGridDecorate gridDecorate)
+        {
+                this.gridDecorate = gridDecorate;
+        }
+
 }
