@@ -3,7 +3,7 @@
 	<parent>
 		<artifactId>commons-aggr</artifactId>
 		<groupId>com.nbm</groupId>
-		<version>6.2.3</version>
+		<version>6.2.4-SNAPSHOT</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
