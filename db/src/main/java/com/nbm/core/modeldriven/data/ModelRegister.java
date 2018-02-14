@@ -16,6 +16,7 @@ import com.nbm.core.modeldriven.ModelMeta;
 import com.nbm.core.modeldriven.PureModel;
 import com.nbm.core.modeldriven.data.exception.DuplicateModelNameException;
 import com.nbm.core.modeldriven.data.exception.ModelNotRegisterException;
+import com.nbm.exception.NbmBaseRuntimeException;
 
 /**
  * 根据配置的包名扫描model类。
@@ -79,6 +80,20 @@ public class ModelRegister
                                 modelMap.put(c.getSimpleName(), ModelMeta.getModelMeta(c));
                         }
                 }
+        }
+        
+        /**
+         * 在非spring环境下，手动初始化的方法
+         * @param modelPackages
+         */
+        public void warmUp(String... modelPackages)
+        {
+                if( this.modelPackages != null )
+                {
+                        throw new NbmBaseRuntimeException("已经通过spring注入了modelPackages信息，不能手动初始化");
+                }
+                this.modelPackages = modelPackages;
+                warmUp();
         }
         
         
