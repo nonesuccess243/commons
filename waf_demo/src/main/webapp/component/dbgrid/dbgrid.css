@@ -1,0 +1,39 @@
+body {
+	background:#FFFFFF;
+	font-family:Microsoft YaHei;
+}
+
+.datagrid-toolbar p{
+	margin-top:5px;
+	margin-bottom:5px
+}
+
+.panel-body {
+  font-size: 14px;
+}
+
+.panel-title {
+  font-size: 18px;
+  height: 25px;
+  line-height: 25px;
+  font-family: Microsoft YaHei;
+}
+
+.datagrid-cell,
+.datagrid-cell-group,
+.datagrid-header-rownumber,
+.datagrid-cell-rownumber {
+  padding: 4px 4px;
+  height: 25px;
+  line-height: 20px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.datagrid-header .datagrid-cell span {
+  font-size: 14px;
+}
+
+.datagrid-header {
+  text-align: center;
+}

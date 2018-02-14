@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE DBGrids SYSTEM "dbgrid.dtd" >
+
+<DBGrids>
+	<DBType>
+		<param>MYSQL</param>
+	</DBType>
+	<!-- </>sender_id,send_date,is_system, ,content,remark,state -->
+	<!-- 查询消息 -->
+	<DBGrid>
+		<grid-name>/public/demo/dbgrid</grid-name>
+		<grid-table>
+			S_MODULE_ITEM
+		</grid-table>
+		<grid-cols>
+			ID, CODE, NAME, URL
+		</grid-cols>
+		<grid-label>
+			id$h, code, name, url
+		</grid-label>
+		<grid-fields>
+			id, code, name, url
+		</grid-fields>
+		<grid-relation>
+
+		</grid-relation>
+		<grid-orderBy>
+			id
+		</grid-orderBy>
+		<grid-groupBy></grid-groupBy>
+		<grid-rowsPerPage>20</grid-rowsPerPage>
+	</DBGrid>
+	<DBGrid>
+		<grid-title>
+			传感器类型
+		</grid-title>
+		<grid-name>/equipment/getsensor</grid-name>
+		<grid-table>
+			SENSOR
+		</grid-table>
+		<grid-cols>
+			ID, NO, FRONT_TERMINAL_I_D, POSITION, MONITOR_RANGE
+		</grid-cols>
+		<grid-label>
+			编号, 编号, 前端机, 地理位置 , 监控范围
+		</grid-label>
+		<grid-fields>
+			id, no, frontTerminalID, position ,monitorRange
+		</grid-fields>
+		<grid-relation>
+
+		</grid-relation>
+		<grid-orderBy>
+			id
+		</grid-orderBy>
+		<grid-groupBy></grid-groupBy>
+		<grid-rowsPerPage>20</grid-rowsPerPage>
+	</DBGrid>
+</DBGrids> 

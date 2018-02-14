@@ -1,0 +1,183 @@
+<html>
+<head>
+<title>智慧城市综合治理平台</title>
+
+<meta charset="utf-8">
+<meta http-equiv="X-Frame-Options" content="origin">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, height=device-heigh">
+<!-- Styling -->
+<link rel="stylesheet" href="/jar/addons/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" href="/jar/addons/toastr/toastr.min.css" />
+<link rel="stylesheet"
+	href="/jar/addons/fontawesome/css/font-awesome.css" />
+<link rel="stylesheet" href="/jar/addons/ionicons/css/ionicons.css" />
+<link rel="stylesheet" href="/jar/addons/noUiSlider/nouislider.min.css" />
+<link rel="stylesheet" href="/jar/styles/style.css" />
+<link rel="stylesheet" href="/jar/styles/theme-blue.css" class="theme" />
+
+<!-- End of Styling -->
+</head>
+<body class="hold-transition">
+
+
+	<!-- Copyright � 2008. Spidersoft Ltd -->
+	<style>
+A.applink:hover {
+	border: 2px dotted #DCE6F4;
+	padding: 2px;
+	background-color: #ffff00;
+	color: green;
+	text-decoration: none
+}
+
+A.applink {
+	border: 2px dotted #DCE6F4;
+	padding: 2px;
+	color: #2F5BFF;
+	background: transparent;
+	text-decoration: none
+}
+
+A.info {
+	color: #2F5BFF;
+	background: transparent;
+	text-decoration: none
+}
+
+A.info:hover {
+	color: green;
+	background: transparent;
+	text-decoration: underline
+}
+</style>
+	<!-- Header -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div id="navbar" class="navbar-collapse">
+				<ul class="breadcrumb">
+					<li class="breadcrumb-home"><a href=""><i
+							class="fa fa-home"></i></a>
+					<li><a href="" id="left-up">首页</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<form class="search-form form-group has-feedback">
+							<span class="fa fa-search form-control-feedback"></span> <input
+								type="text" class="form-control" name="search" id="search"
+								placeholder="请输入查找内容">
+						</form>
+					</li>
+					<li class="dropdown" id="notifications-toggle"><a
+						class="dropdown-toggle" data-toggle="dropdown"
+						aria-expanded="false" href="#"> <i class="fa fa-bell"></i> <span
+							class="label label-danger notification-label">2</span>
+					</a>
+						<ul class="list-unstyled notifications dropdown-menu">
+							<li><img alt="" class="img-circle small-image vcentered"
+								src="images/profile2.png"> <span
+								class="notification-title vcentered"> <b> Elon Musk </b>
+									has created an <b> administrator </b> account two times
+									already.
+							</span> <span class="notification-time text-muted"> 15m ago </span></li>
+							<li><i
+								class="fa fa-refresh small-icon text-center vcentered"></i> <span
+								class="notification-title vcentered"> <b> Device
+										Boo_71 </b> has been restarted.
+							</span> <span class="notification-time text-muted"> 2h ago </span></li>
+							<li><i
+								class="fa fa-plus-square small-icon text-center vcentered"></i>
+								<span class="notification-title vcentered"> <b>
+										Device Boo_72 </b> has been added.
+							</span> <span class="notification-time text-muted"> 3h ago </span></li>
+						</ul></li>
+					<li><a href="login.html"> <i class="fa fa-sign-out"></i>
+					</a></li>
+					<li class="profile"><a jump="profile.html" class="jump"> <img
+							alt="" src="image/profile.png" class="img-circle">
+							<div class="vcentered">
+								<p class="profile-name">王小明</p>
+								<p class="profile-position">系统管理员</p>
+							</div>
+					</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- End of Header -->
+
+	<!-- Navigation -->
+	<div class="navigation">
+		<a class="navbar-brand"> <img alt="" class="logo vcentered"
+			src="image/logo.png"> <span class="vcentered"
+			style="text-align: center; margin-top: -7px">领航智慧社区<br>数据中心
+		</span> <i
+			class="fa fa-bars text-primary left-nav-toggle pull-right vcentered"></i>
+		</a>
+		<ul class="nav primary" id="module">
+			<li><a jump="tj.html" class="jump"> <i class="fa fa-tasks"></i> <span>首页</span></a></li>
+
+			<li class="nav-item-expandable" v-for="item in module">
+				<a href="#module{{item.id}}" data-toggle="collapse" aria-expanded="false"> 
+					<i class="fa fa-internet-explorer"></i><span>{{item.name}}</span> <span class="nav-item-icon"> <i class="fa fa-chevron-down"></i></span>
+				</a>
+				<ul id="module{{item.id}}" class="nav nav-item collapse">
+					<li v-for="item1 in item.grantedModuleItems">
+						<a jump="{{item1.url}}" class="jump"> <i class="fa fa-plus-square-o"></i> <span>{{item1.name}}</span></a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+		<div class="time text-center">
+			<h5 class="current-time2">&nbsp;</h5>
+			<h5 class="current-time">&nbsp;</h5>
+		</div>
+	</div>
+	<!-- End of Navigation -->
+
+	<!-- Additional options toggle -->
+	<!-- End of additional options toggle -->
+
+	<!-- Scroll up button -->
+	<a class="scroll-up"><i class="fa fa-chevron-up"></i></a>
+	<!-- End of scroll up button -->
+
+
+	<!-- Main content-->
+	<div class="content">
+		<iframe id="content" scrolling="auto" frameborder="0"
+			src="showdata.html?url=/equipment/getsensor&clz=Sensor"
+			name="content" width="100%" height="100%"></iframe>
+		<div class="footer">
+			<!--  <p> <b> All rights reserved </b> &copy;Dauphin Premium 2017 </p> -->
+		</div>
+	</div>
+	<!-- End of Main content-->
+	<div class="scripts">
+		<script src="/jar/js/jquery.min.js"></script>
+		<script src="/jar/js/vue.js"></script>
+		<script src="/jar/js/alert.js"></script>
+		<script type="text/javascript" src="/js/service.js"></script>
+		<script type="text/javascript" src="/controller/indexController.js"></script>
+		<script src="/jar/addons/jquery-ui/jquery-ui.min.js"></script>
+		<script src="/jar/addons/bootstrap/js/bootstrap.min.js"></script>
+		<script src="/jar/addons/fullcalendar/lib/moment.min.js"></script>
+		<script src="/jar/addons/pacejs/pace.min.js"></script>
+		<!-- Dauphin scripts -->
+		<script src="/jar/addons/dauphin.js"></script>
+		<!-- Current page scripts -->
+		<div class="current-scripts">
+			<!-- Current page addons -->
+			<link rel="stylesheet" href="/jar/addons/morrisjs/morris.css" />
+			<script src="/jar/addons/morrisjs/raphael-min.js"></script>
+			<script src="/jar/addons/morrisjs/morris.min.js"></script>
+
+			<link rel="stylesheet"
+				href="/jar/addons/fullcalendar/fullcalendar.css" />
+			<script src="/jar/addons/fullcalendar/lib/moment.min.js"></script>
+			<script src="/jar/addons/fullcalendar/fullcalendar.min.js"></script>
+		</div>
+
+	</div>
+</body>
+</html>

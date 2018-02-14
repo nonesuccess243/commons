@@ -1,0 +1,28 @@
+<configuration scan="true">
+
+	<property name="log_path" value="d:\\work\\log\\" />
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level [%logger{72}@%t-%r] - %msg
+				[%caller{1}]
+			</pattern>
+		</encoder>
+	</appender>
+
+
+
+
+	<appender name="TJPOP_SYNCHRONIZE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+	</appender>
+
+
+
+	<root level="debug">
+		<appender-ref ref="STDOUT" />
+	</root>
+
+
+</configuration>

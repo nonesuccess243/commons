@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>智慧城市综合治理平台</title>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Styling -->
+<link rel="stylesheet" href="addons/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" href="addons/toastr/toastr.min.css" />
+<link rel="stylesheet" href="addons/fontawesome/css/font-awesome.css" />
+<link rel="stylesheet" href="addons/ionicons/css/ionicons.css" />
+<link rel="stylesheet" href="addons/noUiSlider/nouislider.min.css" />
+
+<link rel="stylesheet" href="styles/style.css" />
+<link rel="stylesheet" href="styles/theme-blue.css" class="theme" />
+
+<link rel="stylesheet" href="/xw/css/public.css" />
+
+<!-- End of Styling -->
+</head>
+<body class="hold-transition">
+
+
+	<!-- Copyright � 2008. Spidersoft Ltd -->
+	<style>
+A.applink:hover {
+	border: 2px dotted #DCE6F4;
+	padding: 2px;
+	background-color: #ffff00;
+	color: green;
+	text-decoration: none
+}
+
+A.applink {
+	border: 2px dotted #DCE6F4;
+	padding: 2px;
+	color: #2F5BFF;
+	background: transparent;
+	text-decoration: none
+}
+
+A.info {
+	color: #2F5BFF;
+	background: transparent;
+	text-decoration: none
+}
+
+A.info:hover {
+	color: green;
+	background: transparent;
+	text-decoration: underline
+}
+</style>
+
+	<!-- Main content-->
+		<div class="col-sm-6" style="margin-bottom: 312px;">
+                    <div class="panel">
+                        <div class="panel-heading">新增传感器<div class="panel-options">
+                                <a class="panel-toggle"><i class="fa fa-chevron-up"></i></a>
+                                <a class="panel-close"><i class="fa fa-times"></i></a>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <form class="row">
+                              <div class="form-wrapper col-sm-6">
+                                  <label for="exampleInputEmail1">编号:</label>
+                                  <div class="form-group ">
+                                    <input type="text" class="form-control" id="no" placeholder="请输入编号">
+                                  </div>
+                              </div>
+                              
+                             <div class="form-wrapper col-sm-6">
+                                  <label for="exampleInputEmail1">前端机:</label>
+                                  <div class="form-group ">
+                                    <select class="form-control" id="frontTerminalID">
+                                  	  <option value="">------------------------------请选择------------------------------</option>
+                                    </select>
+                                   </div>
+                              </div>
+                              
+                              <div class="form-wrapper col-sm-6">
+                                  <label for="exampleInputPassword1">地理位置:</label>
+                                  <div class="form-group">
+                                    <input type="text" class="form-control" id="position" placeholder="请输入地理位置（点坐标）">
+                                  </div>
+                              </div>
+                              
+                              
+                              <div class="form-wrapper col-sm-6">
+                                  <label for="exampleInputPassword1">监控地理范围:</label>
+                                  <div class="form-group">
+                                     <input type="text" class="form-control" id="position" placeholder="请输入监控地理范围(地理多边形列表)">
+                                  </div>
+                              </div>
+                              
+                              <div class="form-wrapper col-sm-6">
+                                  <label for="exampleInputPassword1">状态:</label>
+                                  <div class="form-group">
+                                  	<select class="form-control" id="status">
+                                  		<option value="">------------------------------请选择------------------------------</option>
+                                    	<option value="运行中">运行中</option>
+                                    	<option value="已停用">已停用</option>
+                                    </select>
+                                  </div>
+                              </div>
+                              
+                              <div class="form-wrapper col-sm-6">
+                                  <label for="exampleInputPassword1">传感器配置组ID:</label>
+                                  <select class="form-control" id="sensorConfigGroupID">
+                                  	  <option value="">------------------------------请选择------------------------------</option>
+                                    </select>
+                              </div>
+                              
+                              <div class="form-wrapper col-sm-6 ready-show">
+                                  <label for="exampleInputPassword1">传感器类型:</label>
+                                  <div class="form-group">
+                                    <input type="text" class="form-control" readonly="readonly" id="sensorTypeID" placeholder="请输入地理位置（点坐标）">
+                                  </div>
+                              </div>
+                              
+                              <div class="form-wrapper col-sm-6 ready-show">
+                                  <label for="exampleInputPassword1">报警范围:</label>
+                                  <div class="form-group">
+                                     <input type="text" class="form-control" readonly="readonly" "alarmRange" placeholder="请输入报警范围(范围值列表)">
+                                  </div>
+                              </div>
+                              
+                              <div class="form-wrapper col-sm-6 ready-show">
+                                  <label for="exampleInputPassword1">采集频率:</label>
+                                  <div class="form-group">
+                                     <input type="text" class="form-control" readonly="readonly" id="frequency" placeholder="请输入采集频率">
+                                  </div>
+                              </div>
+                              
+                              <div class="col-sm-12">
+                                   <input type="button" class="btn btn-info button-right" onclick="addSensor()" value="添加"/> 
+                              </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+	<!-- End of Main content-->
+	<div class="scripts">
+
+		<!-- Addons -->
+		<script src="/xw/js/jquery.min.js"></script>
+		<script src="addons/jquery-ui/jquery-ui.min.js"></script>
+		<script src="addons/bootstrap/js/bootstrap.min.js"></script>
+		<script src="addons/fullcalendar/lib/moment.min.js"></script>
+		
+		
+
+		<!-- Dauphin scripts -->
+		<script src="addons/dauphin.js"></script>
+
+	</div>
+
+
+</body>
+<script type="text/javascript" src="/xw/js/service.js"></script>
+<script>
+
+	$(function(){
+		var url = "/back/ft/showFt.do";
+		$.post(url,function(data){
+			var ftList = data.ftList;
+			for(var i=0;i<ftList.length;i++){
+				$("#frontTerminalID").append("<option value='"+ftList[i].name+"'>"+ftList[i].name+"</option>");
+			}
+		});
+		
+		$.post("/back/scg/showScg.do",function(data){
+			var scgList = data.scgList;
+			for(var i=0;i<scgList.length;i++){
+				$("#sensorConfigGroupID").append("<option value='"+scgList[i].id+"'>"+scgList[i].id+"</option>");
+			}
+		});
+		
+	});
+	
+	function addSensor(){
+		var no = $("#no").val();
+		var frontTerminalID = $("#frontTerminalID").find("option:selected").text();
+		var position = $("#position").val();
+		var monitorRange = $("#monitorRange").val();
+		var status = $("#status").find("option:selected").text();
+		var sensorConfigGroupID = $("#sensorConfigGroupID").find("option:selected").text();
+		
+		var url = "/back/s/addS.do?no="+no+"&frontTerminalID="+frontTerminalID+"&position="+position+"&monitorRange="+monitorRange
+				 +"&status="+status+"&sensorConfigGroupID="+sensorConfigGroupID;
+		$.post(url,function(data){
+			alert("添加成功");
+			window.location.href="showSensor.html";
+		});
+	}
+	$(".sensorConfigGroupID").bind("change",function(){
+		var id = $("#sensorConfigGroupID").find("option:selected").text();
+		$.post("/back/scg/showById.do?id="+id,function(data){
+			var scg = data.scg;
+			alert(scg.sensorTypeID);
+			$("#sensorTypeID").val(scg.sensorTypeID);
+			$("#alarmRange").val(scg.alarmRange);
+			$("#frequency").val(scg.frequency);
+			$(".ready-show").show();
+		});
+	});
+</script>
+</html>

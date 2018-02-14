@@ -20,7 +20,8 @@
 		<module>httpclient</module>
 		<module>report</module>
         <module>dbgrid-web</module>
-    </modules>
+    <module>waf_demo</module>
+  </modules>
  
 	<scm>
   		<connection>scm:git:http://60.30.19.131:20020/git/commons/commons.git/</connection>
