@@ -1,5 +1,5 @@
 # how to build
-[db](db)
+
 ## 新的开发任务
 
 git checkout -b something_new
