@@ -45,6 +45,7 @@
 				<prop key="DB2">db2</prop>
 				<prop key="Oracle">oracle</prop>
 				<prop key="MySQL">mysql</prop>
+				<prop key="H2">mysql</prop><!-- 为了便于测试，将h2视作mysql处理 -->
 			</props>
 		</property>
 	</bean>

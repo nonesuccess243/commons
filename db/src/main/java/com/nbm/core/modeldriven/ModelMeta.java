@@ -17,6 +17,7 @@ import com.google.common.collect.Collections2;
 import com.nbm.commons.PackageUtils2;
 import com.nbm.commons.db.meta.UnderlineCamelConverter;
 import com.nbm.core.modeldriven.anno.DisplayName;
+import com.nbm.core.modeldriven.data.PackageUtils;
 import com.nbm.core.modeldriven.exception.ModelMetaInitException;
 import com.nbm.exception.NbmBaseException;
 import com.nbm.exception.NbmBaseRuntimeException;
@@ -60,7 +61,7 @@ public class ModelMeta
          */
         public static void discover( String packageName )
         {
-                Set<Class<? extends PureModel>> results = PackageUtils2.getClassesByPackagenameAndGenericClass(packageName, PureModel.class);
+                Set<Class<? extends PureModel>> results = PackageUtils.getClasses(packageName, PureModel.class);
                 
                 
                 for( Class<? extends PureModel> clas : results )

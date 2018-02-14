@@ -10,12 +10,12 @@ import org.reflections.Reflections;
  * 
  * 原来有一个同名的工具类，此类是后来写的，但是引用了更先进的工具包因此更简洁。
  * 
- * 为了避免全局重复，此类的可用范围限制为包一级。TODO 与原有的同名工具类整合并开放使用。
+ * TODO 与原有的同名工具类整合并开放使用。
  * 
  * @author niyuzhe
  *
  */
-class PackageUtils
+public class PackageUtils
 {
 
         /**

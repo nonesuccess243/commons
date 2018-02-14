@@ -180,8 +180,6 @@ public class CommonDao
          * 
          *         在mysql下测试成功。
          * 
-         *         TODO
-         *         由于selectKey还没有找到动态生成的方法，因此insert函数不支持其它数据库。下一步支持方法可能是使用mybatis的sqlProvider功能
          */
         public <T extends PureModel> Long insert(T record)
         {

@@ -23,6 +23,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.reflect.ClassPath;
 import com.google.common.reflect.ClassPath.ClassInfo;
+import com.nbm.core.modeldriven.data.PackageUtils;
 import com.nbm.exception.NbmBaseRuntimeException;
 import com.nbm.waf.core.modeldriven.Mapper;
 import com.younker.waf.db.DataSourceProvider;
@@ -39,8 +40,7 @@ public enum MybatisDao
 {
         INSTANCE;
 
-        private final static Logger log = LoggerFactory
-                        .getLogger(MybatisDao.class);
+        private final static Logger log = LoggerFactory.getLogger(MybatisDao.class);
 
         static AtomicInteger sessionCount = new AtomicInteger(0);
 
@@ -50,11 +50,13 @@ public enum MybatisDao
 
         // public static final MybatisDao INSTANCE = new MybatisDao();
 
-//        private Map<Thread, SqlSession> sqlSessionByThread = new HashMap<>();
-        
-//        private ThreadLocal<SqlSessionInfo> sqlSessionInfoByThread = new ThreadLocal<>();
-        
-//        private Map<HttpServletRequest, SqlSession> sqlSessionByRequest = new HashMap<>();
+        // private Map<Thread, SqlSession> sqlSessionByThread = new HashMap<>();
+
+        // private ThreadLocal<SqlSessionInfo> sqlSessionInfoByThread = new
+        // ThreadLocal<>();
+
+        // private Map<HttpServletRequest, SqlSession> sqlSessionByRequest = new
+        // HashMap<>();
 
         private SqlSessionFactory sessionFactory;
 
@@ -69,14 +71,12 @@ public enum MybatisDao
         {
                 try
                 {
-                        sessionFactory = new SqlSessionFactoryBuilder()
-                                        .build(configFile.openStream());
+                        sessionFactory = new SqlSessionFactoryBuilder().build(configFile.openStream());
                         log.info("Mybatis初始化成功");
                 } catch (IOException e)
                 {
                         // 发生配置文件不能获取的异常后，此处无法解决问题，直接转换为运行时异常抛出
-                        log.error("初始化Mybatis发生异常，将造成项目整体不能运行[configFile="
-                                        + configFile + "].", e);
+                        log.error("初始化Mybatis发生异常，将造成项目整体不能运行[configFile=" + configFile + "].", e);
                         throw new RuntimeException(e);
                 }
 
@@ -92,14 +92,12 @@ public enum MybatisDao
                 try
                 {
                         sessionFactory = new SqlSessionFactoryBuilder()
-                                        .build(Resources.getResourceAsReader(
-                                                        "mybatis-config.xml"));
+                                        .build(Resources.getResourceAsReader("mybatis-config.xml"));
                         log.info("Mybatis初始化成功");
                 } catch (IOException e)
                 {
                         // 发生配置文件不能获取的异常后，此处无法解决问题，直接转换为运行时异常抛出
-                        log.error("初始化Mybatis发生异常，将造成项目整体不能运行[configFile=mybatis-config.xml].",
-                                        e);
+                        log.error("初始化Mybatis发生异常，将造成项目整体不能运行[configFile=mybatis-config.xml].", e);
                         throw new RuntimeException(e);
                 }
 
@@ -113,42 +111,27 @@ public enum MybatisDao
         public void initAuto(String packageName)
         {
                 TransactionFactory transactionFactory = new JdbcTransactionFactory();
-                Environment environment = new Environment("development",
-                                transactionFactory,
+                Environment environment = new Environment("development", transactionFactory,
                                 DataSourceProvider.instance().getDataSource());
                 Configuration configuration = new Configuration(environment);
 
-                try
+                for (Class<? extends Mapper> modelClass : PackageUtils.getClasses(packageName, Mapper.class))
                 {
-                        for (ClassInfo classInfo : ClassPath
-                                        .from(getClass().getClassLoader())
-                                        .getTopLevelClassesRecursive(
-                                                        packageName))
+                        // log.info("start class[{}]",
+                        // className.getName());
+                        if (Mapper.class.isAssignableFrom(modelClass) && !modelClass.isAnonymousClass()
+                                        && !modelClass.equals(Mapper.class)
+                        // && !modelClass.isInterface()
+                        // &&
+                        // !Modifier.isAbstract(modelClass.getModifiers())
+                        )
                         {
-                                Class<?> modelClass = classInfo.load();
-                                // log.info("start class[{}]",
-                                // className.getName());
-                                if (Mapper.class.isAssignableFrom(modelClass)
-                                                && !modelClass.isAnonymousClass()
-                                                && !modelClass.equals(
-                                                                Mapper.class)
-                                // && !modelClass.isInterface()
-                                // &&
-                                // !Modifier.isAbstract(modelClass.getModifiers())
-                                )
-                                {
-                                        log.debug("find Mapper and add: {}",
-                                                        modelClass);
-                                        configuration.addMapper(modelClass);
-                                }
+                                log.debug("find Mapper and add: {}", modelClass);
+                                configuration.addMapper(modelClass);
                         }
-                } catch (IOException e)
-                {
-                        throw new NbmBaseRuntimeException("", e);
                 }
 
-                MybatisDao.INSTANCE.initFactory(new SqlSessionFactoryBuilder()
-                                .build(configuration));
+                MybatisDao.INSTANCE.initFactory(new SqlSessionFactoryBuilder().build(configuration));
 
         }
 
@@ -160,8 +143,7 @@ public enum MybatisDao
 
                 if (sessionFactory == null)
                 {
-                        throw new IllegalArgumentException(
-                                        "SqlSessionFactory为空，Mybatis尚未初始化");
+                        throw new IllegalArgumentException("SqlSessionFactory为空，Mybatis尚未初始化");
                 }
 
                 SqlSession sqlsession = sessionFactory.openSession();
@@ -170,27 +152,26 @@ public enum MybatisDao
                 return sqlsession;
         }
 
-//        synchronized SqlSession getSession(Thread thread)
-//        {
-//
-//                
-//                SqlSession session = getSession();
-////                sqlSessionByThread.put(thread, session);
-//
-//                return session;
-//
-//        }
+        // synchronized SqlSession getSession(Thread thread)
+        // {
+        //
+        //
+        // SqlSession session = getSession();
+        //// sqlSessionByThread.put(thread, session);
+        //
+        // return session;
+        //
+        // }
 
-//        synchronized SqlSession getSession(HttpServletRequest request)
-//        {
-//
-//                SqlSession session = getSession();
-//                sqlSessionByRequest.put(request, session);
-//
-//                return session;
-//
-//        }
-
+        // synchronized SqlSession getSession(HttpServletRequest request)
+        // {
+        //
+        // SqlSession session = getSession();
+        // sqlSessionByRequest.put(request, session);
+        //
+        // return session;
+        //
+        // }
 
         // public SqlSession getBatchSession()
         // {
@@ -219,18 +200,18 @@ public enum MybatisDao
                 }
         }
 
-//        void closeSession(SqlSession session, Thread thread)
-//        {
-//                closeSession(session);
-////                sqlSessionByThread.remove(thread);
-//        }
+        // void closeSession(SqlSession session, Thread thread)
+        // {
+        // closeSession(session);
+        //// sqlSessionByThread.remove(thread);
+        // }
 
         void closeSession(SqlSession session, HttpServletRequest request)
         {
                 try
                 {
                         closeSession(session);
-//                        sqlSessionByRequest.remove(request);
+                        // sqlSessionByRequest.remove(request);
                 } catch (Exception e)
                 {
                         log.error("", e);
@@ -264,8 +245,7 @@ public enum MybatisDao
                 try
                 {
                         sessionFactory = new SqlSessionFactoryBuilder()
-                                        .build(Resources.getResourceAsReader(
-                                                        "configuration_test.xml"));
+                                        .build(Resources.getResourceAsReader("configuration_test.xml"));
                 } catch (IOException e)
                 {
                         log.error("", e);
