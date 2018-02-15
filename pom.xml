@@ -1,36 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
- 
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>4.2.2.RELEASE</spring.version>
 	</properties>
- 
+
 	<groupId>com.nbm</groupId>
 	<artifactId>commons-aggr</artifactId>
 	<version>6.2.5-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>nbmcommons</name>
+	<name>wayeasoft_commons</name>
 	<modules>
+		<module>core</module>
 		<module>utils</module>
 		<module>db</module>
 		<module>waf</module>
 		<module>dbgrid</module>
 		<module>httpclient</module>
 		<module>report</module>
-        <module>dbgrid-web</module>
-    <module>waf_demo</module>
-    <module>core</module>
+		<module>dbgrid-web</module>
+		<module>waf_demo</module>
 	</modules>
- 
+
 	<scm>
-  		<connection>scm:git:http://60.30.19.131:20020/git/commons/commons.git/</connection>
-  		<url>scm:git:http://60.30.19.131:20020/git/commons/commons.git/</url>
-  		<developerConnection>scm:git:http://60.30.19.131:20020/git/commons/commons.git/</developerConnection>
-	  <tag>HEAD</tag>
-  </scm>
- 
+		<connection>scm:git:http://60.30.19.131:20020/git/commons/commons.git/</connection>
+		<url>scm:git:http://60.30.19.131:20020/git/commons/commons.git/</url>
+		<developerConnection>scm:git:http://60.30.19.131:20020/git/commons/commons.git/</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -38,14 +39,14 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
- 
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.12</version>
 		</dependency>
- 
- 
+
+
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
@@ -95,33 +96,33 @@
 
 
 	</dependencyManagement>
- 
+
 	<distributionManagement>
 		<repository>
 			<id>nbm-nexus</id>
 			<name>nbm-nexus</name>
 			<url>http://139.129.24.171:4567/nexus/content/repositories/releases</url>
 		</repository>
- 
+
 		<snapshotRepository>
 			<id>nbm-nexus-snapshots</id>
 			<name>nbm-nexus-snapshots</name>
 			<url>http://139.129.24.171:4567/nexus/content/repositories/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
- 
+
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
- 
+
 					<encoding>UTF-8</encoding>
- 
+
 				</configuration>
 			</plugin>
- 
+
 			<plugin>
 				<artifactId>maven-source-plugin</artifactId>
 				<version>2.1</version>
@@ -159,6 +160,6 @@
 
 		</plugins>
 	</build>
- 
- 
+
+
 </project>

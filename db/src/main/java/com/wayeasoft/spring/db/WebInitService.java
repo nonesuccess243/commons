@@ -1,4 +1,4 @@
-package com.wayeasoft.springmvc.config;
+package com.wayeasoft.spring.db;
 
 import javax.sql.DataSource;
 
@@ -9,8 +9,15 @@ import org.springframework.stereotype.Service;
 
 import com.younker.waf.db.DataSourceProvider;
 
+/**
+ * 利用spring的机制，在应用启动时执行，用于初始化传统的DataSourceProvider类
+ * 
+ * @see DataSourceProvider
+ * @author niyuzhe
+ *
+ */
 @Service
-public class WebInitService  implements ApplicationListener<ContextRefreshedEvent>
+public class WebInitService implements ApplicationListener<ContextRefreshedEvent>
 {
         @Autowired
         private DataSource dataSource;
