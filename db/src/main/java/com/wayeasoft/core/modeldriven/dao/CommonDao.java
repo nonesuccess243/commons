@@ -36,13 +36,33 @@ public class CommonDao
 
         private final static String PACKAGE_NAME = "com.wayeasoft.core.modeldriven.dao.CommonMapper";
 
+        protected SqlSession sqlSession()
+        {
+                return sqlSession;
+        }
+
+        
+        /**
+         * 当不属于spring环境时，仍然使用旧的sqlsession获取方式（ @see SqlsessionProvider)
+         * 
+         * 必须在项目的mybatis配置环境中引入commondao的mapper文件com/wayeasoft/core/modeldriven/dao/CommonMapper.xml
+         * 
+         * TODO 未测试
+         * 
+         * @return
+         */
         public static CommonDao old()
         {
-                CommonDao result = new CommonDao();
-                result.sqlSession = SqlSessionProvider.getSqlSession();
+                CommonDao result = new CommonDao()
+                {
+                        protected SqlSession sqlSession()
+                        {
+                                return SqlSessionProvider.getSqlSession();
+                        }
+                };
                 return result;
         }
-        
+
         @Autowired
         protected SqlSession sqlSession;
 
@@ -51,7 +71,7 @@ public class CommonDao
                 Map<String, Object> param = new HashMap<>();
                 param.put("meta", ModelMeta.getModelMeta(modelClass));
                 param.put("id", id);
-                Map<String, Object> result = sqlSession.selectOne(PACKAGE_NAME + ".selectById", param);
+                Map<String, Object> result = sqlSession().selectOne(PACKAGE_NAME + ".selectById", param);
 
                 if (result == null)
                 {
@@ -62,7 +82,7 @@ public class CommonDao
                 log.debug("after select ,the map is {}", result.toString());
 
                 result = wrapperResultMap(modelClass, result);
-                
+
                 try
                 {
                         T m = modelClass.newInstance();
@@ -71,8 +91,7 @@ public class CommonDao
                 } catch (Exception e)
                 {
                         throw new NbmBaseRuntimeException("执行commondao的selectById函数，将数据库内容转化为Java类时发生异常", e)
-                                .set("modelClass", modelClass)
-                                .set("id", id);
+                                        .set("modelClass", modelClass).set("id", id);
                 }
 
         }
@@ -99,7 +118,7 @@ public class CommonDao
                 param.put("meta", ModelMeta.getModelMeta(modelClass));
                 param.put("nameCol", nameCol.getDbName());
                 param.put("name", name);
-                Map<String, Object> result = sqlSession.selectOne(PACKAGE_NAME + ".selectByName", param);
+                Map<String, Object> result = sqlSession().selectOne(PACKAGE_NAME + ".selectByName", param);
 
                 if (result == null)
                 {
@@ -110,7 +129,7 @@ public class CommonDao
                 log.debug("after select ,the map is {}", result.toString());
 
                 BeanUtilsBeanFactory.registerModelClass(modelClass);
-                
+
                 result = wrapperResultMap(modelClass, result);
 
                 try
@@ -137,7 +156,7 @@ public class CommonDao
                 param.put("meta", ModelMeta.getModelMeta(modelClass));
                 param.put("example", example);
 
-                List<Map<String, Object>> result = sqlSession.selectList(PACKAGE_NAME + ".selectByExample", param);
+                List<Map<String, Object>> result = sqlSession().selectList(PACKAGE_NAME + ".selectByExample", param);
 
                 if (result == null)
                 {
@@ -176,7 +195,7 @@ public class CommonDao
                 param.put("meta", ModelMeta.getModelMeta(modelClass));
                 param.put("example", example);
 
-                Integer result = sqlSession.selectOne(PACKAGE_NAME + ".countByExample", param);
+                Integer result = sqlSession().selectOne(PACKAGE_NAME + ".countByExample", param);
 
                 return result;
         }
@@ -198,7 +217,7 @@ public class CommonDao
 
                 param.put("order", "AFTER");
 
-                sqlSession.insert(PACKAGE_NAME + ".insert", param);
+                sqlSession().insert(PACKAGE_NAME + ".insert", param);
 
                 return record.getId();
         }
@@ -210,7 +229,7 @@ public class CommonDao
          */
         public <T extends PureModel> int updateById(T record)
         {
-                return sqlSession.update(PACKAGE_NAME + ".updateById",
+                return sqlSession().update(PACKAGE_NAME + ".updateById",
                                 ImmutableMap.of("meta", ModelMeta.getModelMeta(record.getClass()), "record", record));
         }
 
@@ -223,7 +242,7 @@ public class CommonDao
         // public <T extends PureModel> int updateByExample(T record,
         // CommonExample example)
         // {
-        // return sqlSession.update(PACKAGE_NAME + ".updateByExample",
+        // return sqlSession().update(PACKAGE_NAME + ".updateByExample",
         // ImmutableMap.of("meta", ModelMeta.getModelMeta(record.getClass()),
         // "record", record,
         // "example", example));
@@ -240,7 +259,7 @@ public class CommonDao
                 Map<String, Object> param = new HashMap<>();
                 param.put("meta", ModelMeta.getModelMeta(modelClass));
                 param.put("id", id);
-                return sqlSession.delete(PACKAGE_NAME + ".deleteById", param);
+                return sqlSession().delete(PACKAGE_NAME + ".deleteById", param);
         }
 
         /**
@@ -254,7 +273,7 @@ public class CommonDao
                 Map<String, Object> param = new HashMap<>();
                 param.put("meta", ModelMeta.getModelMeta(modelClass));
                 param.put("example", example);
-                return sqlSession.delete(PACKAGE_NAME + ".deleteByExample", param);
+                return sqlSession().delete(PACKAGE_NAME + ".deleteByExample", param);
         }
 
         /**
@@ -268,9 +287,9 @@ public class CommonDao
         private static <T extends PureModel> Map<String, Object> wrapperResultMap(Class<T> modelClass,
                         Map<String, Object> result)
         {
-        
+
                 Map<String, Object> newResult = new HashMap<>(result.size());
-        
+
                 ModelMeta meta = ModelMeta.getModelMeta(modelClass);
                 for (Map.Entry<String, Object> entry : result.entrySet())
                 {
@@ -283,7 +302,7 @@ public class CommonDao
                                                 entry.getValue());
                         }
                 }
-        
+
                 return newResult;
         }
 
