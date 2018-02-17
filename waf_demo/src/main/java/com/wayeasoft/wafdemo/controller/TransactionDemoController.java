@@ -10,9 +10,9 @@ import com.wayeasoft.waf.springmvc.BaseController;
 @RestController
 public class TransactionDemoController extends BaseController
 {
-        
-        @RequestMapping("/testTransaction")
-        public Subsys testTransaction()
+        @Transactional
+        @RequestMapping("/testTransactionError")
+        public Subsys testTransactionError()
         {
                 Subsys subsys = new Subsys();
                 
@@ -21,9 +21,18 @@ public class TransactionDemoController extends BaseController
                 dao.insert(subsys);
                 
                 throw new RuntimeException("这里就是要出个错给你看看");//TODO 还无法实现事务管理，没有配置transactionManager
+        }
+        
+        @Transactional
+        @RequestMapping("/testTransaction")
+        public Subsys testTransaction()
+        {
+                Subsys subsys = new Subsys();
                 
+                subsys.setName("adaf");
                 
-                
+                dao.insert(subsys);
+                return subsys;
         }
 
 }

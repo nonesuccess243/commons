@@ -33,7 +33,7 @@ public class ModelRegister
 
         private final static Logger log = LoggerFactory.getLogger(ModelRegister.class);
         @Autowired
-        @Value("#{'${model.packages}'.split(',')}")
+        @Value("#{'${commons.modeldriven.packages}'.split(',')}")
         private String[] modelPackages;
 
         private Map<String, ModelMeta> modelMap;
