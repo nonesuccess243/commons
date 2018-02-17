@@ -1,5 +1,6 @@
 package com.nbm.waf.boot;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.Iterator;
 
@@ -27,10 +28,13 @@ public class DbBooter
 
         public void boot() throws Exception
         {
+                
+                Connection connection = dataSource.getConnection();
+                
                 log.debug("basePackage:{}", basePackage);
                 
                 ModelMeta.discover(basePackage);
-
+                
                 for (Iterator<ModelMeta> iter = ModelMeta
                                 .getAllDiscoveredModelMeta().iterator(); iter
                                                 .hasNext();)
@@ -45,7 +49,7 @@ public class DbBooter
                         generator.generate();
 
                         
-                        ResultSet tableMetaResultSet = dataSource.getConnection().getMetaData().getTables(null, null, meta.getDbTypeName(), null);
+                        ResultSet tableMetaResultSet = connection.getMetaData().getTables(null, null, meta.getDbTypeName(), null);
                         if( tableMetaResultSet.next())//找到这张表了
                         {
                                 
@@ -56,12 +60,15 @@ public class DbBooter
                         }else//不存在这张表
                         {
                                 log.debug("不存在[{}]表，根据sql语句创建[{}]", meta.getDbTypeName(), generator.getCreateSqlContent());
-                                dataSource.getConnection().createStatement().execute(
+                                connection.createStatement().execute(
                                                 generator.getCreateSqlContent());
                         }
                         
                        
                 }
+                
+//                connection.commit();
+                connection.close();
 
         }
 }

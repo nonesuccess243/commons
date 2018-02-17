@@ -23,6 +23,7 @@
 		<module>report</module>
 		<module>dbgrid-web</module>
 		<module>waf_demo</module>
+		<module>spring-web-starter</module>
 	</modules>
 
 	<scm>

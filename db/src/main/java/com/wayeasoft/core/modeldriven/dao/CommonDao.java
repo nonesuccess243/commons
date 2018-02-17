@@ -17,6 +17,7 @@ import com.nbm.core.modeldriven.Field;
 import com.nbm.core.modeldriven.ModelMeta;
 import com.nbm.core.modeldriven.PureModel;
 import com.nbm.exception.NbmBaseRuntimeException;
+import com.younker.waf.db.mybatis.SqlSessionProvider;
 
 /**
  * 基于spring和spring-mybatis的common dao
@@ -35,6 +36,13 @@ public class CommonDao
 
         private final static String PACKAGE_NAME = "com.wayeasoft.core.modeldriven.dao.CommonMapper";
 
+        public static CommonDao old()
+        {
+                CommonDao result = new CommonDao();
+                result.sqlSession = SqlSessionProvider.getSqlSession();
+                return result;
+        }
+        
         @Autowired
         protected SqlSession sqlSession;
 
