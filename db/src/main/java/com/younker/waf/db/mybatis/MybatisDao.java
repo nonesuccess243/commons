@@ -133,9 +133,6 @@ public enum MybatisDao
                 Configuration configuration = new Configuration(environment);
 
 //                 注册commonMapper
-                configuration.addMapper(CommonMapper.class);
-//                
-                
                 try(InputStream inputStream
                                 = Resources
                                 .getResourceAsStream(CommonDao.MAPPER_PATH))
