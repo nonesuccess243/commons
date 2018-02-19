@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import com.nbm.commons.PackageUtils;
 import com.nbm.core.modeldriven.anno.DbTypeAnno;
 import com.nbm.core.modeldriven.generator.CrudGenerator;
+import com.nbm.exception.NbmBaseRuntimeException;
 import com.younker.waf.db.DataSourceProvider;
 
 /**
@@ -116,6 +117,12 @@ public enum Db
                         }
                 }
 
+        }, SQLSERVER {
+                @Override
+                protected DbType getDbTypeByJavaTypeWithDialect(Field field)
+                {
+                        throw new NbmBaseRuntimeException("Sql server 尚未实现");
+                }
         };
 
         private final static Logger log = LoggerFactory.getLogger(Db.class);
@@ -320,6 +327,27 @@ public enum Db
                 log.debug(mybatisConfig.toString());
 
                 CrudGenerator.db = temp;
+        }
+        
+        public static Db getByProductName( String productName)
+        {
+                if( productName == null )
+                {
+                        throw new NbmBaseRuntimeException("传入了空的productName");
+                }
+                switch (productName)
+                {
+                case "ORACLE":
+                        return ORACLE;
+                case "MySQL":
+                        return MYSQL;
+                case "SQL Server":
+                        return SQLSERVER;
+                case "H2":
+                        return MYSQL;
+                default:
+                        throw new NbmBaseRuntimeException("未知的database product name").set("databaseProduceName", DataSourceProvider.instance().getDatabaseProductName());
+                }
         }
 
         public static void main(String[] args)

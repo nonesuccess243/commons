@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dauphin - Premium Responsive Bootstrap Admin Template - Tables</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Styling -->
+    <link rel="stylesheet" href="addons/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="addons/toastr/toastr.min.css"/>
+    <link rel="stylesheet" href="addons/fontawesome/css/font-awesome.css"/>
+    <link rel="stylesheet" href="addons/ionicons/css/ionicons.css"/>
+    <link rel="stylesheet" href="addons/noUiSlider/nouislider.min.css"/>
+
+    <link rel="stylesheet" href="styles/style.css"/>
+    <link rel="stylesheet" href="styles/theme-blue.css" class="theme"/>
+
+    <!-- End of Styling -->
+</head>
+<body class="hold-transition">
+
+
+<!-- Copyright � 2008. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+
+    <!-- Main content-->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6" style="width:100%;">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            节点列表
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-sm table-hover">
+                                <thead>
+                                    <tr class="info">
+                                        <th>领航网关所有节点</th>
+										<th>安装时间</th>
+										<th>查看</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tb">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- End of Main content-->
+
+    <div class="scripts">
+
+        <!-- Addons -->
+        <script src="/xw/js/jquery.min.js"></script>
+        <script src="addons/jquery-ui/jquery-ui.min.js"></script>
+        <script src="addons/bootstrap/js/bootstrap.min.js"></script>
+        <script src="addons/fullcalendar/lib/moment.min.js"></script>
+        
+        
+
+        <!-- Dauphin scripts -->
+        <script src="addons/dauphin.js"></script>
+
+    </div>
+
+</body>
+<script type="text/javascript" src="/xw/js/service.js"></script>
+<script>
+	//初始化获取用户名及token
+	var token;
+	var username = "3e1c373c-2a24-11e7-a175-fd691a0a2368";
+	$(function(){
+		$.post('http://cloud.smartkit.io/login',{account:'liudi_mute@163.com',password:'linghang000'},function(data){
+			token = data.result.token;
+		});
+		setTimeout(function(){
+			$.get('http://lora.smartkit.io/v2/user_node?access_token='+token+'&username='+username+'&type=web',function(data){
+				var info = data.info;
+				console.log(info);
+				for(var i=0;i<info.length;i++){
+					$("#tb").append("<tr><td>"+info[i].deui+"</td><td>"+getTimeByStr(info[i].time)+"</td><td><a href='nodeDetails.html?deui="+info[i].deui+"'>查看详情</a></td></tr>");
+				}
+			});
+		},500);
+	})
+</script>
+</html>

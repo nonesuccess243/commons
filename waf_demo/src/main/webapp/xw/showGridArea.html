@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>智慧城市综合治理平台</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Styling -->
+    <link rel="stylesheet" href="addons/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="addons/toastr/toastr.min.css"/>
+    <link rel="stylesheet" href="addons/fontawesome/css/font-awesome.css"/>
+    <link rel="stylesheet" href="addons/ionicons/css/ionicons.css"/>
+    <link rel="stylesheet" href="addons/noUiSlider/nouislider.min.css"/>
+    <link rel="stylesheet" href="/xw/css/public.css" />
+
+    <link rel="stylesheet" href="styles/style.css"/>
+    <link rel="stylesheet" href="styles/theme-blue.css" class="theme"/>
+	<link rel="stylesheet" href="/xw/js/vue.js" />
+    <!-- End of Styling -->
+</head>
+<body class="hold-transition">
+
+
+<!-- Copyright � 2008. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+
+    <!-- Main content-->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6" style="width:100%;">
+                    <div class="panel">
+                        <div class="panel-heading"> 网格区域管理</div>
+                        <div class="table-responsive">
+                            <table class="table table-sm table-hover">
+                                <thead>
+                                    <tr class="info">
+                                        <th>名称</th>
+										<th>上级区域</th>
+										<th>地理范围</th>
+										<th>类型</th>
+										<th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="showList">
+                                <tr v-for="item in dataList">
+									<td>{{item.name}}</td>
+									<td>{{item.superAreaID}}</td>
+									<td>{{item.geographyRange}}</td>
+									<td>{{item.type}}</td>
+									<td>
+										<a href="editGridArea.html?id={{item.id}}" class="btn btn-outline btn-info">编辑</a>
+										<a onclick="deleteGa('{{item.id}}')" class="btn btn-outline btn-danger">删除</a>
+									</td>
+								</tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- End of Main content-->
+
+    <div class="scripts">
+
+        <!-- Addons -->
+        <script src="/xw/js/jquery.min.js"></script>
+        <script src="addons/jquery-ui/jquery-ui.min.js"></script>
+        <script src="addons/bootstrap/js/bootstrap.min.js"></script>
+        <script src="addons/fullcalendar/lib/moment.min.js"></script>
+        
+        
+
+        <!-- Dauphin scripts -->
+        <script src="addons/dauphin.js"></script>
+
+    </div>
+
+</body>
+<script type="text/javascript" src="/xw/js/service.js"></script>
+<script type="text/javascript" src="/xw/js/alert.js"></script>
+<script type="text/javascript">
+	var example = new Vue({
+		el : '#showList',
+		data : 
+		{
+			dataList : []
+		}
+	});
+	
+	$(document).ready(function(){
+		getData();
+	});
+	
+	function getData(){
+		var url = "/back/ga/showGa.do";
+		$.post(url,function(data){
+			var gaList = data.gaList;
+			for(i = 0; i < gaList.length; i++)
+			{
+				if(gaList[i].type=="ADMINISTRATION"){
+					gaList[i].type="行政区域";
+				}else if(gaList[i].type=="INSIDEVIRTUAL"){
+					gaList[i].type="内部虚拟区域";
+				}
+				example.dataList.push(gaList[i]);
+			}
+		});
+	}
+	
+	function deleteGa(id){
+		var url = "/back/ga/deleteGa.do?id="+id;
+		$.post(url,function(data){
+			alert("删除成功")
+			example.dataList=[];
+			getData();
+		});
+	}
+	
+	/* function alertMsg(text) {
+	    var bgHtml ="<div class='msg-bg'></div>";
+	    var msgAlertHtml = "<div class='msg-alertWrap'>" +
+	                            "<div class='msg-alert'>" +
+	                                "<div class='msg-header'><button class='msg-dismiss'><span>&times;</span></button><h4 class='msg-title'>温馨提示</h4></div>" +
+	                                "<div class='msg-body'>" +
+	                                    "<div class='msg-content'></div>" +
+	                                "</div>" +
+	                                "<div class='msg-footer'>" +
+	                                    "<button type='button' class='msg-btnOk'>确定</button>" +
+	                                "</div>" +
+	                            "</div>"+
+	                        "</div>";
+	    if ($(".msg-bg").length == 0) {
+	        $("body").append(bgHtml + msgAlertHtml);
+	    } else {
+	        $("body").append(msgAlertHtml);
+	    }
+
+	    $(".msg-alertWrap:last-child .msg-content").html(text);
+
+	    $(".msg-btnOk,.msg-dismiss").on("click", function () {
+	        $(this).parents(".msg-alertWrap").remove();
+	        if ($(".msg-alertWrap").length == 0) {
+	            $(".msg-bg").remove();
+	        }
+	    })
+	} */
+</script>
+</html>

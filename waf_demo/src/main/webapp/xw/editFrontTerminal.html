@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>智慧城市综合治理平台</title>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link
+	href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300'
+	rel='stylesheet' type='text/css' />
+
+<!-- Styling -->
+<link rel="stylesheet" href="addons/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" href="addons/toastr/toastr.min.css" />
+<link rel="stylesheet" href="addons/fontawesome/css/font-awesome.css" />
+<link rel="stylesheet" href="addons/ionicons/css/ionicons.css" />
+<link rel="stylesheet" href="addons/noUiSlider/nouislider.min.css" />
+
+<link rel="stylesheet" href="styles/style.css" />
+<link rel="stylesheet" href="styles/theme-blue.css" class="theme" />
+
+<link rel="stylesheet" href="/xw/css/public.css" />
+
+<!-- End of Styling -->
+</head>
+<body class="hold-transition">
+
+
+	<!-- Copyright � 2008. Spidersoft Ltd -->
+	<style>
+A.applink:hover {
+	border: 2px dotted #DCE6F4;
+	padding: 2px;
+	background-color: #ffff00;
+	color: green;
+	text-decoration: none
+}
+
+A.applink {
+	border: 2px dotted #DCE6F4;
+	padding: 2px;
+	color: #2F5BFF;
+	background: transparent;
+	text-decoration: none
+}
+
+A.info {
+	color: #2F5BFF;
+	background: transparent;
+	text-decoration: none
+}
+
+A.info:hover {
+	color: green;
+	background: transparent;
+	text-decoration: underline
+}
+</style>
+
+	<!-- Main content-->
+		<div class="col-sm-6" style="margin-bottom: 312px;">
+                    <div class="panel">
+                        <div class="panel-heading">新增前端机<div class="panel-options">
+                                <a class="panel-toggle"><i class="fa fa-chevron-up"></i></a>
+                                <a class="panel-close"><i class="fa fa-times"></i></a>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <form class="row">
+                              <div class="form-wrapper col-sm-6">
+                                  <label for="exampleInputEmail1">编号:</label>
+                                  <div class="form-group ">
+                                    <input type="text" class="form-control" id="no" placeholder="请输入编号">
+                                  </div>
+                              </div>
+
+                              <div class="form-wrapper col-sm-6">
+                                  <label for="exampleInputPassword1">类型:</label>
+                                  <div class="form-group">
+                                    <select class="form-control" id="type">
+                                    </select>
+                                  </div>
+                              </div>
+                              
+                              <div class="form-wrapper col-sm-6">
+                                  <label for="exampleInputPassword1">名称:</label>
+                                  <div class="form-group">
+                                    <input type="text" class="form-control" id="name" placeholder="请输入名称">
+                                  </div>
+                              </div>
+                              
+                              <div class="form-wrapper col-sm-6">
+                                  <label for="exampleInputPassword1">地理位置:</label>
+                                  <div class="form-group">
+                                    <input type="text" class="form-control" id="position" placeholder="请输入地理位置（点坐标）">
+                                  </div>
+                              </div>
+                              
+                              <div class="form-wrapper col-sm-6">
+                                  <label for="exampleInputPassword1">主网格:</label>
+                                  <div class="form-group">
+                                    <select class="form-control" id="mainGridID">
+                                    </select>
+                                  </div>
+                              </div>
+                              
+                              <div class="form-wrapper col-sm-6 width-max">
+                                  <label for="exampleInputPassword1">关联网格:</label>
+                                  <div class="form-group checkbox-maringTop" id="relevanceGridID">
+                                  </div>
+                              </div>
+                              
+
+                              <div class="col-sm-12">
+                                   <input type="button" class="btn btn-info button-right" onclick="editFrontTerminal()" value="添加"/> 
+                              </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+	<!-- End of Main content-->
+	<div class="scripts">
+
+		<!-- Addons -->
+		<script src="/xw/js/jquery.min.js"></script>
+		<script src="addons/jquery-ui/jquery-ui.min.js"></script>
+		<script src="addons/bootstrap/js/bootstrap.min.js"></script>
+		<script src="addons/fullcalendar/lib/moment.min.js"></script>
+		
+		
+
+		<!-- Dauphin scripts -->
+		<script src="addons/dauphin.js"></script>
+
+	</div>
+
+
+</body>
+<script type="text/javascript" src="/xw/js/service.js"></script>
+<script>
+	
+	
+	var id = GetQueryString("id");
+	
+	function GetQueryString(name)
+	{
+	     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+	     var r = window.location.search.substr(1).match(reg);
+	     if(r!=null)return  unescape(r[2]); return null;
+	}
+	
+	$(document).ready(function(){
+		var url = "/back/ft/showById.do?id="+id;
+		$.post(url,function(data){
+			var ft = data.ft
+			$("#no").val(ft.no);
+			if(ft.type=="ARM"){
+				$("#type").append("<option value='ARM型' selected='true'>ARM型</option>");
+				$("#type").append("<option value='其他'>其他</option>");
+			}else if(ga.type=="OTHER"){
+				$("#type").append("<option value='ARM型'>ARM型</option>");
+				$("#type").append("<option value='其他' selected='true'>其他</option>");
+			}
+			$("#name").val(ft.name);
+			$("#position").val(ft.position);
+			
+	        var mainGridID = ft.mainGridID;
+			var relevanceGridID = ft.relevanceGridID;
+			$.post("/back/ga/showGa.do",function(data){
+				var gaList = data.gaList;
+				for(var i=0;i<gaList.length;i++){
+					if(mainGridID==gaList[i].name){
+						$("#mainGridID").append("<option value='"+gaList[i].name+"' selected='true'>"+gaList[i].name+"</option>");
+					}else{
+						$("#mainGridID").append("<option value='"+gaList[i].name+"'>"+gaList[i].name+"</option>");
+					}
+					if(relevanceGridID.indexOf(gaList[i].name)>-1){	
+						$("#relevanceGridID").append("<label class='checkbox'><input type='checkbox' class='info' checked='true' value='"+gaList[i].name+"' name='items'><span class='checkbox-placeholder'></span>"+gaList[i].name+"&#12288;</label>");
+					}else{
+						$("#relevanceGridID").append("<label class='checkbox'><input type='checkbox' class='info' value='"+gaList[i].name+"' name='items'><span class='checkbox-placeholder'></span>"+gaList[i].name+"&#12288;</label>");
+					}
+				}
+			});
+		})
+	});
+	
+	function editFrontTerminal(){
+		var no = $("#no").val();
+		var type = $("#type").find("option:selected").text();
+		var name = $("#name").val();
+		var position = $("#position").val();
+        var mainGridID = $("#mainGridID").find("option:selected").text();
+		var relevanceGridID ="";
+		$("input[name=items]").each(function() {  
+            if ($(this).is(":checked")) {  
+            	relevanceGridID += $(this).val()+" ";
+            }  
+        }); 
+		var url = "/back/ft/editFt.do?id="+id+"&no="+no+"&type="+type+"&name="+name+"&position="+position
+		 +"&mainGridID="+mainGridID+"&relevanceGridID="+relevanceGridID;
+		$.post(url,function(data){
+			alert("编辑成功");
+			window.location.href="showFrontTerminal.html";
+		})
+	}
+</script>
+</html>

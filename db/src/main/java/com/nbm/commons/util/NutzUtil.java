@@ -78,7 +78,7 @@ public enum NutzUtil
                         @Override
                         public Connection getConnection() throws SQLException
                         {
-                                return SqlSessionProvider.getConnecetion();
+                                return SqlSessionProvider.getConncetion();
                         }
 
                         @Override

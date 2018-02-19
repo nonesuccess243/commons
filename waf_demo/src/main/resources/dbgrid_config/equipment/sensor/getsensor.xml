@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE DBGrids SYSTEM "dbgrid.dtd" >
+
+<DBGrids>
+	<DBType>
+		<param>MYSQL</param>
+	</DBType>
+	<!-- </>sender_id,send_date,is_system, ,content,remark,state -->
+	<!-- 查询消息 -->
+       <DBGrid>
+       	<grid-name>/equipment/getsensor</grid-name>
+			<grid-table>
+			    E_SENSOR
+			</grid-table>
+			<grid-cols>
+				ID, NO, FRONT_TERMINAL_I_D, POSITION
+			</grid-cols>
+			<grid-label>
+			    id$h, no, frontTerminalID, position
+			</grid-label>
+			<grid-fields>
+			    id, no, frontTerminalID, position
+			</grid-fields>
+			<grid-relation>
+			    
+			</grid-relation>
+			<grid-orderBy>
+			    id
+			</grid-orderBy>
+			<grid-groupBy></grid-groupBy>
+			<grid-rowsPerPage>20</grid-rowsPerPage>
+       </DBGrid>
+</DBGrids> 

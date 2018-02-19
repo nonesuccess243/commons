@@ -17,8 +17,7 @@ public class GenerateAndCreateTest
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception
 	{
-		DataSourceProvider.initSimple("org.h2.Driver",
-		                "jdbc:h2:~/.h2/modeldriven_test;AUTO_SERVER=TRUE", "sa", "");
+		DataSourceProvider.initSimple();
 	}
 
 	@AfterClass

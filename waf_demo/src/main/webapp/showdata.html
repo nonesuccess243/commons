@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>智慧城市综合治理平台</title>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link
+	href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300'
+	rel='stylesheet' type='text/css' />
+
+<!-- Styling -->
+<link rel="stylesheet" href="/css/public.css" />
+<link rel="stylesheet" href="/jar/addons/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" href="/jar/addons/toastr/toastr.min.css" />
+<link rel="stylesheet"
+	href="/jar/addons/fontawesome/css/font-awesome.css" />
+<link rel="stylesheet" href="/jar/addons/ionicons/css/ionicons.css" />
+<link rel="stylesheet" href="/jar/addons/noUiSlider/nouislider.min.css" />
+<link rel="stylesheet" href="/jar/styles/style.css" />
+<link rel="stylesheet" href="/jar/styles/theme-blue.css" class="theme" />
+<!-- End of Styling -->
+</head>
+<body class="hold-transition">
+
+
+	<!-- Copyright � 2008. Spidersoft Ltd -->
+	<style>
+A.applink:hover {
+	border: 2px dotted #DCE6F4;
+	padding: 2px;
+	background-color: #ffff00;
+	color: green;
+	text-decoration: none
+}
+
+A.applink {
+	border: 2px dotted #DCE6F4;
+	padding: 2px;
+	color: #2F5BFF;
+	background: transparent;
+	text-decoration: none
+}
+
+A.info {
+	color: #2F5BFF;
+	background: transparent;
+	text-decoration: none
+}
+
+A.info:hover {
+	color: green;
+	background: transparent;
+	text-decoration: underline
+}
+</style>
+
+	<!-- Main content-->
+	<div class="container-fluid" id="dbgrid">
+		<div class="row">
+			<div class="col-sm-6" style="width: 100%;">
+				<div class="panel">
+					<div class="panel-heading">{{title}}</div>
+					<div class="table-responsive">
+						<table class="table table-sm table-hover">
+							<thead>
+								<tr class="info">
+									<th v-for="item in meta">{{item.title}}</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr v-for="data in jsonlist">
+									<td v-for="field in meta">{{data[field.field]}}</td>
+									<td><a href="editFrontTerminal.html?id={{data.id}}"
+										class="btn btn-outline btn-info">编辑</a> <a
+										onclick="deleteFt('{{data.id}}')"
+										class="btn btn-outline btn-danger">删除</a></td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End of Main content-->
+
+	<div class="scripts">
+		<script src="/jar/js/jquery.min.js"></script>
+		<script src="/jar/js/vue.js"></script>
+		<script src="/jar/js/alert.js"></script>
+		<script src="/jar/addons/jquery-ui/jquery-ui.min.js"></script>
+		<script src="/jar/addons/bootstrap/js/bootstrap.min.js"></script>
+		<script src="/jar/addons/fullcalendar/lib/moment.min.js"></script>
+		<script src="/jar/addons/dauphin.js"></script>
+	</div>
+</body>
+<script type="text/javascript" src="/js/service.js"></script>
+<script type="text/javascript" src="/controller/showdataController.js"></script>
+</html>

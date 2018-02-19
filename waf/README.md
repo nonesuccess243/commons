@@ -1,0 +1,3 @@
+# ArchitectBooter
+
+根据一个json格式的配置文件，生成各种项目骨架文件夹的工具类

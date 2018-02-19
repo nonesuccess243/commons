@@ -25,22 +25,8 @@ import org.slf4j.LoggerFactory;
  */
 public class PackageUtils
 {
-        
-        private final static Logger log = LoggerFactory.getLogger(PackageUtils.class);
 
-        public static void main(String[] args) throws Exception
-        {
-                String packageName = "com.nbm";
-                // List<String> classNames = getClassName(packageName);
-                List<String> classNames = getClassName(packageName, true);
-                if (classNames != null)
-                {
-                        for (String className : classNames)
-                        {
-                                System.out.println(className);
-                        }
-                }
-        }
+        private final static Logger log = LoggerFactory.getLogger(PackageUtils.class);
 
         /**
          * 获取某包下（包括该包的所有子包）所有类
@@ -67,8 +53,7 @@ public class PackageUtils
         {
                 List<String> fileNames = null;
                 ClassLoader loader = Thread.currentThread().getContextClassLoader();
-                
-                
+
                 String packagePath = packageName.replace(".", "/");
                 URL url = loader.getResource(packagePath);
                 if (url != null)
@@ -87,11 +72,11 @@ public class PackageUtils
                 }
                 return fileNames;
         }
-        
+
         public static List<Class<?>> getClasses(String packageName, boolean childPackage)
         {
                 List<Class<?>> results = new ArrayList<Class<?>>();
-                for( String className : getClassName(packageName, childPackage))
+                for (String className : getClassName(packageName, childPackage))
                 {
                         try
                         {
@@ -101,16 +86,15 @@ public class PackageUtils
                                 log.error("generate class object error[" + className + "]", e);
                         }
                 }
-                
+
                 return results;
         }
-        
-        
+
         public static List<Class<?>> getClasses(String packageName)
         {
                 return getClasses(packageName, true);
         }
-        
+
         /**
          * 从项目文件获取某包下所有类
          * 

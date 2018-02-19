@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>智慧城市综合治理平台</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'/>
+    
+    <!-- Styling -->
+    <link rel="stylesheet" href="/jar/addons/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/jar/addons/toastr/toastr.min.css"/>
+    <link rel="stylesheet" href="/jar/addons/fontawesome/css/font-awesome.css"/>
+    <link rel="stylesheet" href="/jar/addons/ionicons/css/ionicons.css"/>
+    <link rel="stylesheet" href="/jar/addons/noUiSlider/nouislider.min.css"/>
+    <link rel="stylesheet" href="/jar/styles/style.css"/>
+    <link rel="stylesheet" href="/jar/styles/theme-blue.css" class="theme"/>
+    <script src="/jar/js/jquery.min.js"></script>
+	<link rel="stylesheet" href="/jar/js/vue.js" />
+    <!-- End of Styling -->
+</head>
+<body class="hold-transition">
+
+
+<!-- Copyright � 2008. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+
+    <!-- Main content-->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6" style="width:100%;">
+                    <div class="panel">
+                        <div class="panel-heading"> 传感器类型管理</div>
+                        <div class="table-responsive">
+                            <table class="table table-sm table-hover">
+                                <thead>
+                                    <tr class="info">
+                                        <th>编号</th>
+										<th>类型</th>
+										<th>名称</th>
+										<th>主网格</th>
+										<th>关联网格</th>
+										<th>地理位置</th>
+										<th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="showList">
+                                <tr v-for="item in dataList">
+									<td>{{item.no}}</td>
+									<td>{{item.type}}</td>
+									<td>{{item.name}}</td>
+									<td>{{item.mainGridID}}</td>
+									<td>{{item.relevanceGridID}}</td>
+									<td>{{item.position}}</td>
+									<td>
+										<a href="editFrontTerminal.html?id={{item.id}}" class="btn btn-outline btn-info">编辑</a>
+										<a onclick="deleteFt('{{item.id}}')" class="btn btn-outline btn-danger">删除</a>
+									</td>
+								</tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- End of Main content-->
+
+    <div class="scripts">
+        <!-- Addons -->
+        <script src="/jar/addons/jquery-ui/jquery-ui.min.js"></script>
+        <script src="/jar/addons/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/jar/addons/fullcalendar/lib/moment.min.js"></script>
+        <!-- Dauphin scripts -->
+        <script src="/jar/addons/dauphin.js"></script>
+    </div>
+</body>
+<script type="text/javascript" src="/js/service.js"></script>
+<script type="text/javascript">
+	var example = new Vue({
+		el : '#showList',
+		data : 
+		{
+			dataList : []
+		}
+	});
+	
+	$(document).ready(function(){
+		getData();
+	});
+	
+	function getData(){
+		var url = "/back/ft/showFt.do";
+		$.post(url,function(data){
+			var ftList = data.ftList;
+			for(i = 0; i < ftList.length; i++)
+			{
+				example.dataList.push(ftList[i]);
+			}
+		});
+	}
+	
+	function deleteFt(id){
+		var url = "/back/ft/deleteFt.do?id="+id;
+		$.post(url,function(data){
+			alert("删除成功")
+			example.dataList=[];
+			getData();
+		});
+	}
+</script>
+</html>

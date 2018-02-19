@@ -42,6 +42,7 @@ public class ModelMetaTest
         @Test
         public void testDiscoverAndSimpleName()
         {
+                ModelMeta.discover("com.nbm.core.modeldriven.test.model");
                 assertNotNull(ModelMeta.getModelMetaBySimpleName("ModelDrivenTestModel"));
                 
         }

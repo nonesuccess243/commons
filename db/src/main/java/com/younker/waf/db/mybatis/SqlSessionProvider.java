@@ -32,7 +32,7 @@ public class SqlSessionProvider
 
         }
 
-        public static Connection getConnecetion()
+        public static Connection getConncetion()
         {
                 return SqlSessionProvider.getSqlSession().getConnection();
         }

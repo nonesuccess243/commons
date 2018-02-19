@@ -11,73 +11,74 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import com.nbm.core.modeldriven.ModelMeta;
 import com.nbm.core.modeldriven.enums.YesOrNo;
 import com.nbm.core.modeldriven.generator.CrudGenerator;
 import com.nbm.core.modeldriven.test.model.ModelDrivenTestModel;
 import com.wayeasoft.test.spring.RootConfig;
+import com.younker.waf.db.DataSourceProvider;
+import com.younker.waf.db.mybatis.CommonDao;
+import com.younker.waf.db.mybatis.CommonExample;
+import com.younker.waf.db.mybatis.MybatisDao;
+import com.younker.waf.db.mybatis.SqlSessionProvider;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes =
-{ RootConfig.class })
 public class CommonDaoTest
 {
         
-        @Autowired
-        private CommonDao dao;
-        
-        @Autowired
-        private DataSource dataSource;
-
         @BeforeClass
         public static void setUpBeforeClass() throws Exception
         {
+                DataSourceProvider.initSimple();
+                MybatisDao.INSTANCE.scanAndInit();
+                SqlSessionProvider.openSession();
                 
         }
 
         @AfterClass
         public static void tearDownAfterClass() throws Exception
         {
+                SqlSessionProvider.getSqlSession().commit();
         }
 
         @Before
         public void setUp() throws Exception
         {
+                
+                
                 CrudGenerator.GENERATE_FILE = false;
                 CrudGenerator generator = new CrudGenerator(ModelDrivenTestModel.class);
                 generator.generate();
                 
-                
-                dataSource.getConnection().createStatement().execute("DROP TABLE IF EXISTS "+ ModelMeta.getModelMeta(ModelDrivenTestModel.class).getDbTypeName());
-                dataSource.getConnection().createStatement().execute(generator.getCreateSqlContent());
+                SqlSessionProvider.getConncetion().createStatement().execute("DROP TABLE IF EXISTS "+ ModelMeta.getModelMeta(ModelDrivenTestModel.class).getDbTypeName());
+                SqlSessionProvider.getConncetion().createStatement().execute(generator.getCreateSqlContent());
+                SqlSessionProvider.getConncetion().commit();
                 
         }
 
         @After
         public void tearDown() throws Exception
         {
+                
         }
 
         @Test
         public void testSelectById()
         {
-                dao.selectById(ModelDrivenTestModel.class, 1l);
+                
+                CommonDao.get().selectById(ModelDrivenTestModel.class, 1l);
         }
 
         @Test
         public void testSelectByName()
         {
-                dao.selectByName(ModelDrivenTestModel.class, "abc");
+                CommonDao.get().selectByName(ModelDrivenTestModel.class, "abc");
 
         }
 
         @Test
         public void testSelectByExample()
         {
-                dao.selectByExample(ModelDrivenTestModel.class,
+                CommonDao.get().selectByExample(ModelDrivenTestModel.class,
                                 new CommonExample().createCriteria().andIdEqualTo(1l).andNameBetween("1", "2").finish()
                                                 .or().andBetween("NAME", "1", "2").finish().orderBy("NAME")
                                                 .distinct(true));
@@ -86,10 +87,10 @@ public class CommonDaoTest
         @Test
         public void testCountByExample()
         {
-                assertNotNull(dao.countByExample(ModelDrivenTestModel.class, null));
+                assertNotNull(CommonDao.get().countByExample(ModelDrivenTestModel.class, null));
                 
                 assertEquals(new Integer(0),
-                                dao.countByExample(ModelDrivenTestModel.class, new CommonExample().createCriteria()
+                                CommonDao.get().countByExample(ModelDrivenTestModel.class, new CommonExample().createCriteria()
                                                 .andIdEqualTo(1l).andNameBetween("1", "2").finish().or()
                                                 .andBetween("NAME", "1", "2").finish().orderBy("NAME").distinct(true)));
         }
@@ -103,13 +104,14 @@ public class CommonDaoTest
                 model.setName("abc");
                 model.setYesOrNo(YesOrNo.NO);
 
-                Long result = dao.insert(model);
+                Long result = CommonDao.get().insert(model);
+                
                 
                 assertNotNull(result);
                 
                 assertNotNull(model.getId());
                 
-                ModelDrivenTestModel model2 = dao.selectById(ModelDrivenTestModel.class, model.getId());
+                ModelDrivenTestModel model2 = CommonDao.get().selectById(ModelDrivenTestModel.class, model.getId());
                 assertNotNull(model2);
                 assertEquals(model.getName(), model2.getName());
                 assertEquals(model.getYesOrNo(), model2.getYesOrNo());
@@ -124,7 +126,7 @@ public class CommonDaoTest
                 model.setRemark("after update remark");
                 model.setName("after update");
                 
-                dao.updateById(model);
+                CommonDao.get().updateById(model);
         }
 
 //        @Test
@@ -136,7 +138,7 @@ public class CommonDaoTest
 //                model.setCount(1);
 //                model.setName("after update");
 //                
-//                dao.updateByExample(model, new CommonExample().createCriteria()
+//                CommonDao.get().updateByExample(model, new CommonExample().createCriteria()
 //                                .andIdEqualTo(1l).andNameBetween("1", "2").finish().or()
 //                                .andBetween("NAME", "1", "2").finish());
 //        }
@@ -144,13 +146,13 @@ public class CommonDaoTest
         @Test
         public void testDeleteById()
         {
-                dao.deleteById(ModelDrivenTestModel.class, 4l);
+                CommonDao.get().deleteById(ModelDrivenTestModel.class, 4l);
         }
 
         @Test
         public void testDeleteByExample()
         {
-                dao.deleteByExample(ModelDrivenTestModel.class, new CommonExample().createCriteria()
+                CommonDao.get().deleteByExample(ModelDrivenTestModel.class, new CommonExample().createCriteria()
                                 .andIdEqualTo(1l).andNameBetween("1", "2").finish().or()
                                 .andBetween("NAME", "1", "2").finish());
         }
