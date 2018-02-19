@@ -37,14 +37,9 @@ import com.younker.waf.db.DataSourceProvider;
  * 
  *      采用public static方式的简单单例，可以采用反射方式破解。
  */
-@Cfgable(key = MybatisDao.PACKAGE_CFG_KEY
-        , type = String[].class
-        , defaultValue = { "com.nbm", "com.wayeasoft" }
-        , description = "mybatis自动初始化时扫描的包，可支持配置多个，逗号分隔" )
-@Cfgable(key = MybatisDao.MAPPER_PATTERN_CFG_KEY
-, type = String[].class
-, defaultValue = ".*Mapper.xml"
-, description = "扫描mapper文件的模式，正则表达式" )
+@Cfgable(key = MybatisDao.PACKAGE_CFG_KEY, type = String[].class, defaultValue =
+{ "com.nbm", "com.wayeasoft" }, description = "mybatis自动初始化时扫描的包，可支持配置多个，逗号分隔")
+@Cfgable(key = MybatisDao.MAPPER_PATTERN_CFG_KEY, type = String[].class, defaultValue = ".*Mapper.xml", description = "扫描mapper文件的模式，正则表达式")
 public enum MybatisDao
 {
         INSTANCE;
@@ -57,7 +52,7 @@ public enum MybatisDao
 
         public final static String MAPPER_PATTERN_CFG_KEY = "commons.mybatis.mapper_pattern";
         private final static String DEFAULT_MAPPER_PATTERN = ".*Mapper.xml";
-        
+
         static AtomicInteger sessionCount = new AtomicInteger(0);
 
         private MybatisDao()
@@ -134,6 +129,9 @@ public enum MybatisDao
                 Environment environment = new Environment("development", transactionFactory,
                                 DataSourceProvider.instance().getDataSource());
                 Configuration configuration = new Configuration(environment);
+                //下面这句必须写在这里，因为后面处理mapper xml文件时已经会用到databaseId了
+                configuration.setDatabaseId(Cfg.I.get("commons.mybatis.package", String.class, calcDatabaseId()));
+
 
 //                 注册commonMapper
                 try(InputStream inputStream
@@ -186,9 +184,27 @@ public enum MybatisDao
                                 }
                         }
                 }
-
+                
+                
                 MybatisDao.INSTANCE.initFactory(new SqlSessionFactoryBuilder().build(configuration));
 
+        }
+
+        private String calcDatabaseId()
+        {
+                switch (DataSourceProvider.instance().getDatabaseProductName())
+                {
+                case "ORACLE":
+                        return "oracle";
+                case "MySQL":
+                        return "mysql";
+                case "SQL Server":
+                        return "sqlserver";
+                case "H2":
+                        return "mysql";
+                default:
+                        throw new NbmBaseRuntimeException("未知的database product name").set("databaseProduceName", DataSourceProvider.instance().getDatabaseProductName());
+                }
         }
 
         /**

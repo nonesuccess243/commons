@@ -1,5 +1,7 @@
 package com.nbm.commons.db;
 
+import static org.junit.Assert.*;
+
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 
@@ -43,8 +45,10 @@ public class DataSourceTest
                 DataSourceProvider.initSimple();
 
                 DataSourceProvider.instance().runBatch("select 1");
+                
+                assertEquals("H2", DataSourceProvider.instance().getDatabaseProductName());
 
-                MybatisDao.INSTANCE.scanAndInit();
+//                MybatisDao.INSTANCE.scanAndInit();
         }
 
 }

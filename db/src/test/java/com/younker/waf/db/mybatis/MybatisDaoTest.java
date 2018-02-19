@@ -21,22 +21,18 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.nbm.core.modeldriven.ModelMeta;
 import com.nbm.core.modeldriven.generator.CrudGenerator;
 import com.nbm.core.modeldriven.test.model.ModelDrivenTestModel;
+import com.nbm.core.modeldriven.test.model.dao.ModelDrivenTestModelMapper;
 import com.wayeasoft.test.spring.RootConfig;
 import com.younker.waf.db.DataSourceProvider;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes =
-{ RootConfig.class })
 public class MybatisDaoTest
 {
-        @Autowired
-        private DataSource dataSource;
 
         
         @Before
         public void setUp() throws Exception
         {
-                DataSourceProvider.initInstance(dataSource);
+                DataSourceProvider.initSimple();
                 MybatisDao.INSTANCE.scanAndInit();
                 SqlSessionProvider.openSession();
                 
@@ -53,14 +49,18 @@ public class MybatisDaoTest
         @Test
         public void testInitAuto()
         {
+                //commondao insert
+                ModelDrivenTestModel model = new ModelDrivenTestModel();
                 
-                
-                
-                
+                //common dao select
                 CommonDao.get().selectByExample(ModelDrivenTestModel.class,
                                 new CommonExample().createCriteria().andIdEqualTo(1l).andNameBetween("1", "2").finish()
                                 .or().andBetween("NAME", "1", "2").finish().orderBy("NAME")
                                 .distinct(true));
+                
+                
+                
+                SqlSessionProvider.getSqlSession().getMapper(ModelDrivenTestModelMapper.class).selectByPrimaryKey(1l);
                 
                 SqlSessionProvider.getSqlSession().commit();
         }

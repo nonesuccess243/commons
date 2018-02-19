@@ -22,6 +22,7 @@ import org.apache.tomcat.jdbc.pool.PoolProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.nbm.exception.NbmBaseRuntimeException;
 import com.wayeasoft.core.configuration.Cfg;
 
 /**
@@ -41,6 +42,8 @@ public class DataSourceProvider
         
         private final static String DEFAULT_JDBC_URL = "jdbc:h2:mem:DBName;DB_CLOSE_DELAY=-1";
 
+        private static String databaseProductName;
+        
         private DataSourceProvider()
         {
         	
@@ -185,7 +188,7 @@ public class DataSourceProvider
                 PoolProperties p = new PoolProperties();
                 p.setUrl(Cfg.I.get("commons.datasource.url", String.class, DEFAULT_JDBC_URL));
                 p.setDriverClassName(Cfg.I.get("commons.datasource.drivername", String.class, "org.h2.Driver"));
-                p.setUsername(Cfg.I.get("commons.datasource.usename", String.class, "sa"));
+                p.setUsername(Cfg.I.get("commons.datasource.username", String.class, "sa"));
                 p.setPassword(Cfg.I.get("commons.datasource.password", String.class, ""));
                 p.setJmxEnabled(true);
                 p.setTestWhileIdle(false);
@@ -219,6 +222,20 @@ public class DataSourceProvider
                 
                 log.info("datasource初始化完成");
                 
+                try
+                {
+                        Connection conn = datasource.getConnection();
+                        databaseProductName = conn.getMetaData().getDatabaseProductName();
+                }catch(Exception e )
+                {
+                        throw new NbmBaseRuntimeException("初始化datasource发生异常", e);
+                }
+                
+        }
+        
+        public String getDatabaseProductName()
+        {
+                return databaseProductName;
         }
 
 }
