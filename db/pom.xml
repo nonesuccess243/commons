@@ -21,6 +21,11 @@
 
 		<dependency>
 			<groupId>com.nbm</groupId>
+			<artifactId>core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.nbm</groupId>
 			<artifactId>utils</artifactId>
 			<version>${project.version}</version>
 		</dependency>
