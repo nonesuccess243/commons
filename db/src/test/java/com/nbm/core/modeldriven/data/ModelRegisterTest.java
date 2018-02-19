@@ -33,4 +33,10 @@ public class ModelRegisterTest
                         // 执行到这里是正常的
                 }
         }
+        
+        @Test
+        public void testGetAll()
+        {
+                assertNotNull(ModelRegister.INSTANCE.getAllModel());
+        }
 }

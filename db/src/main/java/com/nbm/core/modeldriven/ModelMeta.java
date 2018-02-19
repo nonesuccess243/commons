@@ -58,7 +58,12 @@ public class ModelMeta
 //        
         /**
          * 发现packageName中的Model
+         * 
+         * 此函数的职责由ModelRegister取代
+         * 
+         * @see ModelRegister
          */
+        @Deprecated
         public static void discover( String packageName )
         {
                 Set<Class<? extends PureModel>> results = PackageUtils.getClasses(packageName, PureModel.class);

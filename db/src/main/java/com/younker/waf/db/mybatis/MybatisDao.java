@@ -23,6 +23,7 @@ import org.reflections.scanners.ResourcesScanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.nbm.core.modeldriven.Db;
 import com.nbm.core.modeldriven.data.PackageUtils;
 import com.nbm.exception.NbmBaseRuntimeException;
 import com.nbm.waf.core.modeldriven.Mapper;
@@ -192,19 +193,7 @@ public enum MybatisDao
 
         private String calcDatabaseId()
         {
-                switch (DataSourceProvider.instance().getDatabaseProductName())
-                {
-                case "ORACLE":
-                        return "oracle";
-                case "MySQL":
-                        return "mysql";
-                case "SQL Server":
-                        return "sqlserver";
-                case "H2":
-                        return "mysql";
-                default:
-                        throw new NbmBaseRuntimeException("未知的database product name").set("databaseProduceName", DataSourceProvider.instance().getDatabaseProductName());
-                }
+                return Db.getByProductName(DataSourceProvider.instance().getDatabaseProductName()).toString();
         }
 
         /**

@@ -9,6 +9,7 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.nbm.core.modeldriven.Model;
 import com.nbm.core.modeldriven.ModelMeta;
 import com.nbm.core.modeldriven.PureModel;
 import com.nbm.core.modeldriven.data.exception.DuplicateModelNameException;
@@ -83,6 +84,11 @@ public enum ModelRegister
                 {
                         log.debug("发现model[{}]", c.getSimpleName());
                         
+                        if( Model.class.equals(c))
+                        {
+                                continue;//Model类不处理
+                        }
+                        
                         if( modelMap.containsKey(c.getSimpleName()))
                         {
                                 throw new DuplicateModelNameException(c, modelMap.get(c.getSimpleName()).getModelClass());
@@ -118,6 +124,10 @@ public enum ModelRegister
          */
         public Collection<ModelMeta> getAllModel()
         {
+                if( modelMap == null )
+                {
+                        warmUp();
+                }
                 return modelMap.values();
         }
 

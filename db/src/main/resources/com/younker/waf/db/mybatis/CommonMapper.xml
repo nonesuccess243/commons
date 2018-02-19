@@ -143,12 +143,12 @@
 
 	<insert id="insert">
 		<selectKey keyProperty="record.id" order="AFTER" resultType="java.lang.Long"
-			databaseId="mysql">
+			databaseId="MYSQL">
 			SELECT LAST_INSERT_ID()
 		</selectKey>
 
 		<selectKey keyProperty="record.id" order="BEFORE"
-			resultType="java.lang.Long" databaseId="oracle">
+			resultType="java.lang.Long" databaseId="ORACLE">
 			select ${meta.dbTypeName}_SEQ
 			from dual
 		</selectKey>
