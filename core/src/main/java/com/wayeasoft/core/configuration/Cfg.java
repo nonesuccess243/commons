@@ -1,32 +1,130 @@
 package com.wayeasoft.core.configuration;
 
+import java.io.File;
+import java.net.URL;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
+import org.apache.commons.configuration2.Configuration;
+import org.apache.commons.configuration2.builder.fluent.Configurations;
+import org.reflections.Reflections;
+import org.reflections.scanners.SubTypesScanner;
+import org.reflections.scanners.TypeAnnotationsScanner;
+
+import com.nbm.exception.NbmBaseRuntimeException;
+
+/**
+ * 会在classpath中读取appconfig.properties文件，得到相应的配置值。
+ * 
+ * 如果不存在appconfig.properties文件，不会报错，但会建立一个空的config对象。这种模式一般应用于全部配置信息都使用默认值的情况。
+ * 
+ * 如果不想用配置文件，也可以用本类的set函数进行赋值，只要在使用Cfg信息的代码初始化之前进行set即可——此模式用途不大，因此未完整测试
+ * 
+ * 
+ * @author niyuzhe
+ *
+ */
 public enum Cfg
 {
         /**
          * I for INSTANCE
          */
         I;
-        
-        private Map<String, Object> infos = new HashMap<String, Object>();
-        
-        public <T> T get(String key, Class<T> claz )
+
+        private final static String PROPERTIES_FILE = "appconfig.properties";
+
+        private Configuration config = null;
+
+        Cfg()
         {
-                //TODO 第一次get时，判断infos是否为空，如果为空则用某个配置文件进行初始化
-                return claz.cast(infos.get(key));
+                warmUp();
         }
-        
-        public <T> T get( String key, Class<T> claz, T defaultValue)
+
+        /**
+         * 传入配置文件路径进行初始化
+         * 
+         * 此函数不推荐使用，实际中并没有差异化配置的必要，写这个函数只是为了测试程序在有无配置文件时的不同行为
+         * 
+         * @param propertiesFile
+         */
+        public void warmUp(String propertiesFile)
         {
-                return get(key, claz) != null ? get(key, claz) : defaultValue;
+                URL resource = this.getClass().getClassLoader().getResource(propertiesFile);
+
+                if (resource == null)// 配置文件不存在
+                {
+                        config = null;
+                } else
+                {
+                        try
+                        {
+                                config = new Configurations().properties(new File(resource.toURI()));
+                        } catch (Exception e)
+                        {
+                                throw new NbmBaseRuntimeException("初始化cfg发生异常", e);
+                        }
+                }
         }
-        
-        public Cfg set( String key, Object value)
+
+        public void warmUp()
         {
-                infos.put(key, value);
+                warmUp(PROPERTIES_FILE);
+        }
+
+        public <T> T get(String key, Class<T> claz)
+        {
+                return config.get(claz, key);
+        }
+
+        /**
+         * 
+         * @param key
+         * @param claz
+         * @param defaultValue
+         * @return
+         * 
+         * @throws org.apache.commons.configuration2.ex.ConversionException
+         *                 if the value is not compatible with the requested type
+         */
+        public <T> T get(String key, Class<T> claz, T defaultValue)
+        {
+                if (config == null)
+                {
+                        return defaultValue;
+                }
+                return config.get(claz, key, defaultValue);
+        }
+
+        public Cfg set(String key, Object value)
+        {
+                config.setProperty(key, value);
                 return I;
+        }
+
+        public Set<Map<String, Object>> getAllDeclared()
+        {
+
+                // TODO 未完成
+                Reflections reflections = new Reflections("com", new SubTypesScanner(), new TypeAnnotationsScanner());
+
+                Set<Class<?>> cfgableClasses = reflections.getTypesAnnotatedWith(Cfgable.class);
+
+                Set<Map<String, Object>> results = new HashSet<>();
+
+                for (Class<?> claz : cfgableClasses)
+                {
+                        for (Cfgable cfgable : claz.getAnnotationsByType(Cfgable.class))
+                        {
+                                Map<String, Object> result = new HashMap<>();
+                                result.put("class", claz);
+                                result.put("cfgable", cfgable);
+                                results.add(result);
+                        }
+                }
+
+                return results;
         }
 
 }
