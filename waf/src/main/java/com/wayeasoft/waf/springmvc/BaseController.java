@@ -3,7 +3,7 @@ package com.wayeasoft.waf.springmvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import com.wayeasoft.core.modeldriven.dao.CommonDao;
+import com.younker.waf.db.mybatis.CommonDao;
 
 
 @Controller
