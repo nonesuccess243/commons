@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,21 +23,6 @@ public class DataSourceTest
         public static void setUpBeforeClass()
         {
 
-        }
-
-        @Test
-        public void test()
-                        throws InstantiationException, IllegalAccessException, InvocationTargetException, SQLException
-        {
-                DataSourceProvider.initSimple("org.h2.Driver", "jdbc:h2:~/.h2/testdb", "sa", "");
-
-                DataSourceProvider.instance().runBatch("select 1");
-
-                MybatisDao.INSTANCE.init();
-
-                // SqlSessionProvider.openSession();
-                // SqlSessionProvider.getSqlSession().getMapper(ModelDrivenTestModelMapper.class).selectByExample(new
-                // ModelDrivenTestModelExample());
         }
 
         @Test

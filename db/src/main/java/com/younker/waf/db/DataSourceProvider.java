@@ -40,7 +40,7 @@ public class DataSourceProvider
         private static Context ctx = null;
         private static final Logger log = LoggerFactory.getLogger(DataSourceProvider.class);
         
-        private final static String DEFAULT_JDBC_URL = "jdbc:h2:mem:DBName;DB_CLOSE_DELAY=-1";
+        private final static String DEFAULT_JDBC_URL = "jdbc:h2:mem:DBName";
 
         private static String databaseProductName;
         
@@ -154,6 +154,8 @@ public class DataSourceProvider
 		datasource.setPoolProperties(p);
 		
 		ds = datasource;
+		
+		fillDatabaseProductName();
         	
         }
         
@@ -167,6 +169,8 @@ public class DataSourceProvider
         	datasource.setPoolProperties(p);
         	
         	ds = datasource;
+        	
+        	fillDatabaseProductName();
         	
         }
         
@@ -222,19 +226,32 @@ public class DataSourceProvider
                 
                 log.info("datasource初始化完成");
                 
-                try
+                fillDatabaseProductName();
+                
+        }
+
+        private static void fillDatabaseProductName()
+        {
+                try(Connection conn = ds.getConnection())
                 {
-                        Connection conn = datasource.getConnection();
+                        
                         databaseProductName = conn.getMetaData().getDatabaseProductName();
+                        if( databaseProductName == null )
+                        {
+                                throw new NbmBaseRuntimeException("将null赋值给databaseProductName");
+                        }
                 }catch(Exception e )
                 {
                         throw new NbmBaseRuntimeException("初始化datasource发生异常", e);
                 }
-                
         }
         
         public String getDatabaseProductName()
         {
+                if( databaseProductName == null )
+                {
+                        throw new NbmBaseRuntimeException("databaseProductName为空");
+                }
                 return databaseProductName;
         }
 

@@ -5,21 +5,16 @@ import static org.junit.Assert.*;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.sql.SQLException;
-import java.util.List;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.nbm.core.modeldriven.Db;
 import com.nbm.core.modeldriven.generator.CrudGenerator;
 import com.nbm.core.modeldriven.h2.test.TestModelOracle;
 import com.nbm.core.modeldriven.h2.test.dao.TestModelOracleMapper;
-import com.nbm.core.modeldriven.test.model.ModelDrivenTestModel;
 import com.nbm.core.modeldriven.test.model.dao.ModelDrivenTestModelExample;
-import com.nbm.core.modeldriven.test.model.dao.ModelDrivenTestModelMapper;
 import com.younker.waf.db.DataSourceProvider;
 import com.younker.waf.db.mybatis.MybatisDao;
 import com.younker.waf.db.mybatis.SqlSessionProvider;
@@ -70,7 +65,7 @@ public class H2Test
 	@Test
 	public void testMybatis() throws SQLException, IOException
 	{
-		DataSourceProvider.initSimple("org.h2.Driver", "jdbc:h2:~/.h2/testdb;AUTO_SERVER=TRUE", "sa", "");
+		DataSourceProvider.initSimple();
 		
 		
 		
@@ -109,7 +104,7 @@ public class H2Test
 		                "DROP TABLE " + generator.getMeta().getDbTypeName());
 		
 		SqlSessionProvider.getSqlSession().commit();
-		SqlSessionProvider.getSqlSession().close();
+		SqlSessionProvider.closeSession();
 		
 	}
 

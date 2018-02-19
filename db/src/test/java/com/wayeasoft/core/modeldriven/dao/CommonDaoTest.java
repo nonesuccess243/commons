@@ -11,9 +11,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import com.nbm.core.modeldriven.ModelMeta;
 import com.nbm.core.modeldriven.enums.YesOrNo;
 import com.nbm.core.modeldriven.generator.CrudGenerator;
@@ -41,7 +38,6 @@ public class CommonDaoTest
         public static void tearDownAfterClass() throws Exception
         {
                 SqlSessionProvider.getSqlSession().commit();
-                SqlSessionProvider.getSqlSession().close();
         }
 
         @Before

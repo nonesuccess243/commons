@@ -11,17 +11,12 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.google.common.collect.ImmutableMap;
 import com.wayeasoft.geo.test.GeoModel;
 import com.wayeasoft.test.spring.RootConfig;
 import com.younker.waf.db.mybatis.BeanUtilsBeanFactory;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes =
-{ RootConfig.class })
 public class BeanUtilsBeanFactoryTest
 {
 

@@ -12,7 +12,7 @@ public class ModelRegisterWithoutSpringTest
         @Test
         public void test()
         {
-                ModelRegister.INSTANCE.warmUp("com.nbm.core.modeldriven.data");
+//                ModelRegister.INSTANCE.warmUp("com.nbm.core.modeldriven.data");
 
 
                 assertNotNull(ModelRegister.INSTANCE.get("TestModel"));

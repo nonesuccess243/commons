@@ -331,6 +331,10 @@ public enum Db
         
         public static Db getByProductName( String productName)
         {
+                if( productName == null )
+                {
+                        throw new NbmBaseRuntimeException("传入了空的productName");
+                }
                 switch (productName)
                 {
                 case "ORACLE":
