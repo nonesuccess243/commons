@@ -12,6 +12,8 @@ import org.apache.commons.configuration2.builder.fluent.Configurations;
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
 import org.reflections.scanners.TypeAnnotationsScanner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.nbm.exception.NbmBaseRuntimeException;
 
@@ -34,12 +36,14 @@ public enum Cfg
         I;
 
         private final static String PROPERTIES_FILE = "appconfig.properties";
+        
+        private static Logger log = LoggerFactory.getLogger(Cfg.class);
 
         private Configuration config = null;
-
-        Cfg()
+        
+        static
         {
-                warmUp();
+                I.warmUp();
         }
 
         /**
@@ -55,17 +59,23 @@ public enum Cfg
 
                 if (resource == null)// 配置文件不存在
                 {
+                        log.warn("注意！！！当前项目环境中没有[{}]配置文件，所有配置都将使用默认内容", propertiesFile);
                         config = null;
+                        log.info("配置信息热身完成，内容为：[无配置文件]");
                 } else
                 {
                         try
                         {
+                                log = LoggerFactory.getLogger(Cfg.class);
+                                
                                 config = new Configurations().properties(new File(resource.toURI()));
+                                log.info("配置信息热身完成，共[{}]条", config.size());
                         } catch (Exception e)
                         {
                                 throw new NbmBaseRuntimeException("初始化cfg发生异常", e);
                         }
                 }
+                
         }
 
         public void warmUp()
