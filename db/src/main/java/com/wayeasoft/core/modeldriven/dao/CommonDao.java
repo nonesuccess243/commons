@@ -51,7 +51,7 @@ public class CommonDao
          * 
          * @return
          */
-        public static CommonDao old()
+        public static CommonDao get()
         {
                 CommonDao result = new CommonDao()
                 {

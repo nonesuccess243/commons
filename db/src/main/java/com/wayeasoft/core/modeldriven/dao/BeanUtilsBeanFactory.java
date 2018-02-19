@@ -21,7 +21,7 @@ import com.nbm.exception.NbmBaseRuntimeException;
  * @author niyuzhe
  *
  */
-public class BeanUtilsBeanFactory
+class BeanUtilsBeanFactory
 {
 
         private static ConvertUtilsBean utils = new ConvertUtilsBean()
