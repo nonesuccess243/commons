@@ -1,15 +1,15 @@
 package com.younker.waf.db.mybatis;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.builder.xml.XMLMapperBuilder;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.session.Configuration;
@@ -18,16 +18,17 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
+import org.reflections.Reflections;
+import org.reflections.scanners.ResourcesScanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.reflect.ClassPath;
-import com.google.common.reflect.ClassPath.ClassInfo;
 import com.nbm.core.modeldriven.data.PackageUtils;
 import com.nbm.exception.NbmBaseRuntimeException;
 import com.nbm.waf.core.modeldriven.Mapper;
+import com.wayeasoft.core.configuration.Cfg;
+import com.wayeasoft.core.configuration.Cfgable;
 import com.younker.waf.db.DataSourceProvider;
-import com.younker.waf.utils.StringUtil;
 
 /**
  * 通用Dao，底层调用Mybatis相关工具。 依赖MybatisConfig类的初始化工作。
@@ -36,12 +37,27 @@ import com.younker.waf.utils.StringUtil;
  * 
  *      采用public static方式的简单单例，可以采用反射方式破解。
  */
+@Cfgable(key = MybatisDao.PACKAGE_CFG_KEY
+        , type = String[].class
+        , defaultValue = { "com.nbm", "com.wayeasoft" }
+        , description = "mybatis自动初始化时扫描的包，可支持配置多个，逗号分隔" )
+@Cfgable(key = MybatisDao.MAPPER_PATTERN_CFG_KEY
+, type = String[].class
+, defaultValue = ".*Mapper.xml"
+, description = "扫描mapper文件的模式，正则表达式" )
 public enum MybatisDao
 {
         INSTANCE;
 
         private final static Logger log = LoggerFactory.getLogger(MybatisDao.class);
 
+        public final static String PACKAGE_CFG_KEY = "commons.mybatis.packages";
+        private final static String[] DEFAULT_PACKAGE = new String[]
+        { "com.nbm", "com.wayeasoft" };
+
+        public final static String MAPPER_PATTERN_CFG_KEY = "commons.mybatis.mapper_pattern";
+        private final static String DEFAULT_MAPPER_PATTERN = ".*Mapper.xml";
+        
         static AtomicInteger sessionCount = new AtomicInteger(0);
 
         private MybatisDao()
@@ -108,26 +124,65 @@ public enum MybatisDao
          * 
          * @param packageName
          */
-        public void initAuto(String packageName)
+        public void initAuto()
         {
+                // 初始化基本参数
                 TransactionFactory transactionFactory = new JdbcTransactionFactory();
                 Environment environment = new Environment("development", transactionFactory,
                                 DataSourceProvider.instance().getDataSource());
                 Configuration configuration = new Configuration(environment);
 
-                for (Class<? extends Mapper> modelClass : PackageUtils.getClasses(packageName, Mapper.class))
+//                 注册commonMapper
+                configuration.addMapper(CommonMapper.class);
+//                
+                
+                try(InputStream inputStream
+                                = Resources
+                                .getResourceAsStream(CommonDao.MAPPER_PATH))
                 {
-                        // log.info("start class[{}]",
-                        // className.getName());
-                        if (Mapper.class.isAssignableFrom(modelClass) && !modelClass.isAnonymousClass()
-                                        && !modelClass.equals(Mapper.class)
-                        // && !modelClass.isInterface()
-                        // &&
-                        // !Modifier.isAbstract(modelClass.getModifiers())
-                        )
+                        new XMLMapperBuilder(inputStream, configuration, "com/younker/waf/db/mybatis/CommonMapper.xml", configuration.getSqlFragments()).parse();
+                } catch (IOException e)
+                {
+                        //should not happen
+                        throw new NbmBaseRuntimeException("找不到commonmapper配置文件", e);
+                }
+
+                // 根据配置信息，注册各种Mapper
+                String[] packageNames = Cfg.I.get("commons.mybatis.package", String[].class, DEFAULT_PACKAGE);
+
+                for (String packageName : packageNames)
+                {
+                        for (Class<? extends Mapper> modelClass : PackageUtils.getClasses(packageName, Mapper.class))
                         {
-                                log.debug("find Mapper and add: {}", modelClass);
-                                configuration.addMapper(modelClass);
+                                if (Mapper.class.isAssignableFrom(modelClass) && !modelClass.isAnonymousClass()
+                                                && !modelClass.equals(Mapper.class)
+                                )
+                                {
+                                        log.debug("find Mapper and add: {}", modelClass);
+                                        configuration.addMapper(modelClass);
+                                }
+                        }
+                }
+                
+                for (String packageName : packageNames)
+                {
+                        Reflections reflections = new Reflections(packageName, new ResourcesScanner());
+
+                        Set<String> properties = 
+                                        reflections.getResources(Pattern.compile(Cfg.I.get(MAPPER_PATTERN_CFG_KEY, String.class, DEFAULT_MAPPER_PATTERN)));
+                        for( String mapperResourcePath : properties )
+                        {
+                                try(InputStream inputStream
+                                                = Resources
+                                                .getResourceAsStream(mapperResourcePath))
+                                {
+                                        log.info("找到mybatis配置文件[file={}]", mapperResourcePath);
+                                        new XMLMapperBuilder(inputStream, configuration, mapperResourcePath, configuration.getSqlFragments()).parse();
+                                } catch (IOException e)
+                                {
+                                        //should not happen
+                                        throw new NbmBaseRuntimeException("找不到配置文件", e).set("mapperResourcePath", mapperResourcePath);
+                                }
                         }
                 }
 
