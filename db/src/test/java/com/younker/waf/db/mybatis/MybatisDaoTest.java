@@ -37,7 +37,7 @@ public class MybatisDaoTest
         public void setUp() throws Exception
         {
                 DataSourceProvider.initInstance(dataSource);
-                MybatisDao.INSTANCE.initAuto();
+                MybatisDao.INSTANCE.scanAndInit();
                 SqlSessionProvider.openSession();
                 
                 CrudGenerator.GENERATE_FILE = false;

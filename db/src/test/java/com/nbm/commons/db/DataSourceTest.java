@@ -44,7 +44,7 @@ public class DataSourceTest
 
                 DataSourceProvider.instance().runBatch("select 1");
 
-                MybatisDao.INSTANCE.initAuto();
+                MybatisDao.INSTANCE.scanAndInit();
         }
 
 }

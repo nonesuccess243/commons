@@ -99,10 +99,13 @@ public enum MybatisDao
         }
 
         /**
-         * 在classpath中找configuration.xml
+         * 在classpath中找mybatis-config.xml
+         * 
+         * 逐步过渡到scanAndInit方式进行初始化
          * 
          * @throws IOException
          */
+        @Deprecated
         public void init()
         {
                 try
@@ -124,7 +127,7 @@ public enum MybatisDao
          * 
          * @param packageName
          */
-        public void initAuto()
+        public void scanAndInit()
         {
                 // 初始化基本参数
                 TransactionFactory transactionFactory = new JdbcTransactionFactory();
@@ -149,7 +152,8 @@ public enum MybatisDao
 
                 for (String packageName : packageNames)
                 {
-                        for (Class<? extends Mapper> modelClass : PackageUtils.getClasses(packageName, Mapper.class))
+                        for (@SuppressWarnings("rawtypes")/*不清楚此处的泛型怎么写才能没有警告*/
+                                Class<? extends Mapper> modelClass : PackageUtils.getClasses(packageName, Mapper.class))
                         {
                                 if (Mapper.class.isAssignableFrom(modelClass) && !modelClass.isAnonymousClass()
                                                 && !modelClass.equals(Mapper.class)
