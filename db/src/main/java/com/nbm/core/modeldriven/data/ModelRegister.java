@@ -15,6 +15,8 @@ import com.nbm.core.modeldriven.data.exception.DuplicateModelNameException;
 import com.nbm.core.modeldriven.data.exception.ModelNotRegisterException;
 import com.nbm.exception.NbmBaseRuntimeException;
 import com.wayeasoft.core.configuration.Cfg;
+import com.wayeasoft.core.configuration.Cfgable;
+import com.younker.waf.db.mybatis.MybatisDao;
 
 /**
  * 根据配置的包名扫描model类。
@@ -24,6 +26,11 @@ import com.wayeasoft.core.configuration.Cfg;
  * @author niyuzhe
  *
  */
+
+@Cfgable(key = ModelRegister.CFG_KEY
+, type = String[].class
+, defaultValue = {"com.wayeasoft", "com.nbm"}
+, description = "扫描model类的包名" )
 public enum ModelRegister
 {
         INSTANCE;
