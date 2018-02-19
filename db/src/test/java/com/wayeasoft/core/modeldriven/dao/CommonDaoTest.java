@@ -19,6 +19,8 @@ import com.nbm.core.modeldriven.enums.YesOrNo;
 import com.nbm.core.modeldriven.generator.CrudGenerator;
 import com.nbm.core.modeldriven.test.model.ModelDrivenTestModel;
 import com.wayeasoft.test.spring.RootConfig;
+import com.younker.waf.db.mybatis.CommonDao;
+import com.younker.waf.db.mybatis.CommonExample;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes =

@@ -1,4 +1,4 @@
-package com.wayeasoft.core.modeldriven.dao;
+package com.younker.waf.db.mybatis;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -24,7 +24,6 @@ import com.nbm.core.modeldriven.Field;
 import com.nbm.core.modeldriven.ModelMeta;
 import com.nbm.core.modeldriven.PureModel;
 import com.nbm.exception.NbmBaseRuntimeException;
-import com.younker.waf.db.mybatis.SqlSessionProvider;
 
 /**
  * 基于spring和spring-mybatis的common dao

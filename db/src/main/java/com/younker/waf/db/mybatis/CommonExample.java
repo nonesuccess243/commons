@@ -1,4 +1,4 @@
-package com.wayeasoft.core.modeldriven.dao;
+package com.younker.waf.db.mybatis;
 
 import java.util.ArrayList;
 import java.util.List;
