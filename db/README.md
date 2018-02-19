@@ -1,5 +1,7 @@
 # commondao
 
+一个省略mybatis配置文件和Dao代码的语法糖工具
+
 使用方式参见com.wayeasoft.core.modeldriven.dao.CommondaoTest
 
 ## 在spring中使用
@@ -22,5 +24,7 @@ private CommonDao dao;
 # modeldriven
 
 ## model register
+
+一个支持全局遍历Model列表的语法糖工具。
 
 注册后，可以全局获取Model类的列表及实例。
