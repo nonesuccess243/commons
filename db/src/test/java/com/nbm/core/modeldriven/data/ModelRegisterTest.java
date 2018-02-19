@@ -1,47 +1,36 @@
 package com.nbm.core.modeldriven.data;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.nbm.core.modeldriven.data.ModelRegister;
 import com.nbm.core.modeldriven.data.exception.ModelNotRegisterException;
-import com.wayeasoft.test.spring.RootConfig;
+import com.wayeasoft.core.configuration.Cfg;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes =
-{ RootConfig.class })
+
 public class ModelRegisterTest
 {
         @SuppressWarnings("unused")
         private final static Logger log = LoggerFactory.getLogger(ModelRegisterTest.class);
-
-        @Autowired
-        ModelRegister modelRegister;
-
+       
         @Test
         public void test() throws ModelNotRegisterException
         {
-                assertNotNull(modelRegister);
+                Cfg.I.set(ModelRegister.CFG_KEY, ModelRegister.CFG_DEFAULT_VALUE);
 
-                assertNotNull(modelRegister.get("TestModel"));
-                assertNotNull(modelRegister.get("TestModel2"));
+                assertNotNull(ModelRegister.INSTANCE.get("TestModel"));
+                assertNotNull(ModelRegister.INSTANCE.get("TestModel2"));
 
                 try
                 {
-                        assertNotNull(modelRegister.get("ModelUnknow"));
+                        assertNotNull(ModelRegister.INSTANCE.get("ModelUnknow"));
                         fail("should not find ModelUnknow");
                 } catch (ModelNotRegisterException e)
                 {
                         // 执行到这里是正常的
                 }
         }
-
-        
 }

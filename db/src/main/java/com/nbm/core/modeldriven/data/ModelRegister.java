@@ -8,32 +8,33 @@ import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 
 import com.nbm.core.modeldriven.ModelMeta;
 import com.nbm.core.modeldriven.PureModel;
 import com.nbm.core.modeldriven.data.exception.DuplicateModelNameException;
 import com.nbm.core.modeldriven.data.exception.ModelNotRegisterException;
 import com.nbm.exception.NbmBaseRuntimeException;
+import com.wayeasoft.core.configuration.Cfg;
 
 /**
  * 根据配置的包名扫描model类。
  * 
  * 包名由spring的@Value方式注入，名称为modelPackages，格式为字符串，逗号分隔，每一节表示一个包
  * 
- * 不明原因，包名注入方式必须打开@EnableWebMvc才能生效
  * @author niyuzhe
  *
  */
-@Service
-public class ModelRegister
+public enum ModelRegister
 {
+        INSTANCE;
 
         private final static Logger log = LoggerFactory.getLogger(ModelRegister.class);
-        @Autowired
-        @Value("#{'${commons.modeldriven.packages}'.split(',')}")
+        
+        public final static String CFG_KEY = "commons.modeldriven.model_packages";
+        
+        public final static String CFG_DEFAULT_VALUE[] = {"com.wayeasoft", "com.nbm"};
+        
+        
         private String[] modelPackages;
 
         private Map<String, ModelMeta> modelMap;
@@ -63,6 +64,9 @@ public class ModelRegister
          */
         private void warmUp()
         {
+                
+                modelPackages = Cfg.I.get(CFG_KEY, String[].class, CFG_DEFAULT_VALUE);
+                
                 modelMap = new HashMap<>();
 
 

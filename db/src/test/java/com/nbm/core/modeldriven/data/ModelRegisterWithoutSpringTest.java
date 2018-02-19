@@ -12,16 +12,15 @@ public class ModelRegisterWithoutSpringTest
         @Test
         public void test()
         {
-                ModelRegister register = new ModelRegister();
-                register.warmUp("com.nbm.core.modeldriven.data");
+                ModelRegister.INSTANCE.warmUp("com.nbm.core.modeldriven.data");
 
 
-                assertNotNull(register.get("TestModel"));
-                assertNotNull(register.get("TestModel2"));
+                assertNotNull(ModelRegister.INSTANCE.get("TestModel"));
+                assertNotNull(ModelRegister.INSTANCE.get("TestModel2"));
 
                 try
                 {
-                        assertNotNull(register.get("ModelUnknow"));
+                        assertNotNull(ModelRegister.INSTANCE.get("ModelUnknow"));
                         fail("should not find ModelUnknow");
                 } catch (ModelNotRegisterException e)
                 {
