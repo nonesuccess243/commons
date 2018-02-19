@@ -84,7 +84,7 @@ public class H2Test
 		DataSourceProvider.instance().runBatch(
 		                Paths.get("./src/test/resources/com/nbm/core/modeldriven/h2/test/dao/" + generator.getMeta().getDbTypeName() + ".sql"));
 		
-		MybatisDao.INSTANCE.initAuto("com.nbm.core.modeldriven.h2.test.dao");
+		MybatisDao.INSTANCE.initAuto();
 		
 		SqlSessionProvider.openSession();
 		Long result = SqlSessionProvider.getSqlSession().getMapper(TestModelOracleMapper.class).insert(new TestModelOracle());
