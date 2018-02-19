@@ -40,12 +40,20 @@ public class CommonDao
 
         private final static Logger log = LoggerFactory.getLogger(CommonDao.class);
 
-        private final static String PACKAGE_NAME = "com.wayeasoft.core.modeldriven.dao.CommonMapper";
+        private final static String PACKAGE_NAME = "com.younker.waf.db.mybatis.CommonMapper";
 
+        final static String MAPPER_PATH = "com/younker/waf/db/mybatis/CommonMapper.xml";
+        
+        /**
+         * 设置成protected是为了让匿名子类可以覆盖本函数
+         * @return
+         */
         protected SqlSession sqlSession()
         {
                 return sqlSession;
         }
+        
+        
 
         
         /**
@@ -91,7 +99,7 @@ public class CommonDao
 
                 try
                 {
-                        T m = modelClass.newInstance();
+                        T m = modelClass.getDeclaredConstructor().newInstance();
                         BeanUtilsBeanFactory.populate(m, result);
                         return m;
                 } catch (Exception e)
@@ -140,7 +148,7 @@ public class CommonDao
 
                 try
                 {
-                        T m = modelClass.newInstance();
+                        T m = modelClass.getDeclaredConstructor().newInstance();
                         BeanUtilsBeanFactory.populate(m, result);
                         return m;
                 } catch (Exception e)
@@ -178,7 +186,7 @@ public class CommonDao
                 {
                         for (Map<String, Object> map : result)
                         {
-                                T m = modelClass.newInstance();
+                                T m = modelClass.getDeclaredConstructor().newInstance();
                                 BeanUtilsBeanFactory.populate(m, wrapperResultMap(modelClass, map));
                                 results.add(m);
                         }
