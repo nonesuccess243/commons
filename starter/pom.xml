@@ -1,9 +1,10 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.nbm</groupId>
 		<artifactId>commons-aggr</artifactId>
-		<version>6.2.6-SNAPSHOT</version>
+		<version>6.2.5-SNAPSHOT</version>
 	</parent>
 	<artifactId>starter</artifactId>
 	<description>为各类项目提供一键式初始化配置信息和开发环境的工具类
