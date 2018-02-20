@@ -10,7 +10,7 @@
 
 	<groupId>com.nbm</groupId>
 	<artifactId>commons-aggr</artifactId>
-	<version>7.0.0</version>
+	<version>7.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>wayeasoft_commons</name>
 	<modules>
@@ -31,7 +31,7 @@
 		<connection>scm:git:http://60.30.19.131:20020/git/commons/commons.git/</connection>
 		<url>scm:git:http://60.30.19.131:20020/git/commons/commons.git/</url>
 		<developerConnection>scm:git:http://60.30.19.131:20020/git/commons/commons.git/</developerConnection>
-		<tag>commons-aggr-7.0.0</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<dependencies>
