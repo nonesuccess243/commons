@@ -120,10 +120,18 @@
 			<activation>
 				<jdk>[1.8,)</jdk>
 			</activation>
-			<properties>
-				<additionalparam>-Xdoclint:none</additionalparam>
-				<javadoc.opts>-Xdoclint:none</javadoc.opts>
-			</properties>
+
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<configuration>
+							<additionalparam>-Xdoclint:none</additionalparam>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
 		</profile>
 	</profiles>
 
@@ -168,7 +176,9 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<configuration>
+					<doclint>none</doclint>
 					<additionalparam>-Xdoclint:none</additionalparam>
+					<javadoc.opts>-Xdoclint:none</javadoc.opts>
 				</configuration>
 			</plugin>
 
