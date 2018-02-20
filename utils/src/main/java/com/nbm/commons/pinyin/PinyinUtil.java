@@ -11,10 +11,10 @@ import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombi
 
 
 /**
- * @className:PinyingUtil.java
- * @classDescription:拼音操作工具类
- * @author:xiayingjie
- * @createTime:2010-10-21
+ * className:PinyingUtil.java
+ * classDescription: 拼音操作工具类
+ * @author : xiayingjie
+ * createTime :2010-10-21
  */
 public class PinyinUtil
 {
@@ -185,8 +185,6 @@ public class PinyinUtil
         /**
          * 将字符数组转换成字符串
          * 
-         * @param str
-         * @param separator
          *                各个字符串之间的分隔符
          * @return
          */
