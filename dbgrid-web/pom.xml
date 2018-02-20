@@ -3,23 +3,22 @@
 	<parent>
 		<artifactId>commons-aggr</artifactId>
 		<groupId>com.nbm</groupId>
-		<version>7.0.1-SNAPSHOT</version>
+		<version>6.2.5-SNAPSHOT</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>dbgrid-web</artifactId>
-  <version>77.0.1-SNAPSHOT</version>
 	<dependencies>
 		<dependency>
 			<groupId>com.nbm</groupId>
 			<artifactId>dbgrid</artifactId>
-			<version>7.0.1-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.nbm</groupId>
 			<artifactId>waf</artifactId>
-			<version>7.0.1-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 
 		<dependency>
