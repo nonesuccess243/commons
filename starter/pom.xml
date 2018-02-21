@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.nbm</groupId>
 		<artifactId>commons-aggr</artifactId>
-		<version>7.0.1-SNAPSHOT</version>
+		<version>7.1.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>starter</artifactId>
 	<description>为各类项目提供一键式初始化配置信息和开发环境的工具类
@@ -25,12 +25,25 @@
 			<artifactId>gson</artifactId>
 			<version>2.7</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<version>1.4.191</version>
-			<scope>test</scope>
 		</dependency>
 	</dependencies>
 </project>

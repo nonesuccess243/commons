@@ -10,7 +10,7 @@
 
 	<groupId>com.nbm</groupId>
 	<artifactId>commons-aggr</artifactId>
-	<version>7.0.1-SNAPSHOT</version>
+	<version>7.1.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>wayeasoft_commons</name>
 	<modules>
@@ -63,6 +63,36 @@
 
 	<dependencyManagement>
 		<dependencies>
+
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>3.1.0</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jstl</artifactId>
+				<version>1.2</version>
+				<scope>provided</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>javax.servlet.jsp</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>2.2.1-b03</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>com.h2database</groupId>
+				<artifactId>h2</artifactId>
+				<version>1.4.191</version>
+				<scope>test</scope>
+			</dependency>
+			
+			
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-webmvc</artifactId>

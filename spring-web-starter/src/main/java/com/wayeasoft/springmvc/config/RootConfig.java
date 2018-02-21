@@ -4,16 +4,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
-import org.springframework.context.annotation.ImportResource;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
-@ImportResource("classpath:spring-config-mybatis.xml")
-//@ComponentScan(basePackages= {"com.wayeasoft","com.nbm"}, 
-//        excludeFilters={@Filter(type=FilterType.ANNOTATION, value=EnableWebMvc.class)})
+@ComponentScan(basePackages= {"com.wayeasoft","com.nbm"}, 
+        excludeFilters={@Filter(type=FilterType.ANNOTATION, value=EnableWebMvc.class)})
 //@PropertySource("classpath:spring-config.properties")
 public class RootConfig
 {
