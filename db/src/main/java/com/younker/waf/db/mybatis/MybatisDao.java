@@ -121,6 +121,8 @@ public enum MybatisDao
         /**
          * 自动搜索所有的配置文件并初始化
          * 
+         * 当自动载入mapper类和mapper xml文件发生错误时，会打印错误信息，并继续进行
+         * 
          * @param packageName
          */
         public void scanAndInit()
@@ -182,6 +184,10 @@ public enum MybatisDao
                                 {
                                         //should not happen
                                         throw new NbmBaseRuntimeException("找不到配置文件", e).set("mapperResourcePath", mapperResourcePath);
+                                }catch(Exception e )
+                                {
+                                        log.error("解析mybatis配置文件发生错误[mapperResourcePath" + mapperResourcePath + "]." + e.getMessage());
+                                        continue;
                                 }
                         }
                 }

@@ -89,6 +89,12 @@ public enum ModelRegister
                                 continue;//Model类不处理
                         }
                         
+                        if( c.isAnonymousClass())
+                        {
+                                log.debug("匿名类不处理[class={}]", c);
+                                continue;
+                        }
+                        
                         if( modelMap.containsKey(c.getSimpleName()))
                         {
                                 throw new DuplicateModelNameException(c, modelMap.get(c.getSimpleName()).getModelClass());
