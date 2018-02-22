@@ -27,45 +27,69 @@ public enum DbBooter
         public void boot()
         {
 
-                try (Connection connection = DataSourceProvider.instance().getDataSource().getConnection())
+                try (Connection connection = DataSourceProvider.instance()
+                                .getDataSource().getConnection())
                 {
+                        boolean autoCommit = connection.getAutoCommit();
+                        connection.setAutoCommit(false);
 
                         // 创建表
-                        for (Iterator<ModelMeta> iter = ModelRegister.INSTANCE.getAllModel().iterator(); iter
-                                        .hasNext();)
+                        for (Iterator<ModelMeta> iter = ModelRegister.INSTANCE
+                                        .getAllModel().iterator(); iter
+                                                        .hasNext();)
                         {
                                 ModelMeta meta = iter.next();
                                 try
                                 {
 
-                                        log.info("开始处理{}", meta.getModelClass().getName());
+                                        log.info("开始处理{}", meta.getModelClass()
+                                                        .getName());
 
                                         CrudGenerator.GENERATE_FILE = false;
                                         CrudGenerator.db = Db.getByProductName(
-                                                        DataSourceProvider.instance().getDatabaseProductName());
-                                        CrudGenerator generator = new CrudGenerator(meta.getModelClass());
+                                                        DataSourceProvider
+                                                                        .instance()
+                                                                        .getDatabaseProductName());
+                                        CrudGenerator generator = new CrudGenerator(
+                                                        meta.getModelClass());
                                         generator.generate();
 
-                                        ResultSet tableMetaResultSet = connection.getMetaData().getTables(null, null,
-                                                        meta.getDbTypeName(), null);
+                                        ResultSet tableMetaResultSet = connection
+                                                        .getMetaData()
+                                                        .getTables(null, null,
+                                                                        meta.getDbTypeName(),
+                                                                        null);
                                         if (tableMetaResultSet.next())// 找到这张表了
                                         {
 
-                                                log.info("该表已经存在:[{}]", tableMetaResultSet.getString("TABLE_CAT") + "\t"
-                                                                + tableMetaResultSet.getString("TABLE_SCHEM") + "\t"
-                                                                + tableMetaResultSet.getString("TABLE_NAME") + "\t"
-                                                                + tableMetaResultSet.getString("TABLE_TYPE"));
+                                                log.info("该表已经存在:[{}]",
+                                                                tableMetaResultSet
+                                                                                .getString("TABLE_CAT")
+                                                                                + "\t"
+                                                                                + tableMetaResultSet
+                                                                                                .getString("TABLE_SCHEM")
+                                                                                + "\t"
+                                                                                + tableMetaResultSet
+                                                                                                .getString("TABLE_NAME")
+                                                                                + "\t"
+                                                                                + tableMetaResultSet
+                                                                                                .getString("TABLE_TYPE"));
                                         } else// 不存在这张表
                                         {
-                                                log.info("不存在[{}]表，根据sql语句创建[{}]", meta.getDbTypeName(),
+                                                log.info("不存在[{}]表，根据sql语句创建[{}]",
+                                                                meta.getDbTypeName(),
                                                                 generator.getCreateSqlContent());
-                                                connection.createStatement().execute(generator.getCreateSqlContent());
+                                                connection.createStatement()
+                                                                .execute(generator
+                                                                                .getCreateSqlContent());
                                                 connection.commit();
                                         }
                                 } catch (Exception e)
                                 {
-                                        log.error(meta.getModelClass().toString(), e);
-                                        // throw new NbmBaseRuntimeException("DB boot 发生异常", e).set("model",
+                                        log.error(meta.getModelClass()
+                                                        .toString(), e);
+                                        // throw new NbmBaseRuntimeException("DB
+                                        // boot 发生异常", e).set("model",
                                         // meta.getModelClass());
                                         continue;
                                 }
@@ -73,24 +97,30 @@ public enum DbBooter
                         }
 
                         // 执行sql
-                        String[] sqlPaths = Cfg.I.get("commons.db_booter.sql", String[].class, new String[]
-                        {});
+                        String[] sqlPaths = Cfg.I.get("commons.db_booter.sql",
+                                        String[].class, new String[]
+                                        {});
                         for (String sqlPath : sqlPaths)
                         {
                                 log.info("run sql: [{}]", sqlPath);
-                                
+
                                 try
                                 {
-                                        String sql = new String(Files.readAllBytes(Paths.get(this.getClass()
-                                                        .getClassLoader().getResource(sqlPath).toURI())));
-                                        
-                                        
-                                        DataSourceProvider.instance().runBatch(sql);
+                                        String sql = new String(Files
+                                                        .readAllBytes(Paths.get(
+                                                                        this.getClass().getClassLoader()
+                                                                                        .getResource(sqlPath)
+                                                                                        .toURI())));
+
+                                        DataSourceProvider.instance()
+                                                        .runBatch(sql);
                                 } catch (Exception e)
                                 {
-                                        log.error("执行sql发生异常[sqlPath=" + sqlPath + "]", e);
+                                        log.error("执行sql发生异常[sqlPath=" + sqlPath
+                                                        + "]", e);
                                 }
                         }
+                        connection.setAutoCommit(autoCommit);
                 } catch (SQLException e1)
                 {
                         throw new NbmBaseRuntimeException("DB boot 发生异常", e1);
