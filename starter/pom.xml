@@ -16,7 +16,17 @@
 		</dependency>
 		<dependency>
 			<groupId>com.nbm</groupId>
+			<artifactId>dbgrid</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.nbm</groupId>
 			<artifactId>db</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.nbm</groupId>
+			<artifactId>waf</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
