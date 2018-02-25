@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.nbm</groupId>
 		<artifactId>commons-aggr</artifactId>
-		<version>7.2.1-SNAPSHOT</version>
+		<version>7.3.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>waf_demo</artifactId>
 	<packaging>war</packaging>
@@ -26,7 +26,6 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
 		</dependency>
 
 		<dependency>
@@ -144,7 +143,7 @@
 		<dependency>
 			<groupId>com.nbm</groupId>
 			<artifactId>spring-web-starter</artifactId>
-			<version>7.2.1-SNAPSHOT</version>
+			<version>7.3.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	<build>

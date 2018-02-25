@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.nbm</groupId>
 		<artifactId>commons-aggr</artifactId>
-		<version>7.2.1-SNAPSHOT</version>
+		<version>7.3.1-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>db</artifactId>
@@ -130,11 +130,6 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.4</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-beanutils</groupId>
-			<artifactId>commons-beanutils-core</artifactId>
-			<version>1.8.3</version>
 		</dependency>
 
 		<dependency>
