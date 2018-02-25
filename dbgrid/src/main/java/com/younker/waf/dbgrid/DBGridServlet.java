@@ -33,7 +33,6 @@ public class DBGridServlet extends HttpServlet
         public static final String DATALIST = "datalist";
         public static final String DBGRID = "dbgrid";
         private static final String CONFIG_FILE_PATH_KEY = "configFilePath";
-        private final static String DEFAULT_CONFIG_FILE_PATH = "/WEB-INF/config/dbgrids.xml";
 
         protected DBGrids dbGrids;
 
@@ -77,10 +76,12 @@ public class DBGridServlet extends HttpServlet
                 String configFilePath = cfg.getInitParameter(CONFIG_FILE_PATH_KEY);
                 if (WebUtil.isNull(configFilePath))
                 {
-                        log.info("config file path unset, use default.");
-                        configFilePath = DEFAULT_CONFIG_FILE_PATH;
+                        dbGrids = DBGridEngine.getDefaultInstance().getDBGrids();
+                }else 
+                {
+                        dbGrids = DBGridEngine.getInstance(configFilePath).getDBGrids();
                 }
-                dbGrids = DBGridEngine.getDefaultInstance().getDBGrids();
+                
         }
 
         /**
