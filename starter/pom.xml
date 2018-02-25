@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.nbm</groupId>
 		<artifactId>commons-aggr</artifactId>
-		<version>7.2.1-SNAPSHOT</version>
+		<version>7.3.0</version>
 	</parent>
 	<artifactId>starter</artifactId>
 	<description>为各类项目提供一键式初始化配置信息和开发环境的工具类
