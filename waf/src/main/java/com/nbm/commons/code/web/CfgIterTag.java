@@ -1,38 +1,37 @@
 package com.nbm.commons.code.web;
 
-
 import java.io.IOException;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-public class Cfg2 extends SimpleTagSupport{
+public class CfgIterTag extends SimpleTagSupport{
 
-	private String keys;
-	private String i;
+	private String key;
+	private String var;
 
-	public String getKeys(){
-		return keys;
+	public String getKey(){
+		return key;
 	}
 
-	public void setKeys(String keys){
-		this.keys = keys;
+	public void setKey(String key){
+		this.key = key;
 	}
 
-	public String getI(){
-		return i;
+	public String getVar(){
+		return var;
 	}
 
-	public void setI(String i){
-		this.i = i;
+	public void setVar(String var){
+		this.var = var;
 	}
 
 	@Override
 	public void doTag() throws JspException, IOException{
-		String [] strings = com.wayeasoft.core.configuration.Cfg.I.get(keys, String [].class);
+		String [] strings = com.wayeasoft.core.configuration.Cfg.I.get(key, String [].class);
 		if (strings != null) {
 			for (String string : strings) {
-				getJspContext().setAttribute(i, string);
+				getJspContext().setAttribute(var, string);
 				getJspBody().invoke(null);
 			}
 		}

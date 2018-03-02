@@ -361,8 +361,8 @@
 	</tag>
 	<!-- 获取配置文件的值 -->
     <tag>
-    <name>key</name>
-    <tag-class>com.nbm.commons.code.web.Cfg</tag-class>
+    <name>cfg</name>
+    <tag-class>com.nbm.commons.code.web.CfgTag</tag-class>
     <body-content>empty</body-content>
     <!-- 根据传进来的key获取value -->
 		<attribute>
@@ -373,18 +373,18 @@
     </tag>
     <tag>
 	<!-- 获取配置文件的多个值 -->
-    <name>key2</name>
-    <tag-class>com.nbm.commons.code.web.Cfg2</tag-class>
+    <name>cfgIter</name>
+    <tag-class>com.nbm.commons.code.web.CfgIterTag</tag-class>
     <body-content>scriptless</body-content>
     <!-- 根据传进来的key获取value(多个) -->
 		<attribute>
-			<name>keys</name>
+			<name>key</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
-		<!-- 别名为i -->
+		<!-- 别名为var -->
 		<attribute>
-		<name>i</name>
+		<name>var</name>
 		<required>true</required>
 		<rtexprvalue>false</rtexprvalue>
 		</attribute>
