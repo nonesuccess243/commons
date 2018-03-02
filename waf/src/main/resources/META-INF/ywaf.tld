@@ -326,7 +326,6 @@
 			<required>false</required>
 		</attribute>
 	</tag>
-
 	<!-- 用于显示单个web资源的标签，标签只用于读取资源，应能包含一段负责具体显示的html -->
 	<tag>
 		<name>webInfo</name>
@@ -360,5 +359,34 @@
 			<required>false</required>
 		</attribute>
 	</tag>
-
+	<!-- 获取配置文件的值 -->
+    <tag>
+    <name>key</name>
+    <tag-class>com.nbm.commons.code.web.Cfg</tag-class>
+    <body-content>empty</body-content>
+    <!-- 根据传进来的key获取value -->
+		<attribute>
+			<name>key</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+    </tag>
+    <tag>
+	<!-- 获取配置文件的多个值 -->
+    <name>key2</name>
+    <tag-class>com.nbm.commons.code.web.Cfg2</tag-class>
+    <body-content>scriptless</body-content>
+    <!-- 根据传进来的key获取value(多个) -->
+		<attribute>
+			<name>keys</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<!-- 别名为i -->
+		<attribute>
+		<name>i</name>
+		<required>true</required>
+		<rtexprvalue>false</rtexprvalue>
+		</attribute>
+    </tag>
 </taglib>
