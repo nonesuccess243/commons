@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-fragment id="WebFragment_ID" version="3.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-fragment_3_1.xsd">
+	<display-name>nick</display-name>
+	<name>nick</name>
+	<listener>
+		<!-- 配置一个监听器 -->
+		<listener-class>com.wayeasoft.starter.StarterListener</listener-class>
+	</listener>
+	<filter>
+		<filter-name>EncodingFilter</filter-name>
+		<filter-class>com.younker.waf.utils.EncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter>
+		<filter-name>SqlSessionFilter</filter-name>
+		<filter-class>com.younker.waf.db.mybatis.SqlSessionFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>SqlSessionFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
+		<init-param>
+			<param-name>loggerFactory</param-name>
+			<param-value>com.opensymphony.xwork2.util.logging.slf4j.Slf4jLoggerFactory</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>EncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<resource-ref>
+		<description>the Data Source of the Application</description>
+		<res-ref-name>jdbc/ds</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	<servlet>
+		<servlet-name>DBGridServlet</servlet-name>
+		<servlet-class>com.younker.waf.dbgrid.DBGridServlet</servlet-class>
+		<init-param>
+			<param-name>ruleFilePath</param-name>
+			<param-value>/webcore/src/main/webapp/META-INF/DBGridRule.xml</param-value>
+		</init-param>
+		<init-param>
+			<param-name>configFilePath</param-name>
+			<param-value>/webcore/src/main/resources/dbgrid_config/dbgrids.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DBGridServlet</servlet-name>
+		<url-pattern>*.list</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DBGridServlet</servlet-name>
+		<url-pattern>*.xls</url-pattern>
+	</servlet-mapping>
+	<!-- 表示一个执行序列 -->
+	<ordering>
+		<!-- 表示在项目所有之前进行初始化 -->
+		<before>
+			<others />
+		</before>
+	</ordering>
+</web-fragment>
