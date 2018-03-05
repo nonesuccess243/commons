@@ -11,7 +11,6 @@
 		<name>select</name>
 		<tag-class>com.nbm.commons.code.web.SelectTag</tag-class>
 		<body-content>JSP</body-content>
-
 		<attribute>
 			<name>multiple</name>
 			<required>false</required>
@@ -340,7 +339,7 @@
 			<required>true</required>
 		</attribute>
 	</tag>
-	
+
 	<!-- 用于显示单个web资源的标签，标签只用于读取资源，应能包含一段负责具体显示的html -->
 	<tag>
 		<name>webInfoList</name>
@@ -360,23 +359,23 @@
 		</attribute>
 	</tag>
 	<!-- 获取配置文件的值 -->
-    <tag>
-    <name>cfg</name>
-    <tag-class>com.nbm.commons.code.web.CfgTag</tag-class>
-    <body-content>empty</body-content>
-    <!-- 根据传进来的key获取value -->
+	<tag>
+		<name>cfg</name>
+		<tag-class>com.nbm.commons.code.web.CfgTag</tag-class>
+		<body-content>empty</body-content>
+		<!-- 根据传进来的key获取value -->
 		<attribute>
 			<name>key</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
-    </tag>
-    <tag>
-	<!-- 获取配置文件的多个值 -->
-    <name>cfgIter</name>
-    <tag-class>com.nbm.commons.code.web.CfgIterTag</tag-class>
-    <body-content>scriptless</body-content>
-    <!-- 根据传进来的key获取value(多个) -->
+	</tag>
+	<tag>
+		<!-- 获取配置文件的多个值 -->
+		<name>cfgIter</name>
+		<tag-class>com.nbm.commons.code.web.CfgIterTag</tag-class>
+		<body-content>scriptless</body-content>
+		<!-- 根据传进来的key获取value(多个) -->
 		<attribute>
 			<name>key</name>
 			<required>true</required>
@@ -384,9 +383,9 @@
 		</attribute>
 		<!-- 别名为var -->
 		<attribute>
-		<name>var</name>
-		<required>true</required>
-		<rtexprvalue>false</rtexprvalue>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
 		</attribute>
-    </tag>
+	</tag>
 </taglib>
