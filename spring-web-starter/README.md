@@ -33,3 +33,10 @@ WebConfig内容：
 ## spring.mvc.servlet_mappings
 
 springmvc默认监听的url pattern，默认为*.do
+
+# spring result bean
+
+一个用于spring mvc开发webapi 时，做统一返回值的工具类。
+
+详细内容见文档。
+
