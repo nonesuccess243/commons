@@ -19,6 +19,11 @@ public class ResultBean<T> implements Serializable
 
         public static final int NO_PERMISSION = 403;
 
+        
+        
+        /**
+         * 仅作为调试使用，不给前端直接显示
+         */
         private String msg = "success";
 
         
@@ -26,6 +31,13 @@ public class ResultBean<T> implements Serializable
          * 返回码
          * 
          * 含义参考Http状态码
+         * 
+         * 2xxx代表请求成功，默认为200
+         * 
+         * 4xxx代表客户端提交数据错误
+         * 
+         * 5xxx代表服务端错误
+         * 
          */
         private int code = SUCCESS;
 
