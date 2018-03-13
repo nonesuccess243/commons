@@ -46,11 +46,45 @@ public class ResultBean<T> implements Serializable
                 super();
         }
 
+        /**
+         * message设置为success
+         * 
+         * code设置为ResultBean.SUCCESS
+         * 
+         * @param data
+         */
         public ResultBean(T data)
         {
                 super();
                 this.data = data;
         }
+        
+        /**
+         * message 设置为success
+         * @param data
+         * @param code
+         */
+        public ResultBean(T data, int code)
+        {
+                super();
+                this.data = data;
+                this.code = code;
+        }
+        
+        /**
+         * 
+         * @param data
+         * @param code
+         * @param message
+         */
+        public ResultBean(T data, int code, String message)
+        {
+                super();
+                this.data = data;
+                this.code = code;
+                this.msg = message;
+        }
+        
 
         public ResultBean(Throwable e)
         {
