@@ -4,11 +4,11 @@
 	<parent>
 		<groupId>com.nbm</groupId>
 		<artifactId>commons-aggr</artifactId>
-		<version>7.5.0</version>
+		<version>7.5.1-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>waf</artifactId>
-  <version> 7.5.0</version>
+  <version> 1.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>waf Maven Webapp</name>
@@ -24,13 +24,13 @@
 		<dependency>
 			<groupId>com.nbm</groupId>
 			<artifactId>utils</artifactId>
-			<version>7.5.0</version>
+			<version>7.5.1-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.nbm</groupId>
 			<artifactId>db</artifactId>
-			<version>7.5.0</version>
+			<version>7.5.1-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
