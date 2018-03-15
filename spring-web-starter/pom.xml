@@ -3,9 +3,10 @@
 	<parent>
 		<groupId>com.nbm</groupId>
 		<artifactId>commons-aggr</artifactId>
-		<version>7.4.1-SNAPSHOT</version>
+		<version>7.5.0</version>
 	</parent>
 	<artifactId>spring-web-starter</artifactId>
+  <version> 7.5.0</version>
 	<description>集中所有spring配置基础设施，本项目引入后，不需要再另做手动配置，spring相关的内容都会自动生效，除了本项目外，其余与spring相关的项目都不允许具备自启动的特性</description>
 
 	<dependencies>
@@ -31,12 +32,12 @@
 		<dependency>
 			<groupId>com.nbm</groupId>
 			<artifactId>core</artifactId>
-			<version>${project.version}</version>
+			<version>7.5.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.nbm</groupId>
 			<artifactId>utils</artifactId>
-			<version>${project.version}</version>
+			<version>7.5.0</version>
 		</dependency>
 	</dependencies>
 </project>
