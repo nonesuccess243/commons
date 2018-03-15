@@ -10,7 +10,7 @@
 
 	<groupId>com.nbm</groupId>
 	<artifactId>commons-aggr</artifactId>
-	<version>7.4.1-SNAPSHOT</version>
+	<version>7.5.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>wayeasoft_commons</name>
 	<modules>
@@ -22,7 +22,6 @@
 		<module>httpclient</module>
 		<module>report</module>
 		<module>dbgrid-web</module>
-		<module>waf_demo</module>
 		<module>spring-web-starter</module>
 		<module>starter</module>
 	</modules>

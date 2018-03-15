@@ -36,3 +36,7 @@ git push --set-upstream origin build20170531
 再到gitbucket上提出该分支的pr，合并后，打包完成。
 
 如果有正在并行开发的其他人员，则执行git rebase，将master上的更新同步下来
+
+---
+
+如果是在某个分支feature/something下进行开发，在push了所有修改内容后，可以直接在这个分支上执行打包发布操作，之后合并到master上即可。

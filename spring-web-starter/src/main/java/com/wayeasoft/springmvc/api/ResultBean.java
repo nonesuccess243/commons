@@ -1,0 +1,146 @@
+package com.wayeasoft.springmvc.api;
+
+import java.io.Serializable;
+
+/**
+ * 只准springmvc的controller使用，不准向后传
+ * 
+ * @author niyuzhe
+ *
+ * @param <T>
+ */
+public class ResultBean<T> implements Serializable
+{
+        private static final long serialVersionUID = 1L;
+
+        public static final int SUCCESS = 200;
+
+        public static final int FAIL = 500;
+
+        public static final int NO_PERMISSION = 403;
+        
+        /**
+         * 仅作为调试使用，不给前端直接显示
+         */
+        private String message = "success";
+
+        public static ResultBean error( int code, String message )
+        {
+               ResultBean<?> bean = new ResultBean<>();
+               bean.setCode(code);
+               bean.setMessage(message);
+               return bean;
+        }
+
+        
+        /**
+         * 返回码
+         * 
+         * 含义参考Http状态码
+         * 
+         * 2xxx代表请求成功，默认为200
+         * 
+         * 4xxx代表客户端提交数据错误
+         * 
+         * 5xxx代表服务端错误
+         * 
+         */
+        private int code = SUCCESS;
+
+        private T data;
+
+        public ResultBean()
+        {
+                super();
+        }
+
+        /**
+         * message设置为success
+         * 
+         * code设置为ResultBean.SUCCESS
+         * 
+         * @param data
+         */
+        public ResultBean(T data)
+        {
+                super();
+                this.data = data;
+        }
+        
+        /**
+         * message 设置为success
+         * @param data
+         * @param code
+         */
+        public ResultBean(T data, int code)
+        {
+                super();
+                this.data = data;
+                this.code = code;
+        }
+        
+        /**
+         * 
+         * @param data
+         * @param code
+         * @param message
+         */
+        public ResultBean(T data, int code, String message)
+        {
+                super();
+                this.data = data;
+                this.code = code;
+                this.message = message;
+        }
+        
+
+        public ResultBean(Throwable e)
+        {
+                super();
+                this.message = e.getMessage();
+                this.code = FAIL;
+        }
+        
+        /**
+         * 用ApiException的子类创建ResultBean
+         * 
+         * @param exception
+         */
+        public ResultBean( ApiException exception )
+        {
+                super();
+                this.code = exception.getErrorCode();
+                this.message = exception.getMessage();
+        }
+        
+        public String getMsg()
+        {
+                return message;
+        }
+
+        public void setMessage(String msg)
+        {
+                this.message = msg;
+        }
+
+        public int getCode()
+        {
+                return code;
+        }
+
+        public void setCode(int code)
+        {
+                this.code = code;
+        }
+
+        public T getData()
+        {
+                return data;
+        }
+
+        public void setData(T data)
+        {
+                this.data = data;
+        }
+
+}
