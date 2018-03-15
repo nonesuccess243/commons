@@ -1,16 +1,12 @@
 package com.wayeasoft.springmvc.api;
 
-import com.nbm.exception.NbmBaseException;
+import com.nbm.exception.NbmBaseRuntimeException;
 
 /**
- * 作为checked Exception，代表可被服务端处理的错误
- * 
- * 可被服务端处理的错误，一般视作客户端错误
- * 
  * @author niyuzhe
  *
  */
-public abstract class ApiException extends NbmBaseException
+public abstract class ApiException extends NbmBaseRuntimeException
 {
 
         /**
@@ -30,6 +26,7 @@ public abstract class ApiException extends NbmBaseException
          */
         public ApiException( int errorCode, String errorMessage)
         {
+                super(errorMessage);
                 this.errorCode = errorCode;
                 this.errorMessage = errorMessage;
         }
@@ -37,5 +34,10 @@ public abstract class ApiException extends NbmBaseException
         public int getErrorCode()
         {
                 return errorCode;
+        }
+
+        public String getErrorMessage()
+        {
+                return errorMessage;
         }
 }

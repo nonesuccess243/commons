@@ -22,7 +22,15 @@ public class ResultBean<T> implements Serializable
         /**
          * 仅作为调试使用，不给前端直接显示
          */
-        private String msg = "success";
+        private String message = "success";
+
+        public static ResultBean error( int code, String message )
+        {
+               ResultBean<?> bean = new ResultBean<>();
+               bean.setCode(code);
+               bean.setMessage(message);
+               return bean;
+        }
 
         
         /**
@@ -82,14 +90,14 @@ public class ResultBean<T> implements Serializable
                 super();
                 this.data = data;
                 this.code = code;
-                this.msg = message;
+                this.message = message;
         }
         
 
         public ResultBean(Throwable e)
         {
                 super();
-                this.msg = e.getMessage();
+                this.message = e.getMessage();
                 this.code = FAIL;
         }
         
@@ -102,17 +110,17 @@ public class ResultBean<T> implements Serializable
         {
                 super();
                 this.code = exception.getErrorCode();
-                this.msg = exception.getErrorMessage();
+                this.message = exception.getMessage();
         }
         
         public String getMsg()
         {
-                return msg;
+                return message;
         }
 
-        public void setMsg(String msg)
+        public void setMessage(String msg)
         {
-                this.msg = msg;
+                this.message = msg;
         }
 
         public int getCode()
