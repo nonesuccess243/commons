@@ -22,7 +22,6 @@
 		<module>httpclient</module>
 		<module>report</module>
 		<module>dbgrid-web</module>
-		<module>waf_demo</module>
 		<module>spring-web-starter</module>
 		<module>starter</module>
 	</modules>
