@@ -25,7 +25,6 @@ public class CfgTest
                 try
                 {
                         assertEquals(Integer.valueOf(1), Cfg.I.get("stringkey", Integer.class, Integer.valueOf(1)));
-                        fail();
                 }catch(ConversionException e)
                 {
                         //no code here 
