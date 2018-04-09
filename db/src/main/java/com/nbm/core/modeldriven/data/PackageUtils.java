@@ -4,6 +4,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.reflections.Reflections;
+import org.reflections.scanners.SubTypesScanner;
+import org.reflections.scanners.TypeAnnotationsScanner;
+import org.reflections.util.ClasspathHelper;
+import org.reflections.util.ConfigurationBuilder;
+import org.reflections.util.FilterBuilder;
 
 /**
  * 按照包名获取类的工具类
@@ -28,9 +33,17 @@ public class PackageUtils
          */
         public static <T> Set<Class<? extends T>> getClasses(String packageName, Class<T> superClass)
         {
-                
-                Reflections reflections = new Reflections(packageName);
-
+                //配置一个拦截器
+                FilterBuilder filter = new FilterBuilder();
+                //拦截以包名开头以.class结尾的文件
+                filter.include(packageName.replace(".","\\.")+".*"+"\\.class");
+                //添加拦截器
+                ConfigurationBuilder config = ConfigurationBuilder.build(packageName).filterInputsBy(filter);
+                //添加扫描器
+                config.addScanners(new SubTypesScanner(),new TypeAnnotationsScanner());
+                config.setUrls(ClasspathHelper.forPackage(packageName));
+                Reflections reflections = new Reflections(config);
+                /*Reflections reflections = new Reflections(packageName);*/
                 Set<Class<? extends T>> subTypes = reflections.getSubTypesOf(superClass);
 
                 return subTypes;
